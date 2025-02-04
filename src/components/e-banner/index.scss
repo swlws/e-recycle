@@ -5,6 +5,7 @@
   justify-content: flex-start;
   align-items: flex-end;
   padding-left: 20px;
+  background: linear-gradient(to right, #66cc66 30%, white);
 }
 
 .e-banner-content {
@@ -20,5 +21,5 @@
 
 .e-sub-title {
   font-size: $fs-2;
-  color: $color-f-2;
+  color: $color-f-1;
 }

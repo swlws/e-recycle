@@ -1,0 +1,46 @@
+.product {
+  width: 49%;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 150px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.product-text {
+  padding: 10px;
+}
+
+.main-title {
+  font-size: $fs-2;
+  font-weight: bold;
+  display: block;
+}
+
+.sub-title {
+  font-size: $fs-3;
+  color: #666;
+  display: block;
+  margin-top: 4px;
+}
+
+.time {
+  font-size: $fs-3;
+  color: #999;
+  display: block;
+  margin-top: 4px;
+}

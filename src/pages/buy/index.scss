@@ -1,4 +1,16 @@
 .page-bug {
   font-size: $fs-2;
   color: $color-f-1;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background-color: $color-bc;
+
+  overflow: hidden;
+}
+
+.product-container {
+  flex: 1;
 }

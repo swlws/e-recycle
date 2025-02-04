@@ -7,12 +7,11 @@ interface Card {
   id: string;
 }
 
-interface CardListProps {
-  activeId: string;
+interface CategoryListProps {
   cards: Card[];
 }
 
-const CardList: React.FC<CardListProps> = ({ cards }) => {
+const CategoryList: React.FC<CategoryListProps> = ({ cards }) => {
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null); // 选中卡片的id
 
   const handleCardClick = (id: string) => {
@@ -31,16 +30,16 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
   }
 
   return (
-    <View className='card-list'>
+    <View className='category-list'>
       {rows.map((row, rowIndex) => ( // 修改此处，使用 rows 而不是 cards
-        <View className='card-row' key={rowIndex}>
+        <View className='category-row' key={rowIndex}>
           {row.map((card) => (
             <View
-              className={`card ${selectedCardId === card.id ? 'selected' : ''}`}
+              className={`category ${selectedCardId === card.id ? 'selected' : ''}`}
               key={card.id}
               onClick={() => handleCardClick(card.id)}
             >
-              <Text className='card-name'>{card.name}</Text>
+              <Text className='category-name'>{card.name}</Text>
             </View>
           ))}
         </View>
@@ -49,4 +48,4 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
   );
 };
 
-export default CardList;
+export default CategoryList;

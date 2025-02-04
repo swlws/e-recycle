@@ -3,7 +3,8 @@ import { useLoad } from '@tarojs/taro'
 
 // 组件
 import Banner from '@/components/e-banner'
-import CardList from './components/card-list'
+import CategoryList from './components/category-list'
+import ProductList from './components/product-list'
 
 // 变量
 import { CARD_LIST_DATA } from './data'
@@ -21,7 +22,11 @@ export default function Index() {
     <View className='page-bug'>
       <Banner />
 
-      <CardList cards={CARD_LIST_DATA} />
+      <CategoryList cards={CARD_LIST_DATA} />
+
+      <View className='product-container'>
+        <ProductList />
+      </View>
     </View>
   )
 }
