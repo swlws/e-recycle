@@ -1,5 +1,7 @@
 import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
+
+
 import './index.scss'
 
 export default function Index() {
@@ -9,7 +11,7 @@ export default function Index() {
   })
 
   return (
-    <View className='index'>
+    <View className='page-sell'>
       <Text>卖</Text>
     </View>
   )

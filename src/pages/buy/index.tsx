@@ -2,7 +2,7 @@ import { View } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 
 // 组件
-import Banner from './components/banner'
+import Banner from '@/components/e-banner'
 import CardList from './components/card-list'
 
 // 变量
