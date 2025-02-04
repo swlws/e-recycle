@@ -1,8 +1,10 @@
 .card-list {
+  overflow: hidden;
   padding: 10px;
 }
 
 .card-row {
+  width: 100%;
   display: flex;
   gap: 0 10px;
   justify-content: space-between;
@@ -11,16 +13,26 @@
 
 .card {
   flex: 1; /* 平均分配空间 */
-  background-color: #f0f0f0;
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid $color-b;
+}
+
+.card.selected {
+  border-color: $color-f-checked; /* 选中卡片的边框 */
+  background-color: $color-b-checked; /* 选中时的背景色 */
 }
 
 .card-name {
   font-size: $fs-3;
   color: #333;
+}
+
+.card-name.selected {
+  color: $color-f-checked; /* 选中卡片的边框 */
 }

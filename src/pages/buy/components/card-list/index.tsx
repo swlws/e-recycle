@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from '@tarojs/components';
 import './index.scss';
 
@@ -8,10 +8,21 @@ interface Card {
 }
 
 interface CardListProps {
+  activeId: string;
   cards: Card[];
 }
 
 const CardList: React.FC<CardListProps> = ({ cards }) => {
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null); // 选中卡片的id
+
+  const handleCardClick = (id: string) => {
+    if (selectedCardId === id) {
+      setSelectedCardId(null); // 如果点击的是已经选中的卡片，则取消选中
+    } else {
+      setSelectedCardId(id); // 否则选中该卡片
+    }
+  };
+
   const rows: Card[][] = []; // 显式定义 rows 的类型为 Card[][]
 
   // 分配卡片到每一行
@@ -24,7 +35,11 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
       {rows.map((row, rowIndex) => ( // 修改此处，使用 rows 而不是 cards
         <View className='card-row' key={rowIndex}>
           {row.map((card) => (
-            <View className='card' key={card.id}>
+            <View
+              className={`card ${selectedCardId === card.id ? 'selected' : ''}`}
+              key={card.id}
+              onClick={() => handleCardClick(card.id)}
+            >
               <Text className='card-name'>{card.name}</Text>
             </View>
           ))}
