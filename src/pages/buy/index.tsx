@@ -27,6 +27,7 @@ export default function Index() {
       <View className='product-container'>
         <ProductList />
       </View>
+
     </View>
   )
 }

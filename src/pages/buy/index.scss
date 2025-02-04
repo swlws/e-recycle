@@ -2,7 +2,7 @@
   font-size: $fs-2;
   color: $color-f-1;
 
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -13,4 +13,6 @@
 
 .product-container {
   flex: 1;
+  min-height: 1px;
+  overflow: hidden;
 }
