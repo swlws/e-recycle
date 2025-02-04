@@ -9,8 +9,8 @@ export default function Index() {
   })
 
   return (
-    <View className='index'>
-      <Text>Hello world!</Text>
+    <View className='page-bug'>
+      <Text>BUG</Text>
     </View>
   )
 }
