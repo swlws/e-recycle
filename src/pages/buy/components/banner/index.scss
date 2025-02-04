@@ -1,0 +1,31 @@
+.banner {
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(
+    to right,
+    #ff6666 0%,
+    /* 从左侧开始的红色 */ #ff6666 30%,
+    /* 红色占 30% 宽度 */ #66cc66 70%,
+    /* 30% 到 70% 之间是渐变区域 */ #66cc66 100% /* 绿色占据剩余部分 */
+  );
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.banner-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title {
+  font-size: $fs-1;
+  font-weight: bold;
+  color: white;
+}
+
+.sub-title {
+  font-size: $fs-2;
+  color: white;
+}

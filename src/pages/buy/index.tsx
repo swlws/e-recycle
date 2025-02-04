@@ -1,5 +1,14 @@
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
+
+// 组件
+import Banner from './components/banner'
+import CardList from './components/card-list'
+
+// 变量
+import { CARD_LIST_DATA } from './data'
+
+// 样式
 import './index.scss'
 
 export default function Index() {
@@ -10,7 +19,9 @@ export default function Index() {
 
   return (
     <View className='page-bug'>
-      <Text>BUG</Text>
+      <Banner />
+
+      <CardList cards={CARD_LIST_DATA} />
     </View>
   )
 }
