@@ -21,7 +21,7 @@ const CardList = () => {
 
     setLoading(true);
     const newCards = Array.from({ length: 10 }, (_, i) => ({
-      image: `https://via.placeholder.com/300x150?text=Image+${page * 10 + i + 1}`,
+      image: `https://iph.href.lu/100x100`,
       mainTitle: `Main Title ${page * 10 + i + 1}`,
       subTitle: `Sub Title ${page * 10 + i + 1}`,
       time: `2025-02-04 12:00:${page * 10 + i}`,
