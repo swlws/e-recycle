@@ -16,7 +16,7 @@ const NForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>c
       <NInput
         defaultValue="" 
         onChange={(val) => handleInputChange('inputValue', val)}
