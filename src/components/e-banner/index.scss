@@ -1,0 +1,25 @@
+.e-banner {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding-left: 20px;
+  background: linear-gradient(to right, #66cc66 30%, white);
+}
+
+.e-banner-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.e-main-title {
+  font-size: $fs-1;
+  font-weight: bold;
+  color: $color-f-1;
+}
+
+.e-sub-title {
+  font-size: $fs-2;
+  color: $color-f-1;
+}
