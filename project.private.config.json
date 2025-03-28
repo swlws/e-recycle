@@ -3,5 +3,6 @@
   "projectname": "code",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "3.7.12"
 }
