@@ -35,16 +35,20 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
   return (
     <View className="be-form-publish-task">
       <Form values={formValue} onSubmit={onSubmit}>
-        <Cell.Group inset>
+        <Cell.Group inset style={{ marginTop: '16px' }}>
+          {/* 地址 */}
+          <Address value={formValue.address} onChange={handleChange}></Address>
+        </Cell.Group>
+
+        <Cell.Group inset style={{ marginTop: '16px' }}>
           {/* 名称 */}
           <Person value={formValue.person} onChange={handleChange}></Person>
 
           {/* 手机号 */}
           <PhoneNumber value={formValue.phoneNumber} onChange={handleChange}></PhoneNumber>
-
-          {/* 地址 */}
-          <Address value={formValue.address} onChange={handleChange}></Address>
         </Cell.Group>
+
+        <Cell.Group inset style={{ marginTop: '16px' }}></Cell.Group>
 
         <View style={{ margin: '16px' }}>
           <Button shape="round" block color="primary" formType="submit">

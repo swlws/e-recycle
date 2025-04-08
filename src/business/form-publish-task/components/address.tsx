@@ -1,5 +1,6 @@
-import NInput from '@/components/n-input';
-import { Field } from '@taroify/core';
+import { Cell } from '@taroify/core';
+import { View } from '@tarojs/components';
+import { LocationOutlined } from '@taroify/icons';
 
 interface AddressProps {
   value: string;
@@ -12,13 +13,21 @@ interface AddressProps {
  * @returns
  */
 export default function Address(props: AddressProps) {
+  const handleClickEvent = () => {
+    console.log('点击地址');
+  };
+
   return (
-    <Field name="address">
-      <NInput
-        value={props.value}
-        onChange={(value) => props.onChange?.('address', value)}
-        placeholder="地址"
-      ></NInput>
-    </Field>
+    <View className="be-form-publish-task-address">
+      <Cell
+        rightIcon={<LocationOutlined size={20} />}
+        title="地址"
+        isLink
+        clickable
+        onClick={handleClickEvent}
+      ></Cell>
+
+      <View className="taroify-ellipsis--l2">{props.value}</View>
+    </View>
   );
 }
