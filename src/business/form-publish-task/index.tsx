@@ -1,10 +1,11 @@
 import { Button, Cell, Form } from '@taroify/core';
 import { BaseEventOrig, FormProps, View } from '@tarojs/components';
 import { useState } from 'react';
-import PhoneNumber from './components/phone-number';
 import { ITaskInfo } from '@/typings/task';
-import Person from './components/person';
-import Location from './components/location';
+import Person from './components/person/index';
+import Location from './components/location/index';
+import Snapshot from './components/snapshot/index';
+import PhoneNumber from './components/phone-number/index';
 
 interface BeFormPublishTaskProps {
   formValue: ITaskInfo;
@@ -48,7 +49,9 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           <PhoneNumber value={formValue.phoneNumber} onChange={handleChange}></PhoneNumber>
         </Cell.Group>
 
-        <Cell.Group inset style={{ marginTop: '16px' }}></Cell.Group>
+        <Cell.Group inset style={{ marginTop: '16px' }}>
+          <Snapshot></Snapshot>
+        </Cell.Group>
 
         <View style={{ margin: '16px' }}>
           <Button shape="round" block color="primary" formType="submit">
