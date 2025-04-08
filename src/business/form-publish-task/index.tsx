@@ -1,22 +1,17 @@
-import { Button, Form } from '@taroify/core';
-import { View } from '@tarojs/components';
-import { useRef, useState } from 'react';
-import TaskName from './components/task-name';
+import { Button, Cell, Form } from '@taroify/core';
+import { BaseEventOrig, FormProps, View } from '@tarojs/components';
+import { useState } from 'react';
 import PhoneNumber from './components/phone-number';
-
-// Define the type for the Form instance
-interface FormInstance {
-  validate: () => Promise<any>;
-  getValues: () => Record<string, any>;
-}
+import { ITaskInfo } from '@/typings/task';
+import Person from './components/person';
+import Address from './components/address';
 
 interface BeFormPublishTaskProps {
-  formValue: Record<string, any>;
+  formValue: ITaskInfo;
   onChange?: (value: Record<string, any>) => void;
 }
 
 export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
-  const formRef = useRef<FormInstance>();
   const [formValue, setFormValue] = useState(props.formValue || {});
 
   const handleChange = (key: string, value: any) => {
@@ -33,25 +28,30 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
     }
   };
 
-  const submit = () => {
-    console.log('提交表单', formValue, formRef.current);
-    formRef.current?.validate().then((r) => {
-      console.log('表单验证结果', r);
-      console.log('表单值', formRef.current?.getValues());
-    });
+  const onSubmit = (event: BaseEventOrig<FormProps.onSubmitEventDetail>) => {
+    console.log(JSON.stringify(event.detail.value));
   };
 
   return (
-    <View>
-      <Form ref={formRef}>
-        <TaskName value={formValue.taskName} onChange={handleChange}></TaskName>
+    <View className="be-form-publish-task">
+      <Form values={formValue} onSubmit={onSubmit}>
+        <Cell.Group inset>
+          {/* 名称 */}
+          <Person value={formValue.person} onChange={handleChange}></Person>
 
-        <PhoneNumber value={formValue.phoneNumber} onChange={handleChange}></PhoneNumber>
+          {/* 手机号 */}
+          <PhoneNumber value={formValue.phoneNumber} onChange={handleChange}></PhoneNumber>
+
+          {/* 地址 */}
+          <Address value={formValue.address} onChange={handleChange}></Address>
+        </Cell.Group>
+
+        <View style={{ margin: '16px' }}>
+          <Button shape="round" block color="primary" formType="submit">
+            提交
+          </Button>
+        </View>
       </Form>
-
-      <Button shape="round" block color="primary" formType="submit" onClick={submit}>
-        提交
-      </Button>
     </View>
   );
 }

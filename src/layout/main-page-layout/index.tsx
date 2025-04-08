@@ -1,9 +1,9 @@
-import { View } from "@tarojs/components";
-import { Tabbar } from "@taroify/core";
-import React, { useEffect, useState } from "react";
+import { View } from '@tarojs/components';
+import { Tabbar } from '@taroify/core';
+import React, { useState } from 'react';
 
-import { IMainPage } from "@/typings";
-import "./index.scss";
+import { IMainPage } from '@/typings';
+import './index.scss';
 
 interface MainPageLayoutProps {
   mainPageList: IMainPage[];
@@ -25,27 +25,19 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
   };
 
   return (
-    <View className='main-page-layout'>
+    <View className="main-page-layout">
       {/* 主内容区域 */}
-      <View className='main-page-layout__main'>
+      <View className="main-page-layout__main">
         {/* 动态渲染当前选中的组件 */}
         {mainPageList[activePageIndex] &&
-          React.createElement(
-            mainPageList[activePageIndex].component,
-            {},
-            null
-          )}
+          React.createElement(mainPageList[activePageIndex].component, {}, null)}
       </View>
 
       {/* 底部导航栏 */}
-      <View className='main-page-layout__footer'>
+      <View className="main-page-layout__footer">
         <Tabbar value={activePageIndex} onChange={handleTabClick}>
           {mainPageList.map((item, index) => (
-            <Tabbar.TabItem
-              key={item.name}
-              value={index}
-              onClick={() => handleTabClick(index)}
-            >
+            <Tabbar.TabItem key={item.name} value={index} onClick={() => handleTabClick(index)}>
               {item.nameZh}
             </Tabbar.TabItem>
           ))}

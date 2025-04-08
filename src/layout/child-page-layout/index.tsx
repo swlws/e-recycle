@@ -1,6 +1,6 @@
-import { View } from "@tarojs/components";
+import { View } from '@tarojs/components';
 
-import "./index.scss";
+import './index.scss';
 
 interface ChildPageLayoutProps {
   children: React.ReactNode;
@@ -13,5 +13,5 @@ interface ChildPageLayoutProps {
 export default function ChildPageLayout(props: ChildPageLayoutProps) {
   const { children } = props;
 
-  return <View className='child-page-layout'>{children}</View>;
+  return <View className="child-page-layout">{children}</View>;
 }
