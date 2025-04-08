@@ -4,7 +4,7 @@ import { useState } from 'react';
 import PhoneNumber from './components/phone-number';
 import { ITaskInfo } from '@/typings/task';
 import Person from './components/person';
-import Address from './components/address';
+import Location from './components/location';
 
 interface BeFormPublishTaskProps {
   formValue: ITaskInfo;
@@ -36,8 +36,8 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
     <View className="be-form-publish-task">
       <Form values={formValue} onSubmit={onSubmit}>
         <Cell.Group inset style={{ marginTop: '16px' }}>
-          {/* 地址 */}
-          <Address value={formValue.address} onChange={handleChange}></Address>
+          {/* 定位 */}
+          <Location value={formValue.address} onChange={handleChange}></Location>
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>

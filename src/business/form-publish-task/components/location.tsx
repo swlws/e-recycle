@@ -2,7 +2,7 @@ import { Cell } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { LocationOutlined } from '@taroify/icons';
 
-interface AddressProps {
+interface LocationProps {
   value: string;
   onChange?: (name: string, value: string) => void;
 }
@@ -12,7 +12,7 @@ interface AddressProps {
  * @param props
  * @returns
  */
-export default function Address(props: AddressProps) {
+export default function Location(props: LocationProps) {
   const handleClickEvent = () => {
     console.log('点击地址');
   };
