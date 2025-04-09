@@ -1,4 +1,5 @@
 import { NumberKeyboard } from '@taroify/core';
+import { View } from '@tarojs/components';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface NumberKeyboardWithKeysProps {
@@ -30,11 +31,13 @@ function NumberKeyboardWithKeys(props: NumberKeyboardWithKeysProps, ref: any) {
   };
 
   return (
-    <NumberKeyboard
-      open={visible}
-      onKeyPress={onKeyPress}
-      onHide={handleHideEvent}
-    ></NumberKeyboard>
+    <NumberKeyboard open={visible} onKeyPress={onKeyPress} onHide={handleHideEvent}>
+      <NumberKeyboard.Sidebar>
+        <NumberKeyboard.Key size="large" code="keyboard-hide" color="blue">
+          完成
+        </NumberKeyboard.Key>
+      </NumberKeyboard.Sidebar>
+    </NumberKeyboard>
   );
 }
 
