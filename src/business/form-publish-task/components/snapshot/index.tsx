@@ -1,4 +1,4 @@
-import { Flex, Image } from '@taroify/core';
+import { Cell, Flex, Image } from '@taroify/core';
 import { View } from '@tarojs/components';
 
 import './index.scss';
@@ -14,6 +14,8 @@ export default function Snapshot(props: SnapshotProps) {
 
   return (
     <View className="form-publish-task__snapshot">
+      <Cell title="图片"></Cell>
+
       <Flex justify="space-between">
         {imageList.map((item, index) => {
           return (

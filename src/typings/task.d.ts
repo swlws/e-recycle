@@ -4,4 +4,5 @@ export interface ITaskInfo {
   person: string;
   phoneNumber: string;
   address: string;
+  goods: string[];
 }

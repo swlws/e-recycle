@@ -6,6 +6,7 @@ import Person from './components/person/index';
 import Location from './components/location/index';
 import Snapshot from './components/snapshot/index';
 import PhoneNumber from './components/phone-number/index';
+import Goods from './components/goods';
 
 interface BeFormPublishTaskProps {
   formValue: ITaskInfo;
@@ -50,6 +51,10 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
+          <Goods value={formValue.goods} onChange={handleChange}></Goods>
+        </Cell.Group>
+
+        <Cell.Group inset style={{ marginTop: '16px' }}>
           <Snapshot></Snapshot>
         </Cell.Group>
 
@@ -59,6 +64,8 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           </Button>
         </View>
       </Form>
+
+      <View>{JSON.stringify(formValue)}</View>
     </View>
   );
 }

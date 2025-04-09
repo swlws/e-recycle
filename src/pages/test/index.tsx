@@ -7,6 +7,7 @@ const getDefaultFormValue = (): ITaskInfo => {
     person: '',
     phoneNumber: '',
     address: '',
+    goods: [],
   };
 };
 
