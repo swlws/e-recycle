@@ -21,7 +21,7 @@ export default function Location(props: LocationProps) {
     <View className="be-form-publish-task-address">
       <Cell
         rightIcon={<LocationOutlined size={20} />}
-        title="地址"
+        title="点击选择地址"
         isLink
         clickable
         onClick={handleClickEvent}
