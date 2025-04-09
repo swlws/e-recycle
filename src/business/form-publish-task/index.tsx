@@ -6,6 +6,7 @@ import Person from './components/person/index';
 import Location from './components/location/index';
 import Snapshot from './components/snapshot/index';
 import PhoneNumber from './components/phone-number/index';
+import Remark from './components/remark';
 
 interface BeFormPublishTaskProps {
   formValue: ITaskInfo;
@@ -51,6 +52,10 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
           <Snapshot></Snapshot>
+        </Cell.Group>
+
+        <Cell.Group inset style={{ marginTop: '16px' }}>
+          <Remark value={formValue.remark} onChange={handleChange}></Remark>
         </Cell.Group>
 
         <View style={{ margin: '16px' }}>
