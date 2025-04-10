@@ -1,6 +1,6 @@
-import { gotoPage } from '@/taro-api/router';
 import { Button, Space } from '@taroify/core';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
+import { gotoPage } from '@/bridge/navigator';
 
 export default function Mine() {
   const handleClick = (path: ENUM_ROUTE_PATH) => {

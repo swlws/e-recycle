@@ -12,10 +12,10 @@ export function chooseLocation(): Promise<IChooseLocation> {
   return new Promise((resolve, reject) => {
     Taro.chooseLocation({
       success: (res) => {
-        if (!res.latitude || !res.longitude) {
-          reject(res);
-        } else {
+        if (res.errMsg === 'chooseLocation:ok') {
           resolve(res);
+        } else {
+          reject(res);
         }
       },
       fail: (err) => {
