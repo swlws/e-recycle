@@ -1,10 +1,13 @@
 import { Cell } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { LocationOutlined } from '@taroify/icons';
+import { chooseLocation } from '@/bridge/location';
+import { useState } from 'react';
+import { IChooseLocation } from '@/typings/bridge';
 
 interface LocationProps {
-  value: string;
-  onChange?: (name: string, value: string) => void;
+  value: IChooseLocation;
+  onChange?: (name: string, value: IChooseLocation) => void;
 }
 
 /**
@@ -13,21 +16,28 @@ interface LocationProps {
  * @returns
  */
 export default function Location(props: LocationProps) {
+  const [locationInfo, setLocationInfo] = useState(() => {
+    return props.value || ({} as IChooseLocation);
+  });
+
   const handleClickEvent = () => {
-    console.log('点击地址');
+    chooseLocation().then((res) => {
+      setLocationInfo(res);
+      props.onChange && props.onChange('location', res);
+    });
   };
 
   return (
     <View className="be-form-publish-task-address">
       <Cell
         rightIcon={<LocationOutlined size={20} />}
-        title="点击选择地址"
+        title={locationInfo.name || '点击选择地址'}
         isLink
         clickable
         onClick={handleClickEvent}
       ></Cell>
 
-      <View className="taroify-ellipsis--l2">{props.value}</View>
+      <View className="taroify-ellipsis--l2">{locationInfo.address}</View>
     </View>
   );
 }
