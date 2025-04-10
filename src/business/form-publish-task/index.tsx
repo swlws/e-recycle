@@ -10,12 +10,14 @@ import Goods from './components/goods';
 import Remark from './components/remark';
 
 interface BeFormPublishTaskProps {
-  formValue: ITaskInfo;
+  formValue?: ITaskInfo;
   onChange?: (value: Record<string, any>) => void;
 }
 
 export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
-  const [formValue, setFormValue] = useState(props.formValue || {});
+  const [formValue, setFormValue] = useState<ITaskInfo>(() => {
+    return props.formValue || ({} as ITaskInfo);
+  });
 
   const handleChange = (key: string, value: any) => {
     setFormValue({
