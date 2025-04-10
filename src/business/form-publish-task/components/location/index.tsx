@@ -37,7 +37,11 @@ export default function Location(props: LocationProps) {
         onClick={handleClickEvent}
       ></Cell>
 
-      <View className="taroify-ellipsis--l2">{locationInfo.address}</View>
+      {locationInfo.address && (
+        <View className="taroify-ellipsis--l2" style={{ padding: '16px' }}>
+          {locationInfo.address}
+        </View>
+      )}
     </View>
   );
 }
