@@ -8,6 +8,7 @@ import Snapshot from './components/snapshot/index';
 import PhoneNumber from './components/phone-number/index';
 import Goods from './components/goods';
 import Remark from './components/remark';
+import PickupTime from './components/pickup-time';
 
 interface BeFormPublishTaskProps {
   formValue?: ITaskInfo;
@@ -51,6 +52,9 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
 
           {/* 手机号 */}
           <PhoneNumber value={formValue.phoneNumber} onChange={handleChange}></PhoneNumber>
+
+          {/* 时间 */}
+          <PickupTime value={formValue.pickupTime} onChange={handleChange}></PickupTime>
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>

@@ -8,4 +8,5 @@ export interface ITaskInfo {
   address: IChooseLocation;
   goods: string[];
   remark: string;
+  pickupTime: string;
 }
