@@ -4,6 +4,7 @@ import { LocationOutlined } from '@taroify/icons';
 import { chooseLocation } from '@/bridge/location';
 import { useState } from 'react';
 import { IChooseLocation } from '@/typings/bridge';
+import CacheMgr from '@/cache/index';
 
 interface LocationProps {
   value: IChooseLocation;
@@ -17,12 +18,16 @@ interface LocationProps {
  */
 export default function Location(props: LocationProps) {
   const [locationInfo, setLocationInfo] = useState(() => {
-    return props.value || ({} as IChooseLocation);
+    return props.value || (CacheMgr.chooseLocation.value as IChooseLocation);
   });
 
   const handleClickEvent = () => {
     chooseLocation().then((res) => {
+      // 组件状态
       setLocationInfo(res);
+      // 缓存状态
+      CacheMgr.chooseLocation.setValue(res);
+      // 表单状态
       props.onChange && props.onChange('location', res);
     });
   };
