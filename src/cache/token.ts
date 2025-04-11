@@ -1,4 +1,4 @@
-import { getItem, setItem } from '@/bridge/stroage';
+import { getItem, setItem } from '@/bridge/storage';
 
 const KEY_TOKEN = 'token';
 

@@ -1,4 +1,4 @@
-import { getItem, setItem } from '@/bridge/stroage';
+import { getItem, setItem } from '@/bridge/storage';
 import { IChooseLocation } from '@/typings/bridge';
 
 const KEY_LOCATION = 'location';

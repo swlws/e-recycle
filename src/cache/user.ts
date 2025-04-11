@@ -1,4 +1,4 @@
-import { getItem, setItem } from '@/bridge/stroage';
+import { getItem, setItem } from '@/bridge/storage';
 import { CacheUserInfo } from '@/typings/user';
 
 const STORAGE_KEY = 'user_info';
