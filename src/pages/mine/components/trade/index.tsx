@@ -5,7 +5,7 @@ import { View } from '@tarojs/components';
 export default function Trade() {
   return (
     <View className="page-trade">
-      <Cell title="交易"></Cell>
+      {/* <Cell title="交易"></Cell> */}
 
       <Grid>
         <Grid.Item
@@ -16,8 +16,14 @@ export default function Trade() {
 
         <Grid.Item
           icon={<PhotoOutlined />}
-          badge={<Badge content={100} max={99} />}
+          badge={<Badge content={20} max={99} />}
           text="我卖出的"
+        />
+
+        <Grid.Item
+          icon={<PhotoOutlined />}
+          badge={<Badge content={100} max={99} />}
+          text="我买到的"
         />
       </Grid>
     </View>
