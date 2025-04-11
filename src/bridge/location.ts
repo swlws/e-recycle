@@ -24,3 +24,39 @@ export function chooseLocation(): Promise<IChooseLocation> {
     });
   });
 }
+
+/**
+ * 地址逆解析
+ * @param longitude
+ * @param latitude
+ */
+export function geocoder(longitude: number, latitude: number) {
+  const url = `https://apis.map.qq.com/ws/geocoder/v1?location=${latitude},${longitude}&key=4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3&get_poi=1`;
+
+  return Taro.request({ url, method: 'GET' })
+    .then((res) => {
+      console.log(res);
+      const address_component = res?.data?.result?.address_component;
+      if (!address_component) {
+        return null;
+      }
+
+      const { province, city, district } = address_component;
+      return { province, city, district };
+    })
+    .catch((err) => {
+      console.log(err);
+      return null;
+    });
+}
+
+// https://apis.map.qq.com/ws/geocoder/v1?location=39.984154,116.307490&key=4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3&get_poi=1
+
+export function getCurrentLocation() {
+  Taro.request({
+    url: 'https://apis.map.qq.com/ws/geocoder/v1?location=39.984154,116.307490&key=4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3&get_poi=1',
+    method: 'GET',
+  }).then((res) => {
+    console.log(res);
+  });
+}
