@@ -26,6 +26,23 @@ export function chooseLocation(): Promise<IChooseLocation> {
 }
 
 /**
+ * 获取当前的模糊位置
+ * @returns
+ */
+export function getFuzzyLocation() {
+  return Taro.getLocation({ type: 'gcj02' }).then((res) => {
+    if (res.errMsg === 'getLocation:ok') {
+      const { latitude, longitude } = res;
+      return geocoder(longitude, latitude).then((addresInfo) => {
+        if (!addresInfo) return null;
+        return { latitude, longitude, ...addresInfo };
+      });
+    }
+    return null;
+  });
+}
+
+/**
  * 地址逆解析
  * @param longitude
  * @param latitude
@@ -38,7 +55,6 @@ export function geocoder(longitude: number, latitude: number) {
     .then((res) => {
       if (res.errMsg !== 'request:ok') return null;
 
-      console.log(res);
       const address_component = res?.data?.result?.address_component;
       if (!address_component) {
         return null;

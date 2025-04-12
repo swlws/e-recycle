@@ -11,5 +11,6 @@ export default defineAppConfig({
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black',
   },
-  requiredPrivateInfos: ['chooseLocation'],
+
+  requiredPrivateInfos: ['chooseLocation', 'chooseAddress', 'getLocation'],
 });

@@ -1,4 +1,4 @@
-import { geocoder } from '@/bridge/location';
+import { geocoder, getFuzzyLocation } from '@/bridge/location';
 import ChildPageLayout from '@/layout/child-page-layout';
 import { Button } from '@taroify/core';
 import { View } from '@tarojs/components';
@@ -9,6 +9,10 @@ export default function ChildPage() {
     const { longitude, latitude } = CacheMgr.chooseLocation.value;
     geocoder(longitude, latitude).then((res) => {
       console.log(res, 'res');
+    });
+
+    getFuzzyLocation().then((res) => {
+      console.log(res, 'getFuzzyLocation');
     });
   };
 
