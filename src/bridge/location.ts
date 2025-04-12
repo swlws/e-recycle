@@ -31,10 +31,13 @@ export function chooseLocation(): Promise<IChooseLocation> {
  * @param latitude
  */
 export function geocoder(longitude: number, latitude: number) {
-  const url = `https://apis.map.qq.com/ws/geocoder/v1?location=${latitude},${longitude}&key=4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3&get_poi=1`;
+  const mapKey = '4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3';
+  const url = `https://apis.map.qq.com/ws/geocoder/v1?location=${latitude},${longitude}&key=${mapKey}&get_poi=1`;
 
   return Taro.request({ url, method: 'GET' })
     .then((res) => {
+      if (res.errMsg !== 'request:ok') return null;
+
       console.log(res);
       const address_component = res?.data?.result?.address_component;
       if (!address_component) {
@@ -48,15 +51,4 @@ export function geocoder(longitude: number, latitude: number) {
       console.log(err);
       return null;
     });
-}
-
-// https://apis.map.qq.com/ws/geocoder/v1?location=39.984154,116.307490&key=4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3&get_poi=1
-
-export function getCurrentLocation() {
-  Taro.request({
-    url: 'https://apis.map.qq.com/ws/geocoder/v1?location=39.984154,116.307490&key=4JCBZ-YMEC5-S36IP-IGKOV-R6LP7-JWFI3&get_poi=1',
-    method: 'GET',
-  }).then((res) => {
-    console.log(res);
-  });
 }
