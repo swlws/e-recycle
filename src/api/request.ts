@@ -35,8 +35,11 @@ function reposeInterceptor(res: Taro.request.SuccessCallbackResult) {
   }
 }
 
-const api = ['GET', 'POST', 'PUT', 'DELETE'].map((method: Method) => {
-  return (url: string, data: Record<string, any>, options: RequestOptions) => {
+type apiMethod = (url: string, data: Record<string, any>, options: RequestOptions) => Promise<any>;
+
+const api = {} as Record<Method, apiMethod>;
+['GET', 'POST', 'PUT', 'DELETE'].forEach((method: Method) => {
+  api[method] = (url: string, data: Record<string, any>, options: RequestOptions) => {
     return request(url, data, { ...options, method });
   };
 });
