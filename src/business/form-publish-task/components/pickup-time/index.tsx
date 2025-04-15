@@ -27,7 +27,13 @@ export default function PickupTime(props: PickupTimeProps) {
     <View>
       <Cell title={pickupTime || '时间'} isLink clickable onClick={openModel}></Cell>
 
-      <Popup open={visible} placement="bottom" rounded style={{ height: '50%' }}>
+      <Popup
+        open={visible}
+        placement="bottom"
+        rounded
+        style={{ height: '50%' }}
+        onClose={() => setVisible(false)}
+      >
         <Picker
           title="时间"
           columns={getPickerOption()}
