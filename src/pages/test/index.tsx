@@ -4,6 +4,8 @@ import { Button } from '@taroify/core';
 import { View } from '@tarojs/components';
 import CacheMgr from '@/cache/index';
 
+import './index.scss';
+
 export default function ChildPage() {
   const getCurrentLocation = () => {
     const { longitude, latitude } = CacheMgr.chooseLocation.value;
@@ -21,6 +23,8 @@ export default function ChildPage() {
       <View>Test</View>
 
       <Button onClick={getCurrentLocation}>click</Button>
+
+      <View className="default-color">llll</View>
     </ChildPageLayout>
   );
 }
