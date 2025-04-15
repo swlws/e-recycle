@@ -13,6 +13,10 @@ export default function Mine() {
         表单
       </Button>
 
+      <Button color="primary" block onClick={() => handleClick(ENUM_ROUTE_PATH.TASK_CENTER)}>
+        List
+      </Button>
+
       <Button color="primary" block onClick={() => handleClick(ENUM_ROUTE_PATH.Test)}>
         Test 页面
       </Button>
