@@ -3,19 +3,23 @@ import { usePageScroll } from '@tarojs/taro';
 import { useRef, useState } from 'react';
 
 export default function PullAndLoadMoreList() {
-  const [hasMore, setHasMore] = useState(true);
   const [list, setList] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const refreshingRef = useRef(false);
+  const [hasMore, setHasMore] = useState(true);
   const [reachTop, setReachTop] = useState(true);
+  const refreshingRef = useRef(false);
 
   usePageScroll(({ scrollTop: aScrollTop }) => {
     setReachTop(aScrollTop === 0);
   });
 
   const onLoad = () => {
+    // 加载中
     setLoading(true);
+
+    // 根据类型，判定是追加还是清空
     const newList = refreshingRef.current ? [] : list;
+
     setTimeout(() => {
       refreshingRef.current = false;
       for (let i = 0; i < 10; i++) {
@@ -29,8 +33,13 @@ export default function PullAndLoadMoreList() {
   };
 
   function onRefresh() {
+    // 下拉刷新中
     refreshingRef.current = true;
+
+    // 添加loading
     setLoading(false);
+
+    // 加载数据
     onLoad();
   }
 
