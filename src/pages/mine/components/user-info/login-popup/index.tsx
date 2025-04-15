@@ -1,4 +1,5 @@
-import { Button, Popup } from '@taroify/core';
+import { Button, Cell, Popup } from '@taroify/core';
+import { Close } from '@taroify/icons';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface LoginPopupProps {
@@ -28,10 +29,21 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
   }));
 
   return (
-    <Popup open={visible} placement="bottom" style={{ height: '30%' }}>
-      <Button openType="getPhoneNumber" onGetPhoneNumber={onGetPhoneNumber}>
-        手机号码登录
-      </Button>
+    <Popup
+      open={visible}
+      placement="bottom"
+      style={{ height: '30%' }}
+      onClose={() => setVisible(false)}
+    >
+      <Cell>
+        <Button
+          style={{ width: '100%' }}
+          openType="getPhoneNumber"
+          onGetPhoneNumber={onGetPhoneNumber}
+        >
+          手机号码登录
+        </Button>
+      </Cell>
     </Popup>
   );
 }

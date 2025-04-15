@@ -1,5 +1,4 @@
 import { NumberKeyboard } from '@taroify/core';
-import { View } from '@tarojs/components';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface NumberKeyboardWithKeysProps {
