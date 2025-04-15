@@ -1,30 +1,34 @@
-import { Cell, Flex, Image } from '@taroify/core';
-import { View } from '@tarojs/components';
+import { useState } from 'react';
+import { Uploader } from '@taroify/core';
+import { chooseImages } from '@/bridge/media';
 
 import './index.scss';
 
 interface SnapshotProps {}
 
 export default function Snapshot(props: SnapshotProps) {
-  const imageList = [
-    'https://img.yzcdn.cn/vant/cat.jpeg',
-    'https://img.yzcdn.cn/vant/cat.jpeg',
-    'https://img.yzcdn.cn/vant/cat.jpeg',
-  ];
+  const [files, setFiles] = useState<Uploader.File[]>([]);
+  const maxFiles = 3;
+
+  function onUpload() {
+    chooseImages({
+      count: maxFiles - files.length,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+    }).then((list) => {
+      const newImages = [...files, ...list].slice(0, maxFiles);
+      setFiles(newImages);
+    });
+  }
 
   return (
-    <View className="form-publish-task__snapshot">
-      <Cell title="图片"></Cell>
-
-      <Flex justify="space-between">
-        {imageList.map((item, index) => {
-          return (
-            <Flex.Item span={8} key={index}>
-              <Image lazyLoad width={200} height={200} src={item} fallback="加载失败" />
-            </Flex.Item>
-          );
-        })}
-      </Flex>
-    </View>
+    <Uploader
+      style={{ padding: '8px 0 0 8px' }}
+      value={files}
+      multiple
+      maxFiles={maxFiles}
+      onUpload={onUpload}
+      onChange={setFiles}
+    />
   );
 }

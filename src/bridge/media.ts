@@ -8,6 +8,10 @@ interface ChooseImageOption {
   useCompress?: boolean;
 }
 
+type ChooseImageResult = {
+  url: string;
+};
+
 /**
  * 选择图片
  * @param option
@@ -19,7 +23,7 @@ export function chooseImages({
   sourceType = ['album', 'camera'],
   limit = 1024 * 1024 * 2, // 2MB
   useCompress = true,
-}: ChooseImageOption) {
+}: ChooseImageOption): Promise<ChooseImageResult[]> {
   return new Promise((resolve, reject) => {
     Taro.chooseImage({
       count,
@@ -28,7 +32,7 @@ export function chooseImages({
       success: (res) => {
         console.log(res);
 
-        const list: string[] = [];
+        const list: ChooseImageResult[] = [];
         for (const file of res.tempFiles) {
           // 检查图片大小是否超过限制
           if (file.size > limit) {
@@ -36,12 +40,14 @@ export function chooseImages({
             reject();
             return;
           } else {
-            list.push(file.path);
+            list.push({ url: file.path });
           }
         }
 
         if (useCompress) {
-          Promise.all(list.map(compressImage)).then(resolve);
+          Promise.all(list.map((item) => compressImage(item.url))).then((list) => {
+            resolve(list.map((url) => ({ url })));
+          });
         } else {
           resolve(list);
         }
@@ -60,7 +66,7 @@ export function chooseImages({
  * @param quality
  * @returns
  */
-export function compressImage(src: string, quality = 80) {
+export function compressImage(src: string, quality = 80): Promise<string> {
   return new Promise((resolve) => {
     Taro.compressImage({
       src,
