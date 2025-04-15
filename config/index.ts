@@ -29,6 +29,18 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
     cache: {
       enable: false, // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
+    // subpackages: [
+    //   {
+    //     root: 'pages',
+    //     name: 'publish-task',
+    //     pages: ['publish-task/index'],
+    //   },
+    //   {
+    //     root: 'pages',
+    //     name: 'mine',
+    //     pages: ['mine/index'],
+    //   },
+    // ],
     // 其他配置...
     sass: {
       // 全局 css 变量
