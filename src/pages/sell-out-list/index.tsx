@@ -11,14 +11,14 @@ export default function PublishedTaskList() {
   function onSearch(value: string) {}
 
   return (
-    <View className="published-task-list">
+    <View className="sell-out-list">
       <Search
         value={searchValue}
         placeholder="请输入搜索关键词"
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList style={{ paddingTop: '80px' }} />
+      <PullAndLoadMoreList />
     </View>
   );
 }

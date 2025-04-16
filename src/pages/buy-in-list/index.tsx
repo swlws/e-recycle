@@ -18,7 +18,7 @@ export default function PublishedTaskList() {
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList style={{ paddingTop: '80px' }} />
+      <PullAndLoadMoreList />
     </View>
   );
 }

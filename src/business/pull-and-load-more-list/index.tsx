@@ -3,7 +3,7 @@ import { usePageScroll } from '@tarojs/taro';
 import { useRef, useState } from 'react';
 
 interface PullAndLoadMoreListProps {
-  style?: React.CSSProperties;
+  // style?: React.CSSProperties;
 }
 
 export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
