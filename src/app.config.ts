@@ -6,6 +6,8 @@ export default defineAppConfig({
     'pages/test/index',
     'pages/task-center/index',
     'pages/published-task-list/index',
+    'pages/sell-out-list/index',
+    'pages/buy-in-list/index',
   ],
   window: {
     backgroundTextStyle: 'light',
