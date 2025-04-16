@@ -4,6 +4,7 @@ import { View } from '@tarojs/components';
 import './index.scss';
 import { useState } from 'react';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
+import NCard from '@/components/n-card';
 
 export default function PublishedTaskList() {
   const [searchValue, setSearchValue] = useState('');
@@ -18,7 +19,7 @@ export default function PublishedTaskList() {
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList />
+      <PullAndLoadMoreList itemRender={(item, index) => <NCard key={index}></NCard>} />
     </View>
   );
 }
