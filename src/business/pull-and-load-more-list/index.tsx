@@ -1,14 +1,16 @@
+import { ListResponse } from '@/typings';
 import { BackTop, Cell, List, Loading, PullRefresh } from '@taroify/core';
 import { usePageScroll, pageScrollTo } from '@tarojs/taro';
 import { useRef, useState } from 'react';
 
-interface PullAndLoadMoreListProps {
+interface PullAndLoadMoreListProps<T> {
+  loadList?: () => Promise<ListResponse<T>>;
   // 列表项渲染
-  itemRender?: (row: Record<string, any> | any, index: number) => React.ReactNode;
+  itemRender?: (row: T | any, index: number) => React.ReactNode;
 }
 
-export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
-  const [list, setList] = useState<string[]>([]);
+export default function PullAndLoadMoreList<T>(props: PullAndLoadMoreListProps<T>) {
+  const [list, setList] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [reachTop, setReachTop] = useState(true);
@@ -29,7 +31,8 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
       refreshingRef.current = false;
       for (let i = 0; i < 20; i++) {
         const text = newList.length + 1;
-        newList.push(text < 10 ? '0' + text : String(text));
+        // newList.push(text < 10 ? '0' + text : String(text));
+        newList.push(('' + text) as T);
       }
       setList(newList);
       setLoading(false);
@@ -57,7 +60,7 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
 
   const contentRender = () => {
     if (!props.itemRender) {
-      return list.map((item) => <Cell key={item}>{item}</Cell>);
+      return list.map((item, index) => <Cell key={index}>{index}</Cell>);
     }
 
     return list.map((item, index) => props.itemRender?.(item, index));

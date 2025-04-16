@@ -19,7 +19,9 @@ export default function PublishedTaskList() {
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList itemRender={(item, index) => <NCard key={index}></NCard>} />
+      <PullAndLoadMoreList<Record<string, any>>
+        itemRender={(item, index) => <NCard key={index}></NCard>}
+      />
     </View>
   );
 }
