@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '列表页面',
+  navigationBarTitleText: '大厅',
 });

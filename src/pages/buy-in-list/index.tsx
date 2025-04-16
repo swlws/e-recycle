@@ -11,7 +11,7 @@ export default function PublishedTaskList() {
   function onSearch(value: string) {}
 
   return (
-    <View className="published-task-list">
+    <View className="buy-in-list">
       <Search
         value={searchValue}
         placeholder="请输入搜索关键词"
