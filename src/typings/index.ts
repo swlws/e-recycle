@@ -7,6 +7,8 @@ export interface IMainPage {
   component: React.FC | React.ComponentType<any>;
 }
 
+export type LoadListFn<T> = (params: ListRequest) => Promise<ListResponse<T>>;
+
 /**
  * 列表请求参数
  */

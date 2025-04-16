@@ -3,6 +3,8 @@ import { Search } from '@taroify/core';
 import { View } from '@tarojs/components';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
+import { LoadListFn } from '@/typings';
+
 import './index.scss';
 
 export default function TaskCenter() {
@@ -12,6 +14,25 @@ export default function TaskCenter() {
     setSearchValue(value);
   }
 
+  const loadList: LoadListFn<any> = ({ page: number }) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          total: 50,
+          list: Array.from({ length: 10 }).map((_, index) => ({
+            id: index,
+            title: `任务${index}`,
+            content: `任务内容${index}`,
+          })),
+        });
+      }, 300);
+    });
+  };
+
+  const itemRender = (item: any, index: number) => {
+    return <NCard key={index}></NCard>;
+  };
+
   return (
     <View className="task-center">
       <Search
@@ -20,7 +41,7 @@ export default function TaskCenter() {
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList itemRender={(item, index) => <NCard key={index}></NCard>} />
+      <PullAndLoadMoreList loadList={loadList} itemRender={itemRender} />
     </View>
   );
 }
