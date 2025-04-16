@@ -13,7 +13,7 @@ export default function Trade() {
     <View className="page-trade">
       {/* <Cell title="交易"></Cell> */}
 
-      <Grid>
+      <Grid columns={3}>
         <Grid.Item
           icon={<PhotoOutlined />}
           badge={<Badge content={10} max={99} />}

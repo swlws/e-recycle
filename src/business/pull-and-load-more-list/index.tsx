@@ -1,5 +1,5 @@
-import { Cell, List, Loading, PullRefresh } from '@taroify/core';
-import { usePageScroll } from '@tarojs/taro';
+import { BackTop, Cell, List, Loading, PullRefresh } from '@taroify/core';
+import { usePageScroll, pageScrollTo } from '@tarojs/taro';
 import { useRef, useState } from 'react';
 
 interface PullAndLoadMoreListProps {
@@ -47,6 +47,13 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
     onLoad();
   }
 
+  const handleBackTop = () => {
+    pageScrollTo({
+      scrollTop: 0,
+      duration: 300,
+    });
+  };
+
   return (
     <PullRefresh loading={refreshingRef.current} reachTop={reachTop} onRefresh={onRefresh}>
       <List loading={loading} hasMore={hasMore} onLoad={onLoad}>
@@ -60,6 +67,8 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
           </List.Placeholder>
         )}
       </List>
+
+      <BackTop onClick={handleBackTop}></BackTop>
     </PullRefresh>
   );
 }
