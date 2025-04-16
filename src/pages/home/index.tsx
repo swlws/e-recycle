@@ -1,7 +1,6 @@
 import { Button, Space } from '@taroify/core';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
 import { gotoPage } from '@/bridge/navigator';
-import NCard from '@/components/n-card';
 
 export default function Mine() {
   const handleClick = (path: ENUM_ROUTE_PATH) => {
@@ -21,8 +20,6 @@ export default function Mine() {
       <Button color="primary" block onClick={() => handleClick(ENUM_ROUTE_PATH.Test)}>
         Test 页面
       </Button>
-
-      <NCard></NCard>
     </Space>
   );
 }
