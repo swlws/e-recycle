@@ -1,7 +1,13 @@
+interface IProvinceCityDistrict {
+  province: string;
+  city: string;
+  district: string;
+}
+
 /**
  * 选择位置
  */
-export interface IChooseLocation {
+export interface IChooseLocation extends IProvinceCityDistrict {
   /** 纬度 */
   latitude: number;
   /** 经度 */
@@ -15,15 +21,9 @@ export interface IChooseLocation {
 /**
  * 模糊位置
  */
-export interface IFuzzyLocation {
+export interface IFuzzyLocation extends IProvinceCityDistrict {
   /** 纬度 */
   latitude: number;
   /** 经度 */
   longitude: number;
-  /** 省 */
-  province: string;
-  /** 市 */
-  city: string;
-  /** 区 */
-  district: string;
 }

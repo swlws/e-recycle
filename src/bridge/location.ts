@@ -13,7 +13,15 @@ export function chooseLocation(): Promise<IChooseLocation> {
     Taro.chooseLocation({
       success: (res) => {
         if (res.errMsg === 'chooseLocation:ok') {
-          resolve(res);
+          geocoder(res.longitude, res.latitude).then((addresInfo) => {
+            const info: IChooseLocation = { ...res, province: '', city: '', district: '' };
+
+            if (addresInfo) {
+              Object.assign(info, addresInfo);
+            }
+            console.log(info);
+            resolve(info);
+          });
         } else {
           reject(res);
         }
