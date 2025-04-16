@@ -2,7 +2,11 @@ import { Cell, List, Loading, PullRefresh } from '@taroify/core';
 import { usePageScroll } from '@tarojs/taro';
 import { useRef, useState } from 'react';
 
-export default function PullAndLoadMoreList() {
+interface PullAndLoadMoreListProps {
+  style?: React.CSSProperties;
+}
+
+export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
   const [list, setList] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);

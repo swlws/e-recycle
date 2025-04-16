@@ -7,5 +7,6 @@ export enum ENUM_ROUTE_PATH {
   ChildPage = '/pages/child-page/index',
   PUBLISH_TASK = '/pages/publish-task/index',
   TASK_CENTER = '/pages/task-center/index',
+  PUBLISHED_TASK = '/pages/published-task-list/index',
   Test = '/pages/test/index',
 }

@@ -17,6 +17,10 @@ export default function Mine() {
         List
       </Button>
 
+      <Button color="primary" block onClick={() => handleClick(ENUM_ROUTE_PATH.PUBLISHED_TASK)}>
+        List With Search
+      </Button>
+
       <Button color="primary" block onClick={() => handleClick(ENUM_ROUTE_PATH.Test)}>
         Test 页面
       </Button>

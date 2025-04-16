@@ -5,6 +5,7 @@ export default defineAppConfig({
     'pages/publish-task/index',
     'pages/test/index',
     'pages/task-center/index',
+    'pages/published-task-list/index',
   ],
   window: {
     backgroundTextStyle: 'light',
