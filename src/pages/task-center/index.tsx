@@ -6,6 +6,7 @@ import NCard from '@/components/n-card';
 import { LoadListFn } from '@/typings';
 
 import './index.scss';
+import { ITaskInfo } from '@/typings/task';
 
 export default function TaskCenter() {
   const [searchValue, setSearchValue] = useState('');
@@ -14,22 +15,20 @@ export default function TaskCenter() {
     setSearchValue(value);
   }
 
-  const loadList: LoadListFn<any> = ({ page: number }) => {
+  const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
           total: 50,
           list: Array.from({ length: 10 }).map((_, index) => ({
-            id: index,
-            title: `任务${index}`,
-            content: `任务内容${index}`,
+            _id: '' + index,
           })),
         });
       }, 300);
     });
   };
 
-  const itemRender = (item: any, index: number) => {
+  const itemRender = (item: ITaskInfo, index: number) => {
     return <NCard key={index}></NCard>;
   };
 
