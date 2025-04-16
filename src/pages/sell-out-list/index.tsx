@@ -32,7 +32,7 @@ export default function PublishedTaskList() {
   };
 
   return (
-    <View className="task-center">
+    <View className="sell-out-list">
       <Search
         value={searchValue}
         placeholder="请输入搜索关键词"

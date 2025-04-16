@@ -16,13 +16,13 @@ export default function TaskCenter() {
   const [locationInfo, setLocationInfo] = useState(() => {
     return CacheMgr.fuzzyLocation.value as IFuzzyLocation;
   });
+
   const locationStr = useMemo(() => {
     const { province, city, district } = locationInfo;
     if (!province && !city && !district) return '请选择地址';
+
     return `${province}/${city}/${district}`;
   }, [locationInfo]);
-
-  function onSearch(value: string) {}
 
   const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
     return new Promise((resolve) => {
@@ -37,7 +37,7 @@ export default function TaskCenter() {
     });
   };
 
-  const handleClickEvent = () => {
+  const getProvinceCityDistrict = () => {
     getFuzzyLocation().then((res) => {
       if (!res) return;
 
@@ -55,11 +55,12 @@ export default function TaskCenter() {
   return (
     <View className="task-center">
       <Cell
+        className="location-cell"
         rightIcon={<LocationOutlined size={20} />}
         title={locationStr}
         isLink
         clickable
-        onClick={handleClickEvent}
+        onClick={getProvinceCityDistrict}
       ></Cell>
 
       <PullAndLoadMoreList loadList={loadList} itemRender={itemRender} />
