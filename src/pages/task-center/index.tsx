@@ -1,21 +1,26 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Cell, Search } from '@taroify/core';
 import { View } from '@tarojs/components';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
 import { LoadListFn } from '@/typings';
 
-import './index.scss';
 import { ITaskInfo } from '@/typings/task';
 import { LocationOutlined } from '@taroify/icons';
 import CacheMgr from '@/cache/index';
-import { IChooseLocation } from '@/typings/bridge';
-import { chooseLocation } from '@/bridge/location';
+import { IFuzzyLocation } from '@/typings/bridge';
+import { getFuzzyLocation } from '@/bridge/location';
+import './index.scss';
 
 export default function TaskCenter() {
   const [locationInfo, setLocationInfo] = useState(() => {
-    return CacheMgr.chooseLocation.value as IChooseLocation;
+    return CacheMgr.fuzzyLocation.value as IFuzzyLocation;
   });
+  const locationStr = useMemo(() => {
+    const { province, city, district } = locationInfo;
+    if (!province && !city && !district) return '请选择地址';
+    return `${province}/${city}/${district}`;
+  }, [locationInfo]);
 
   function onSearch(value: string) {}
 
@@ -33,11 +38,13 @@ export default function TaskCenter() {
   };
 
   const handleClickEvent = () => {
-    chooseLocation().then((res) => {
+    getFuzzyLocation().then((res) => {
+      if (!res) return;
+
       // 组件状态
       setLocationInfo(res);
       // 缓存状态
-      CacheMgr.chooseLocation.setValue(res);
+      CacheMgr.fuzzyLocation.setValue(res);
     });
   };
 
@@ -49,7 +56,7 @@ export default function TaskCenter() {
     <View className="task-center">
       <Cell
         rightIcon={<LocationOutlined size={20} />}
-        title={locationInfo.name || '点击选择地址'}
+        title={locationStr}
         isLink
         clickable
         onClick={handleClickEvent}

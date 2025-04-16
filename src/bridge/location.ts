@@ -1,4 +1,4 @@
-import { IChooseLocation } from '@/typings/bridge';
+import { IChooseLocation, IFuzzyLocation } from '@/typings/bridge';
 import Taro from '@tarojs/taro';
 
 /**
@@ -29,7 +29,7 @@ export function chooseLocation(): Promise<IChooseLocation> {
  * 获取当前的模糊位置
  * @returns
  */
-export function getFuzzyLocation() {
+export function getFuzzyLocation(): Promise<IFuzzyLocation | null> {
   return Taro.getLocation({ type: 'gcj02' }).then((res) => {
     if (res.errMsg === 'getLocation:ok') {
       const { latitude, longitude } = res;
