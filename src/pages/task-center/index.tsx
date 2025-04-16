@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { Search } from '@taroify/core';
 import { View } from '@tarojs/components';
-
-import './index.scss';
-import { useState } from 'react';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
+import NCard from '@/components/n-card';
+import './index.scss';
 
 export default function TaskCenter() {
   const [searchValue, setSearchValue] = useState('');
@@ -20,7 +20,7 @@ export default function TaskCenter() {
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList />
+      <PullAndLoadMoreList itemRender={(item, index) => <NCard key={index}></NCard>} />
     </View>
   );
 }

@@ -3,7 +3,8 @@ import { usePageScroll, pageScrollTo } from '@tarojs/taro';
 import { useRef, useState } from 'react';
 
 interface PullAndLoadMoreListProps {
-  // style?: React.CSSProperties;
+  // 列表项渲染
+  itemRender?: (row: Record<string, any> | any, index: number) => React.ReactNode;
 }
 
 export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
@@ -26,7 +27,7 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
 
     setTimeout(() => {
       refreshingRef.current = false;
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 20; i++) {
         const text = newList.length + 1;
         newList.push(text < 10 ? '0' + text : String(text));
       }
@@ -54,12 +55,21 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
     });
   };
 
+  const contentRender = () => {
+    if (!props.itemRender) {
+      return list.map((item) => <Cell key={item}>{item}</Cell>);
+    }
+
+    return list.map((item, index) => props.itemRender?.(item, index));
+  };
+
   return (
     <PullRefresh loading={refreshingRef.current} reachTop={reachTop} onRefresh={onRefresh}>
       <List loading={loading} hasMore={hasMore} onLoad={onLoad}>
-        {list.map((item) => (
-          <Cell key={item}>{item}</Cell>
-        ))}
+        {/* 内容渲染 */}
+        {contentRender()}
+
+        {/* 中间状态 */}
         {!refreshingRef.current && (
           <List.Placeholder>
             {loading && <Loading>加载中...</Loading>}
@@ -68,6 +78,7 @@ export default function PullAndLoadMoreList(props: PullAndLoadMoreListProps) {
         )}
       </List>
 
+      {/* 回到顶部 */}
       <BackTop onClick={handleBackTop}></BackTop>
     </PullRefresh>
   );
