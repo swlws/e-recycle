@@ -5,6 +5,7 @@ import { BaseEventOrig } from '@tarojs/components';
 interface PersonProps {
   value: string;
   onChange?: (name: string, value: string) => void;
+  readonly?: boolean;
 }
 
 /**
@@ -23,7 +24,12 @@ export default function Person(props: PersonProps) {
 
   return (
     <Field name="person" rules={[{ required: true, message: '请填写用户名' }]}>
-      <Input value={inputValue} onChange={handleChange} placeholder="请填写用户名"></Input>
+      <Input
+        value={inputValue}
+        onChange={handleChange}
+        placeholder="请填写用户名"
+        readonly={props.readonly}
+      ></Input>
     </Field>
   );
 }

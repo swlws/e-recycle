@@ -5,16 +5,21 @@ import { useRef } from 'react';
 interface PhoneNumberProps {
   value?: string;
   onChange?: (name: string, value: any) => void;
+  readonly?: boolean;
 }
 
-export default function PhoneNumber({ value = '', onChange }: PhoneNumberProps) {
+export default function PhoneNumber({ value = '', readonly, onChange }: PhoneNumberProps) {
   const numberKeyboardRef = useRef<any>(null);
 
   const openNumberKeyboard = () => {
+    if (readonly) return;
+
     numberKeyboardRef.current?.show?.();
   };
 
   const handleKeyPress = (key: string) => {
+    if (readonly) return;
+
     let newValue = '' + value;
     if (typeof key === 'number') {
       newValue += '' + key;

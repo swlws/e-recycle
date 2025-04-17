@@ -27,3 +27,8 @@ export interface IFuzzyLocation extends IProvinceCityDistrict {
   /** 经度 */
   longitude: number;
 }
+
+/** 照片 */
+export interface IChooseImage {
+  url: string;
+}

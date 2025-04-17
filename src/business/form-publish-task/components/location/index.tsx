@@ -9,6 +9,7 @@ import CacheMgr from '@/cache/index';
 interface LocationProps {
   value: IChooseLocation;
   onChange?: (name: string, value: IChooseLocation) => void;
+  readonly?: boolean;
 }
 
 /**
@@ -22,6 +23,8 @@ export default function Location(props: LocationProps) {
   });
 
   const handleClickEvent = () => {
+    if (props.readonly) return;
+
     chooseLocation().then((res) => {
       // 组件状态
       setLocationInfo(res);

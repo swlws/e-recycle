@@ -6,12 +6,15 @@ import { getPickerOption } from './helper';
 interface PickupTimeProps {
   value?: string;
   onChange?: (name: string, value: string) => void;
+  readonly?: boolean;
 }
 
 export default function PickupTime(props: PickupTimeProps) {
   const [pickupTime, setPickupTime] = useState(props.value || '');
   const [visible, setVisible] = useState(false);
   const openModel = () => {
+    if (props.readonly) return;
+
     setVisible(true);
   };
 

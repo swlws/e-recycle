@@ -1,3 +1,4 @@
+import { IChooseImage } from '@/typings/bridge';
 import Taro from '@tarojs/taro';
 
 interface ChooseImageOption {
@@ -7,10 +8,6 @@ interface ChooseImageOption {
   limit?: number; // 单位B
   useCompress?: boolean;
 }
-
-type ChooseImageResult = {
-  url: string;
-};
 
 /**
  * 选择图片
@@ -23,7 +20,7 @@ export function chooseImages({
   sourceType = ['album', 'camera'],
   limit = 1024 * 1024 * 2, // 2MB
   useCompress = true,
-}: ChooseImageOption): Promise<ChooseImageResult[]> {
+}: ChooseImageOption): Promise<IChooseImage[]> {
   return new Promise((resolve, reject) => {
     Taro.chooseImage({
       count,
@@ -32,7 +29,7 @@ export function chooseImages({
       success: (res) => {
         console.log(res);
 
-        const list: ChooseImageResult[] = [];
+        const list: IChooseImage[] = [];
         for (const file of res.tempFiles) {
           // 检查图片大小是否超过限制
           if (file.size > limit) {

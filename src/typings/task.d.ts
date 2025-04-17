@@ -1,4 +1,4 @@
-import { IChooseLocation } from './bridge';
+import { IChooseImage, IChooseLocation } from './bridge';
 
 export interface ITaskInfo {
   /** ID */
@@ -9,4 +9,5 @@ export interface ITaskInfo {
   goods: string[];
   remark: string;
   pickupTime: string;
+  snapshot: IChooseImage[];
 }

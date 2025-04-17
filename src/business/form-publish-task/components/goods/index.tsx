@@ -4,6 +4,7 @@ import { View } from '@tarojs/components';
 interface GoodsProps {
   value: any[];
   onChange?: (key: string, value: any[]) => void;
+  readonly?: boolean;
 }
 
 export default function Goods(props: GoodsProps) {
@@ -21,7 +22,7 @@ export default function Goods(props: GoodsProps) {
         <Checkbox.Group direction="horizontal" onChange={handleChange}>
           {goodsList.map((item, index) => {
             return (
-              <Checkbox key={index} name={item}>
+              <Checkbox key={index} name={item} disabled={props.readonly}>
                 {item}
               </Checkbox>
             );

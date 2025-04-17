@@ -44,37 +44,59 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
       <Form values={formValue} onSubmit={onSubmit}>
         <Cell.Group inset style={{ marginTop: '16px' }}>
           {/* 定位 */}
-          <Location value={formValue.address} onChange={handleChange}></Location>
+          <Location
+            value={formValue.address}
+            readonly={props.readonly}
+            onChange={handleChange}
+          ></Location>
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
           {/* 名称 */}
-          <Person value={formValue.person} onChange={handleChange}></Person>
+          <Person
+            value={formValue.person}
+            readonly={props.readonly}
+            onChange={handleChange}
+          ></Person>
 
           {/* 手机号 */}
-          <PhoneNumber value={formValue.phoneNumber} onChange={handleChange}></PhoneNumber>
+          <PhoneNumber
+            value={formValue.phoneNumber}
+            readonly={props.readonly}
+            onChange={handleChange}
+          ></PhoneNumber>
 
           {/* 时间 */}
-          <PickupTime value={formValue.pickupTime} onChange={handleChange}></PickupTime>
+          <PickupTime
+            value={formValue.pickupTime}
+            readonly={props.readonly}
+            onChange={handleChange}
+          ></PickupTime>
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
-          <Goods value={formValue.goods} onChange={handleChange}></Goods>
+          <Goods value={formValue.goods} readonly={props.readonly} onChange={handleChange}></Goods>
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
-          <Snapshot></Snapshot>
+          <Snapshot readonly={props.readonly}></Snapshot>
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
-          <Remark value={formValue.remark} onChange={handleChange}></Remark>
+          <Remark
+            value={formValue.remark}
+            readonly={props.readonly}
+            onChange={handleChange}
+          ></Remark>
         </Cell.Group>
 
-        <View style={{ margin: '16px' }}>
-          <Button shape="round" block color="primary" formType="submit">
-            提交
-          </Button>
-        </View>
+        {!props.readonly && (
+          <View style={{ margin: '16px' }}>
+            <Button shape="round" block color="primary" formType="submit">
+              提交
+            </Button>
+          </View>
+        )}
       </Form>
 
       <View>{JSON.stringify(formValue)}</View>

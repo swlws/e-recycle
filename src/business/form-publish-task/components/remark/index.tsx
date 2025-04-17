@@ -4,6 +4,7 @@ import { BaseEventOrig, InputProps } from '@tarojs/components';
 interface RemarkProps {
   value: string;
   onChange?: (name: string, value: string) => void;
+  readonly?: boolean;
 }
 
 /**
@@ -23,6 +24,7 @@ export default function Remark(props: RemarkProps) {
         limit={50}
         placeholder="请输入备注"
         value={props.value}
+        readonly={props.readonly}
         onChange={handleChange}
       />
     </Field>
