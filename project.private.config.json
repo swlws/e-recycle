@@ -3,7 +3,7 @@
   "projectname": "code",
   "setting": {
     "compileHotReLoad": false,
-    "urlCheck": true
+    "urlCheck": false
   },
   "libVersion": "3.7.12"
 }

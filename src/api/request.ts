@@ -20,7 +20,7 @@ type ApiMethod = (
   res: any;
 }>;
 
-const URL_PREFIX = 'https://api.swlws.site';
+const URL_PREFIX = 'https://swlws.site';
 const DEFAULT_METHOD = 'GET';
 const DEFAULT_HEADER = {
   'Content-Type': 'application/json',
@@ -37,8 +37,8 @@ function request(url: string, data: Record<string, any>, options: RequestOptions
     timeout: 60000,
     header,
   })
-    .then((res) => {
-      return reposeInterceptor(res);
+    .then((response) => {
+      return reposeInterceptor(response, options);
     })
     .catch((err) => {
       if (!options?.header?.ignoreErrorTip) {
@@ -49,11 +49,20 @@ function request(url: string, data: Record<string, any>, options: RequestOptions
     });
 }
 
-function reposeInterceptor(res: Taro.request.SuccessCallbackResult) {
-  if (res.statusCode === 200) {
-    return res.data;
+function reposeInterceptor(response: Taro.request.SuccessCallbackResult, options: RequestOptions) {
+  if (response.statusCode === 200) {
+    const { r0, r1, res } = response.data;
+
+    // 允许显示错误信息
+    if (!options?.header?.ignoreErrorTip) {
+      if (r0 !== 0 && r1) {
+        Taro.showToast({ title: r1, icon: 'none', duration: 2000 });
+      }
+    }
+
+    return { r0, r1, res };
   } else {
-    return Promise.reject(res);
+    return Promise.reject(response);
   }
 }
 

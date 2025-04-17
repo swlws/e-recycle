@@ -1,13 +1,16 @@
-import { useLoad } from "@tarojs/taro";
-import MainPageLayout from "@/layout/main-page-layout";
+import { useLoad } from '@tarojs/taro';
+import MainPageLayout from '@/layout/main-page-layout';
+import { MainPageList } from './data';
 
-import { MainPageList } from "./data";
+import api from '@/api';
 
-import "./index.scss";
+import './index.scss';
 
 export default function Index() {
   useLoad(() => {
-    console.log("Page loaded.");
+    api.ops.alive().then(() => {
+      console.log('network alive');
+    });
   });
 
   return <MainPageLayout mainPageList={MainPageList} />;
