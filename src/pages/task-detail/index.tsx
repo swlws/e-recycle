@@ -1,5 +1,10 @@
 import BeFormPublishTask from '@/business/form-publish-task';
+import ChildPageLayout from '@/layout/child-page-layout';
 
 export default function TaskDetail() {
-  return <BeFormPublishTask readonly={true}></BeFormPublishTask>;
+  return (
+    <ChildPageLayout>
+      <BeFormPublishTask readonly={true}></BeFormPublishTask>;
+    </ChildPageLayout>
+  );
 }
