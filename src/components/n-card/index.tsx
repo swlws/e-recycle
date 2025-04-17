@@ -1,10 +1,12 @@
 import { Avatar, Cell, Flex } from '@taroify/core';
 
-interface NCardProps {}
+interface NCardProps {
+  onClick?: () => void;
+}
 
-export default function NCard() {
+export default function NCard(props: NCardProps) {
   return (
-    <Cell>
+    <Cell onClick={props.onClick}>
       <Flex className="n-card" style={{ height: '58px' }}>
         <Flex.Item>
           <Avatar src="https://joesch.moe/api/v1/random" shape="rounded" size="large" />
