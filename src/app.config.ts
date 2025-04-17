@@ -3,6 +3,7 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/child-page/index',
     'pages/publish-task/index',
+    'pages/task-detail/index',
     'pages/test/index',
     'pages/task-center/index',
     'pages/published-task-list/index',

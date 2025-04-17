@@ -4,7 +4,8 @@
 export interface IMainPage {
   name: string;
   nameZh: string;
-  component: React.FC | React.ComponentType<any>;
+  // component: React.FC | React.ComponentType<any>;
+  component: () => React.ReactNode;
 }
 
 export type LoadListFn<T> = (params: ListRequest) => Promise<ListResponse<T>>;

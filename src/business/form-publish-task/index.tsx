@@ -13,6 +13,7 @@ import PickupTime from './components/pickup-time';
 interface BeFormPublishTaskProps {
   formValue?: ITaskInfo;
   onChange?: (value: Record<string, any>) => void;
+  readonly?: boolean;
 }
 
 export default function BeFormPublishTask(props: BeFormPublishTaskProps) {

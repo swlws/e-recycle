@@ -10,6 +10,8 @@ export enum ENUM_ROUTE_PATH {
   ChildPage = '/pages/child-page/index',
   /** 发布单个任务 */
   PUBLISH_TASK = '/pages/publish-task/index',
+  /** 任务详情 */
+  TASK_DETAIL = '/pages/task-detail/index',
   /** 任务中心 */
   TASK_CENTER = '/pages/task-center/index',
   /** 发布的 */
