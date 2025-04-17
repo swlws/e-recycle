@@ -5,7 +5,6 @@ export default defineAppConfig({
     'pages/publish-task/index',
     'pages/task-detail/index',
     'pages/test/index',
-    'pages/task-center/index',
     'pages/published-task-list/index',
     'pages/sell-out-list/index',
     'pages/buy-in-list/index',
