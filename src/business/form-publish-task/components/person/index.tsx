@@ -1,5 +1,6 @@
-import NInput from '@/components/n-input';
-import { Field } from '@taroify/core';
+import { useState } from 'react';
+import { Field, Input } from '@taroify/core';
+import { BaseEventOrig } from '@tarojs/components';
 
 interface PersonProps {
   value: string;
@@ -12,13 +13,17 @@ interface PersonProps {
  * @returns
  */
 export default function Person(props: PersonProps) {
+  const [inputValue, setInputValue] = useState<string>(props.value || '');
+
+  const handleChange = (event: BaseEventOrig<{ value: string }>) => {
+    const newValue = event.detail.value; // 使用 Taro 的 detail 字段获取值
+    setInputValue(newValue);
+    props.onChange?.('person', newValue);
+  };
+
   return (
     <Field name="person" rules={[{ required: true, message: '请填写用户名' }]}>
-      <NInput
-        value={props.value}
-        onChange={(value) => props.onChange?.('person', value)}
-        placeholder="联系人"
-      ></NInput>
+      <Input value={inputValue} onChange={handleChange} placeholder="请填写用户名"></Input>
     </Field>
   );
 }
