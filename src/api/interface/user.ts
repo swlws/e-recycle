@@ -1,7 +1,7 @@
 export default {
   getUserInfoById: {
-    url: '/user/getUserInfoById',
+    url: '/api/v2/user/getUserInfoById',
     method: 'get',
-    headers: {},
+    header: {},
   },
 };

@@ -9,6 +9,7 @@ import PhoneNumber from './components/phone-number/index';
 import Goods from './components/goods';
 import Remark from './components/remark';
 import PickupTime from './components/pickup-time';
+import api from '@/api';
 
 interface BeFormPublishTaskProps {
   formValue?: ITaskInfo;
@@ -37,6 +38,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
 
   const onSubmit = (event: BaseEventOrig<FormProps.onSubmitEventDetail>) => {
     console.log(JSON.stringify(event.detail.value));
+    api.task.postTask();
   };
 
   return (

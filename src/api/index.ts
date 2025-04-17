@@ -1,15 +1,26 @@
 import apiRequest, { RequestOptions } from './request';
 import user from './interface/user';
+import task from './interface/task';
+
+type ApiConfig = {
+  [key in keyof typeof apiModule]: {
+    [apiName in keyof (typeof apiModule)[key]]: ApiMethod;
+  };
+};
+
+type ApiMethod = (
+  data?: Record<string, any>,
+  options?: RequestOptions
+) => Promise<{
+  r0: number;
+  r1: string;
+  res: any;
+}>;
 
 const apiModule = {
   user,
+  task,
 };
-
-Object.keys(apiModule).forEach((key) => {
-  Object.keys(apiModule[key]).forEach((item) => {
-    apiModule[key][item] = apiModule[key][item].url;
-  });
-});
 
 export default Object.keys(apiModule).reduce((acc, moduleName) => {
   const module = apiModule[moduleName];
@@ -21,11 +32,20 @@ export default Object.keys(apiModule).reduce((acc, moduleName) => {
 
       return {
         ...acc,
-        [apiName]: (data: Record<string, any>, options: RequestOptions) => {
-          const method = apiConfig.method || 'GET';
-          return apiRequest[method](apiConfig[apiName], data, options);
+        [apiName]: (data?: Record<string, any>, options?: RequestOptions) => {
+          if (!options) {
+            options = {} as RequestOptions;
+          }
+
+          Object.assign(options, {
+            header: apiConfig.header,
+          });
+
+          options._apiName = apiName;
+          const method = (apiConfig.method || 'GET').toUpperCase();
+          return apiRequest[method](apiConfig.url, data, options);
         },
       };
     }, {}),
   };
-}, {});
+}, {} as ApiConfig);
