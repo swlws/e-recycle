@@ -1,14 +1,13 @@
 import { getItem, setItem } from '@/bridge/storage';
-
-const KEY_TOKEN = 'token';
+import { STORAGE_KEY } from '@/constants/storage';
 
 export default class {
   get value(): string {
-    return getItem(KEY_TOKEN) || '';
+    return getItem(STORAGE_KEY.TOKEN) || '';
   }
 
   setValue(value: string) {
-    setItem(KEY_TOKEN, value);
+    setItem(STORAGE_KEY.TOKEN, value);
   }
 
   clear() {

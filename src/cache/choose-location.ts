@@ -1,15 +1,14 @@
 import { getItem, setItem } from '@/bridge/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { IChooseLocation } from '@/typings/bridge';
-
-const KEY_LOCATION = 'location';
 
 export default class {
   get value(): IChooseLocation {
-    return getItem(KEY_LOCATION) || {};
+    return getItem(STORAGE_KEY.CHOOSE_LOCATION) || {};
   }
 
   setValue(info: IChooseLocation) {
-    setItem(KEY_LOCATION, info);
+    setItem(STORAGE_KEY.CHOOSE_LOCATION, info);
   }
 
   clear() {

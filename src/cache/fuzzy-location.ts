@@ -1,15 +1,14 @@
 import { getItem, setItem } from '@/bridge/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { IFuzzyLocation } from '@/typings/bridge';
-
-const KEY_LOCATION = 'fuzzy_location';
 
 export default class {
   get value(): IFuzzyLocation {
-    return getItem(KEY_LOCATION) || {};
+    return getItem(STORAGE_KEY.FUZZY_LOCATION) || {};
   }
 
   setValue(info: IFuzzyLocation) {
-    setItem(KEY_LOCATION, info);
+    setItem(STORAGE_KEY.FUZZY_LOCATION, info);
   }
 
   clear() {

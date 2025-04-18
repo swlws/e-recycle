@@ -1,21 +1,20 @@
 import { getItem, setItem } from '@/bridge/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 
 interface Session {
   code: string;
 }
 
-const KEY_SESSION = 'session';
-
 export default class {
   get value(): Session {
-    return getItem(KEY_SESSION) || {};
+    return getItem(STORAGE_KEY.SESSION) || {};
   }
 
-  setValue(value: Session) {
-    setItem(KEY_SESSION, value);
+  setValue(value: STORAGE_KEY.SESSION) {
+    setItem(STORAGE_KEY.SESSION, value);
   }
 
   clear() {
-    this.setValue({} as Session);
+    this.setValue({} as STORAGE_KEY.SESSION);
   }
 }
