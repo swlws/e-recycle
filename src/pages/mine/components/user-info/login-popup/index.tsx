@@ -1,5 +1,4 @@
 import { Button, Cell, Popup } from '@taroify/core';
-import { Close } from '@taroify/icons';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface LoginPopupProps {
