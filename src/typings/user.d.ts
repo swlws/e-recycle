@@ -3,4 +3,7 @@
  */
 export interface CacheUserInfo {
   _id: string;
+  nickName: string;
+  avatarUrl: string;
+  phoneNumber: string;
 }
