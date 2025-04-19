@@ -4,4 +4,9 @@ export default {
     method: 'POST',
     header: {},
   },
+  queryAllTask: {
+    url: '/api/task/all',
+    method: 'POST',
+    header: {},
+  },
 };

@@ -11,6 +11,7 @@ import { IFuzzyLocation } from '@/typings/bridge';
 import { getFuzzyLocation } from '@/bridge/location';
 import { gotoPage } from '@/bridge/navigator';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
+import api from '@/api';
 
 import './index.scss';
 
@@ -22,14 +23,21 @@ function openTaskDetailPage() {
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        total: 50,
-        list: Array.from({ length: 10 }).map((_, index) => ({
-          _id: '' + index,
-        })),
+    api.task
+      .queryAllTask({
+        page: number,
+        size: 10,
+      })
+      .then(({ r0, res }) => {
+        if (r0 !== 0) {
+          resolve({
+            total: 0,
+            list: [],
+          });
+        } else {
+          resolve(res);
+        }
       });
-    }, 300);
   });
 };
 
