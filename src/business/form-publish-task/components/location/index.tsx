@@ -2,7 +2,7 @@ import { Cell } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { LocationOutlined } from '@taroify/icons';
 import { chooseLocation } from '@/bridge/location';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IChooseLocation } from '@/typings/bridge';
 import CacheMgr from '@/cache/index';
 
@@ -19,7 +19,11 @@ interface LocationProps {
  */
 export default function Location(props: LocationProps) {
   const [locationInfo, setLocationInfo] = useState(() => {
-    return props.value || (CacheMgr.chooseLocation.value as IChooseLocation);
+    const value = props.value || (CacheMgr.chooseLocation.value as IChooseLocation);
+
+    props.onChange && props.onChange('location', value);
+
+    return value;
   });
 
   const handleClickEvent = () => {

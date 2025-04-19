@@ -12,33 +12,29 @@ import PickupTime from './components/pickup-time';
 import api from '@/api';
 
 interface BeFormPublishTaskProps {
-  formValue?: ITaskInfo;
+  formValue?: Partial<ITaskInfo>;
   onChange?: (value: Record<string, any>) => void;
   readonly?: boolean;
 }
 
 export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
   const [formValue, setFormValue] = useState<ITaskInfo>(() => {
-    return props.formValue || ({} as ITaskInfo);
+    return (props.formValue || {}) as ITaskInfo;
   });
 
   const handleChange = (key: string, value: any) => {
-    setFormValue({
-      ...formValue,
-      [key]: value,
+    setFormValue((oldValue) => {
+      const newValue = { ...oldValue, [key]: value };
+      props.onChange && props.onChange(newValue);
+      return newValue;
     });
-
-    if (props.onChange) {
-      props.onChange({
-        ...formValue,
-        [key]: value,
-      });
-    }
   };
 
   const onSubmit = (event: BaseEventOrig<FormProps.onSubmitEventDetail>) => {
-    console.log(JSON.stringify(event.detail.value));
-    api.task.postTask();
+    api.task.createTask(formValue).then((res) => {
+      if (res.r0 !== 0) return;
+      console.log('发布成功', res);
+    });
   };
 
   return (

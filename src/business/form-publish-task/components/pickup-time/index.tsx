@@ -1,7 +1,7 @@
 import { Cell, Picker, Popup } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { useState } from 'react';
-import { getPickerOption } from './helper';
+import { getDefaultPickTime, getPickerOption } from './helper';
 
 interface PickupTimeProps {
   value?: string;
@@ -10,11 +10,15 @@ interface PickupTimeProps {
 }
 
 export default function PickupTime(props: PickupTimeProps) {
-  const [pickupTime, setPickupTime] = useState(props.value || '');
   const [visible, setVisible] = useState(false);
+  const [pickupTime, setPickupTime] = useState(() => {
+    const value = props.value || getDefaultPickTime();
+    props.onChange && props.onChange('pickupTime', value);
+    return value;
+  });
+
   const openModel = () => {
     if (props.readonly) return;
-
     setVisible(true);
   };
 
