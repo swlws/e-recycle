@@ -20,7 +20,7 @@ function openTaskDetailPage() {
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
   return new Promise((resolve) => {
     api.task
-      .querySelfPublishedTask({
+      .queryUserPublishedTask({
         page: number,
         size: 10,
       })

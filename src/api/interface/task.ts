@@ -12,20 +12,26 @@ export default {
     header: {},
   },
   /** 查询自己发布过的任务 */
-  querySelfPublishedTask: {
-    url: '/api/task/self/published',
+  queryUserPublishedTask: {
+    url: '/api/task/user/published',
     method: 'POST',
     header: {},
   },
   /** 查询自己卖出的任务 */
-  querySelfSelloutTask: {
-    url: '/api/task/self/sellout',
+  queryUserSelloutTask: {
+    url: '/api/task/user/sellout',
     method: 'POST',
     header: {},
   },
   /** 查询自己买入的任务 */
-  querySelfBuyinTask: {
-    url: '/api/task/self/buyin',
+  queryUserBuyinTask: {
+    url: '/api/task/user/buyin',
+    method: 'POST',
+    header: {},
+  },
+  /** 用户的任务统计 */
+  queryUserTaskCount: {
+    url: '/api/task/user/count',
     method: 'POST',
     header: {},
   },

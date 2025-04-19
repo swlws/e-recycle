@@ -21,7 +21,7 @@ function openTaskDetailPage() {
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
   return new Promise((resolve) => {
     api.task
-      .querySelfBuyinTask({
+      .queryUserBuyinTask({
         page: number,
         size: 10,
       })
