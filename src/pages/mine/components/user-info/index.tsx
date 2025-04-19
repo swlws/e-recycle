@@ -59,10 +59,7 @@ export default function UserInfo() {
   return (
     <Cell>
       <Flex className="user-info" style={{ height: '58px' }} onClick={openLoginPopup}>
-        <Avatar
-          src={userProfile.avatarUrl || 'https://joesch.moe/api/v1/random'}
-          size="large"
-        ></Avatar>
+        <Avatar src={userProfile.avatarUrl || 'https://robohash.org/e-'} size="large"></Avatar>
 
         <Flex direction="column" justify="center" style={{ height: '100%', marginLeft: '16px' }}>
           <Flex.Item>{userProfile.phoneNumber && <View>{userProfile.nickName}</View>}</Flex.Item>

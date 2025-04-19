@@ -1,11 +1,14 @@
 import { gotoPage } from '@/bridge/navigator';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
+import { checkLoginState } from '@/utils/user';
 import { Badge, Grid } from '@taroify/core';
 import { PhotoOutlined } from '@taroify/icons';
 import { View } from '@tarojs/components';
 
 export default function Trade() {
   const handleClick = (path: ENUM_ROUTE_PATH) => {
+    if (!checkLoginState()) return;
+
     gotoPage(path);
   };
 
