@@ -1,6 +1,6 @@
 export default {
   postTask: {
-    url: '/api/v2/task/postTask',
+    url: '/api/task/postTask',
     method: 'POST',
     header: {},
   },
