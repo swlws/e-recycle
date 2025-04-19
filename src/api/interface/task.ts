@@ -35,4 +35,10 @@ export default {
     method: 'GET',
     header: {},
   },
+  /** 用户的任务统计 */
+  removeTask: {
+    url: '/api/task/remove',
+    method: 'POST',
+    header: {},
+  },
 };
