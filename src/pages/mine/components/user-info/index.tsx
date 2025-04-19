@@ -65,9 +65,7 @@ export default function UserInfo() {
         ></Avatar>
 
         <Flex direction="column" justify="center" style={{ height: '100%', marginLeft: '16px' }}>
-          <Flex.Item>
-            <View>{userProfile.nickName || '用户名'}</View>
-          </Flex.Item>
+          <Flex.Item>{userProfile.phoneNumber && <View>{userProfile.nickName}</View>}</Flex.Item>
 
           <Flex.Item>
             <View>{userProfile.phoneNumber || '请点击登陆'}</View>

@@ -1,7 +1,6 @@
 import { getUserProfile } from '@/bridge/user';
 import { Button, Cell, Popup } from '@taroify/core';
 import { forwardRef, useImperativeHandle, useState } from 'react';
-import CacheMgr from '@/cache';
 
 interface LoginPopupProps {
   onSuccess?: (type: 'login' | 'update', info: { iv: string; encryptedData: string }) => void;
@@ -55,8 +54,11 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
         >
           手机号码登录
         </Button>
+      </Cell>
+
+      <Cell>
         <Button style={{ width: '100%' }} openType="getUserInfo" onClick={updateUserProfile}>
-          完善头像、昵称
+          更新头像、昵称
         </Button>
       </Cell>
     </Popup>
