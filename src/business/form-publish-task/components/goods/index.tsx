@@ -1,5 +1,8 @@
-import { Cell, Checkbox } from '@taroify/core';
+import { GOODS_LIST } from '@/constants/public';
+import { Cell, Checkbox, Flex } from '@taroify/core';
 import { View } from '@tarojs/components';
+import Taro from '@tarojs/taro';
+import { useState } from 'react';
 
 interface GoodsProps {
   value: any[];
@@ -8,10 +11,28 @@ interface GoodsProps {
 }
 
 export default function Goods(props: GoodsProps) {
-  const goodsList = ['商品1', '商品2', '商品3'];
+  const [list, setList] = useState(() => {
+    let list = props.value || [];
+    if (list.length === 0) {
+      list = [GOODS_LIST[0]];
+    }
+
+    props.onChange?.('goods', list);
+
+    return list;
+  });
 
   const handleChange = (list: any[]) => {
+    if (list.length === 0) {
+      Taro.showToast({
+        title: '请至少选择一个分类',
+        icon: 'none',
+      });
+      return;
+    }
+
     props.onChange?.('goods', list);
+    setList(list);
   };
 
   return (
@@ -19,14 +40,18 @@ export default function Goods(props: GoodsProps) {
       <Cell title="分类"></Cell>
 
       <View style={{ padding: '16px' }}>
-        <Checkbox.Group direction="horizontal" onChange={handleChange}>
-          {goodsList.map((item, index) => {
-            return (
-              <Checkbox key={index} name={item} disabled={props.readonly}>
-                {item}
-              </Checkbox>
-            );
-          })}
+        <Checkbox.Group value={list} direction="horizontal" onChange={handleChange}>
+          <Flex wrap="wrap">
+            {GOODS_LIST.map((item, index) => {
+              return (
+                <Flex.Item span={8} style={{ marginBottom: '8px' }}>
+                  <Checkbox key={index} name={item} disabled={props.readonly}>
+                    {item}
+                  </Checkbox>
+                </Flex.Item>
+              );
+            })}
+          </Flex>
         </Checkbox.Group>
       </View>
     </View>
