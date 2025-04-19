@@ -17,4 +17,10 @@ export default {
     method: 'POST',
     header: {},
   },
+  /** 查询自己卖出的任务 */
+  querySelfSelloutTask: {
+    url: '/api/task/self/sellout',
+    method: 'POST',
+    header: {},
+  },
 };
