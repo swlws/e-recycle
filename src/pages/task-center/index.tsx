@@ -35,7 +35,7 @@ const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
 
 /** 渲染卡片 */
 const itemRender = (item: ITaskInfo, index: number) => {
-  return <NCard key={index} onClick={openTaskDetailPage}></NCard>;
+  return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
 };
 
 export default function TaskCenter() {
