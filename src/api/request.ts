@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro';
+import CacheMgr from '@/cache';
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
@@ -28,8 +29,11 @@ const DEFAULT_HEADER = {
 };
 
 function request(url: string, data: Record<string, any>, options: RequestOptions) {
+  const uid = CacheMgr.user.value?._id;
+  console.log('uid', uid);
+
   const method = options.method || DEFAULT_METHOD;
-  const header = { ...DEFAULT_HEADER, ...options.header };
+  const header = { ...DEFAULT_HEADER, ...options.header, 'U-ID': uid };
   return Taro.request({
     url: `${URL_PREFIX}${url}`,
     data,
