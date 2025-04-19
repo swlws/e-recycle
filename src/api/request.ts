@@ -33,7 +33,7 @@ function request(url: string, data: Record<string, any>, options: RequestOptions
   console.log('uid', uid);
 
   const method = options.method || DEFAULT_METHOD;
-  const header = { ...DEFAULT_HEADER, ...options.header, 'U-ID': uid };
+  const header = { ...DEFAULT_HEADER, ...options.header, 'X-UID': uid };
   return Taro.request({
     url: `${URL_PREFIX}${url}`,
     data,
