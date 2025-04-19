@@ -4,7 +4,7 @@ import { forwardRef, useImperativeHandle, useState } from 'react';
 import CacheMgr from '@/cache';
 
 interface LoginPopupProps {
-  onSuccess?: () => void;
+  onSuccess?: (type: 'login' | 'update', info: { iv: string; encryptedData: string }) => void;
   onFail?: () => void;
 }
 
@@ -15,7 +15,8 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
     console.log(e.detail);
 
     if (e.detail.errMsg === 'getPhoneNumber:ok') {
-      props.onSuccess?.();
+      const { iv, encryptedData } = e.detail;
+      props.onSuccess?.('login', { iv, encryptedData });
     } else {
       props.onFail?.();
     }
@@ -25,10 +26,8 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
 
   const updateUserProfile = () => {
     getUserProfile()
-      .then((userInfo) => {
-        const oldUserProfile = CacheMgr.user.value;
-        CacheMgr.user.setValue({ ...oldUserProfile, ...userInfo });
-        props.onSuccess?.();
+      .then(({ iv, encryptedData }) => {
+        props.onSuccess?.('update', { iv, encryptedData });
       })
       .finally(() => {
         setVisible(false);

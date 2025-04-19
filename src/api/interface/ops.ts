@@ -1,6 +1,6 @@
 export default {
   alive: {
-    url: '/api/v1/alive',
+    url: '/api/ops/alive',
     method: 'GET',
   },
 };

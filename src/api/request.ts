@@ -20,7 +20,8 @@ type ApiMethod = (
   res: any;
 }>;
 
-const URL_PREFIX = 'https://swlws.site';
+// const URL_PREFIX = 'https://swlws.site';
+const URL_PREFIX = 'http://localhost:8808';
 const DEFAULT_METHOD = 'GET';
 const DEFAULT_HEADER = {
   'Content-Type': 'application/json',

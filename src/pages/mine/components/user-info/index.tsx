@@ -4,6 +4,28 @@ import LoginPopup from './login-popup';
 import { useRef, useState } from 'react';
 import { CacheUserInfo } from '@/typings/user';
 import CacheMgr from '@/cache';
+import { getWxCode } from '@/bridge/user';
+import api from '@/api';
+
+/**
+ * 用户登录
+ * @param iv
+ * @param encryptedData
+ */
+async function userLogin(iv: string, encryptedData: string) {
+  const code = await getWxCode();
+  return api.auth.login({ code, iv, encryptedData });
+}
+
+/**
+ * 更新用户信息
+ * @param iv
+ * @param encryptedData
+ */
+async function updateUserInfo(iv: string, encryptedData: string) {
+  const code = await getWxCode();
+  return api.auth.updateUserInfo({ code, iv, encryptedData });
+}
 
 export default function UserInfo() {
   const [userProfile, setUserProfile] = useState<CacheUserInfo>(CacheMgr.user.value);
@@ -13,8 +35,25 @@ export default function UserInfo() {
     LoginPopupRef.current?.show();
   };
 
-  const updateUserProfile = () => {
-    setUserProfile(CacheMgr.user.value);
+  const updateUserProfile = (
+    type: 'login' | 'update',
+    info: { iv: string; encryptedData: string }
+  ) => {
+    if (type === 'login') {
+      userLogin(info.iv, info.encryptedData).then((res) => {
+        if (res.r0 !== 0) return;
+
+        CacheMgr.user.setValue(res.res);
+        setUserProfile(res.res);
+      });
+    } else {
+      updateUserInfo(info.iv, info.encryptedData).then((res) => {
+        if (res.r0 !== 0) return;
+
+        CacheMgr.user.setValue(res.res);
+        setUserProfile(res.res);
+      });
+    }
   };
 
   return (

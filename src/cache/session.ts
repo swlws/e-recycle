@@ -10,11 +10,11 @@ export default class {
     return getItem(STORAGE_KEY.SESSION) || {};
   }
 
-  setValue(value: STORAGE_KEY.SESSION) {
+  setValue(value: Session) {
     setItem(STORAGE_KEY.SESSION, value);
   }
 
   clear() {
-    this.setValue({} as STORAGE_KEY.SESSION);
+    this.setValue({} as Session);
   }
 }

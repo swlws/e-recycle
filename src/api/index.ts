@@ -1,5 +1,6 @@
 import apiRequest, { RequestOptions } from './request';
 import ops from './interface/ops';
+import auth from './interface/auth';
 import user from './interface/user';
 import task from './interface/task';
 
@@ -20,6 +21,7 @@ type ApiMethod = (
 
 const apiModule = {
   ops,
+  auth,
   user,
   task,
 };
