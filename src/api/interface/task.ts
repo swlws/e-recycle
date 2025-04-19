@@ -32,7 +32,7 @@ export default {
   /** 用户的任务统计 */
   queryUserTaskCount: {
     url: '/api/task/user/count',
-    method: 'POST',
+    method: 'GET',
     header: {},
   },
 };
