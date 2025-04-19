@@ -5,6 +5,12 @@ export default {
     method: 'POST',
     header: {},
   },
+  /** 查找单个任务 */
+  queryOneTask: {
+    url: '/api/task/one',
+    method: 'POST',
+    header: {},
+  },
   /** 查询所有任务 */
   queryAllTask: {
     url: '/api/task/all',
