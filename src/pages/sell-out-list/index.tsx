@@ -1,7 +1,6 @@
 import { Search } from '@taroify/core';
 import { View } from '@tarojs/components';
 
-import './index.scss';
 import { useState } from 'react';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
@@ -10,6 +9,8 @@ import { gotoPage } from '@/bridge/navigator';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
 import { ITaskInfo } from '@/typings/task';
 import api from '@/api';
+
+import './index.scss';
 
 /** 打开任务详情页面 */
 function openTaskDetailPage() {

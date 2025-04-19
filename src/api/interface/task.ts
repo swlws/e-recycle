@@ -23,4 +23,10 @@ export default {
     method: 'POST',
     header: {},
   },
+  /** 查询自己买入的任务 */
+  querySelfBuyinTask: {
+    url: '/api/task/self/buyin',
+    method: 'POST',
+    header: {},
+  },
 };
