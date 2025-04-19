@@ -49,4 +49,11 @@ export default {
     method: 'POST',
     header: {},
   },
+  /** 任务任务 */
+  // 参数。_id 任务ID
+  taskTask: {
+    url: '/api/task/finish',
+    method: 'POST',
+    header: {},
+  },
 };
