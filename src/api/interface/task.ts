@@ -36,6 +36,7 @@ export default {
     header: {},
   },
   /** 用户的任务统计 */
+  // 参数。_id 任务ID
   removeTask: {
     url: '/api/task/remove',
     method: 'POST',
