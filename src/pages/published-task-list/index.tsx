@@ -11,11 +11,6 @@ import { gotoPage } from '@/bridge/navigator';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
 import api from '@/api';
 
-/** 打开任务详情页面 */
-function openTaskDetailPage() {
-  gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL);
-}
-
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
   return new Promise((resolve) => {
@@ -39,6 +34,11 @@ const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
 
 /** 渲染卡片 */
 const itemRender = (item: ITaskInfo, index: number) => {
+  /** 打开任务详情页面 */
+  const openTaskDetailPage = () => {
+    gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id });
+  };
+
   return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
 };
 
