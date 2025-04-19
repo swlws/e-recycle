@@ -9,7 +9,7 @@ export default function NCard(props: NCardProps) {
     <Cell onClick={props.onClick}>
       <Flex className="n-card" style={{ height: '58px' }}>
         <Flex.Item>
-          <Avatar src="https://joesch.moe/api/v1/random" shape="rounded" size="large" />
+          <Avatar src={`https://robohash.org/${Math.random()}`} shape="rounded" size="large" />
         </Flex.Item>
 
         <Flex.Item offset={1} style={{ height: '100%' }}>
