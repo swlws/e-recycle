@@ -8,6 +8,7 @@ interface IProvinceCityDistrict {
  * 选择位置
  */
 export interface IChooseLocation extends IProvinceCityDistrict {
+  errMsg?: string;
   /** 纬度 */
   latitude: number;
   /** 经度 */

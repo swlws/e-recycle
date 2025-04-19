@@ -19,7 +19,8 @@ export function chooseLocation(): Promise<IChooseLocation> {
             if (addresInfo) {
               Object.assign(info, addresInfo);
             }
-            console.log(info);
+
+            delete info.errMsg;
             resolve(info);
           });
         } else {
