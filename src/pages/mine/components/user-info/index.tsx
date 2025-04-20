@@ -27,7 +27,11 @@ async function updateUserInfo(iv: string, encryptedData: string) {
   return api.auth.updateUserInfo({ code, iv, encryptedData });
 }
 
-export default function UserInfo() {
+interface UserInfoProps {
+  onLoginSuccess?: () => void;
+}
+
+export default function UserInfo(props: UserInfoProps) {
   const [userProfile, setUserProfile] = useState<CacheUserInfo>(CacheMgr.user.value);
   const LoginPopupRef = useRef<any>();
 
@@ -45,6 +49,8 @@ export default function UserInfo() {
 
         CacheMgr.user.setValue(res.res);
         setUserProfile(res.res);
+
+        props.onLoginSuccess?.();
       });
     } else {
       updateUserInfo(info.iv, info.encryptedData).then((res) => {

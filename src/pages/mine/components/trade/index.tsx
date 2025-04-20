@@ -5,13 +5,16 @@ import { checkLoginState } from '@/utils/user';
 import { Badge, Grid } from '@taroify/core';
 import { PhotoOutlined } from '@taroify/icons';
 import { View } from '@tarojs/components';
-import { useLoad } from '@tarojs/taro';
-import { useEffect, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
-export default function Trade() {
+function Trade(props: any, ref: any) {
   const [countInfo, setCountInfo] = useState({ published: 0, sellout: 0, buyin: 0 });
 
   useEffect(() => {
+    loadCountInfo();
+  }, []);
+
+  const loadCountInfo = useCallback(() => {
     if (!checkLoginState(false)) return;
 
     api.task.queryUserTaskCount().then((response) => {
@@ -19,6 +22,12 @@ export default function Trade() {
       setCountInfo(response.res);
     });
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    forceUpdate: () => {
+      loadCountInfo();
+    },
+  }));
 
   const handleClick = (path: ENUM_ROUTE_PATH) => {
     if (!checkLoginState()) return;
@@ -55,3 +64,5 @@ export default function Trade() {
     </View>
   );
 }
+
+export default forwardRef(Trade);
