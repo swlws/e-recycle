@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Cell } from '@taroify/core';
 import { View } from '@tarojs/components';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
@@ -12,16 +12,20 @@ import { getFuzzyLocation } from '@/bridge/location';
 import { gotoPage } from '@/bridge/navigator';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
 import api from '@/api';
+import ListSkeleton from './list-skeleton';
 
 import './index.scss';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
+  const location = CacheMgr.fuzzyLocation.value;
+
   return new Promise((resolve) => {
     api.task
       .queryAllTask({
         page: number,
         size: 10,
+        ...location,
       })
       .then(({ r0, res }) => {
         if (r0 !== 0) {
@@ -53,12 +57,19 @@ export default function TaskCenter() {
 
   const locationStr = useMemo(() => {
     const { province, city, district } = locationInfo;
-    if (!province && !city && !district) return '请选择地址';
+    if (!province && !city && !district) return '';
 
     return `${province}/${city}/${district}`;
   }, [locationInfo]);
 
-  const getProvinceCityDistrict = () => {
+  useEffect(() => {
+    const location = CacheMgr.fuzzyLocation.value;
+    if (!location.longitude) {
+      getProvinceCityDistrict();
+    }
+  }, []);
+
+  const getProvinceCityDistrict = useCallback(() => {
     getFuzzyLocation().then((res) => {
       if (!res) return;
 
@@ -67,20 +78,24 @@ export default function TaskCenter() {
       // 缓存状态
       CacheMgr.fuzzyLocation.setValue(res);
     });
-  };
+  }, []);
 
   return (
     <View className="task-center">
       <Cell
         className="location-cell"
         rightIcon={<LocationOutlined size={20} />}
-        title={locationStr}
+        title={locationStr || '请选择地址'}
         isLink
         clickable
         onClick={getProvinceCityDistrict}
       ></Cell>
 
-      <PullAndLoadMoreList loadList={loadList} itemRender={itemRender} />
+      {locationStr ? (
+        <PullAndLoadMoreList loadList={loadList} itemRender={itemRender} />
+      ) : (
+        <ListSkeleton />
+      )}
     </View>
   );
 }
