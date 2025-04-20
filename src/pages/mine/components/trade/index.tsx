@@ -57,7 +57,7 @@ function Trade(props: any, ref: any) {
         <Grid.Item
           icon={<PhotoOutlined />}
           badge={countInfo.buyin && <Badge content={countInfo.buyin} max={99} />}
-          text="我买到的"
+          text="我买入的"
           onClick={() => handleClick(ENUM_ROUTE_PATH.BUY_IN_LIST)}
         />
       </Grid>
