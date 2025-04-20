@@ -1,7 +1,7 @@
 import api from '@/api';
 import { saveQrCodeToPhotosAlbum } from '@/bridge/media';
 import ChildPageLayout from '@/layout/child-page-layout';
-import { Button, Cell, Image, Space } from '@taroify/core';
+import { Button, Cell, Image, NoticeBar, Space } from '@taroify/core';
 import { View, Block } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { useState } from 'react';
@@ -30,19 +30,23 @@ export default function UserQrCode() {
 
   return (
     <ChildPageLayout>
-      <Space size={16} justify="center">
+      <View style={{ marginBottom: '16px' }}>
+        <NoticeBar style={{ color: '#fff', background: '#4CAF50' }}>
+          技术是开发它的人的共同灵魂。
+        </NoticeBar>
+      </View>
+
+      <Space justify="center" style={{ margin: '32px 0 16px' }}>
         <Image mode="widthFix" placeholder="加载中..." src={qrCode} shape="rounded">
           {qrCode}
         </Image>
       </Space>
 
-      <Block>
-        <Space direction="vertical" fill>
-          <Button color="primary" block onClick={saveQrCode}>
-            保存到相册
-          </Button>
-        </Space>
-      </Block>
+      <Space justify="center">
+        <Button color="primary" block onClick={saveQrCode}>
+          保存到相册
+        </Button>
+      </Space>
     </ChildPageLayout>
   );
 }
