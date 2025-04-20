@@ -17,6 +17,7 @@ export default function Remark(props: RemarkProps) {
     props.onChange?.('remark', event.detail.value);
   };
 
+  if (props.readonly && !props.value) return null;
   return (
     <Field name="remark">
       <Textarea
