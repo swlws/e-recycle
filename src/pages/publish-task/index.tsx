@@ -7,6 +7,7 @@ import api from '@/api';
 import CacheMgr from '@/cache';
 
 import './index.scss';
+import Taro from '@tarojs/taro';
 
 export default function ChildPage() {
   const [formValue, setFormValue] = useState<Partial<ITaskInfo>>(() => {
@@ -20,7 +21,14 @@ export default function ChildPage() {
   const onSubmit = () => {
     api.task.createTask(formValue).then((res) => {
       if (res.r0 !== 0) return;
-      console.log('发布成功', res);
+      Taro.showToast({
+        title: '发布成功',
+        icon: 'success',
+      });
+
+      setTimeout(() => {
+        Taro.navigateBack();
+      }, 500);
     });
   };
 
