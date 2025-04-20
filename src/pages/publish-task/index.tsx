@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ChildPageLayout from '@/layout/child-page-layout';
 import BeFormPublishTask from '@/business/form-publish-task';
 import { ITaskInfo } from '@/typings/task';
-import { Button } from '@taroify/core';
+import { Button, Cell } from '@taroify/core';
 import api from '@/api';
 import CacheMgr from '@/cache';
 
@@ -25,9 +25,11 @@ export default function ChildPage() {
   return (
     <ChildPageLayout>
       <BeFormPublishTask formValue={formValue} onChange={setFormValue}>
-        <Button block variant="outlined" color="primary" onClick={onSubmit}>
-          提交
-        </Button>
+        <Cell>
+          <Button block variant="outlined" color="primary" onClick={onSubmit}>
+            提交
+          </Button>
+        </Cell>
       </BeFormPublishTask>
     </ChildPageLayout>
   );

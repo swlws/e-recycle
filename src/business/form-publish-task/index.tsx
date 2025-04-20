@@ -1,5 +1,5 @@
-import { Button, Cell, Form } from '@taroify/core';
-import { BaseEventOrig, FormProps, View } from '@tarojs/components';
+import { Cell, Form } from '@taroify/core';
+import { View } from '@tarojs/components';
 import { useState } from 'react';
 import { ITaskInfo } from '@/typings/task';
 import Person from './components/person/index';
@@ -9,7 +9,6 @@ import PhoneNumber from './components/phone-number/index';
 import Goods from './components/goods';
 import Remark from './components/remark';
 import PickupTime from './components/pickup-time';
-import api from '@/api';
 
 interface BeFormPublishTaskProps {
   formValue?: Partial<ITaskInfo>;
@@ -31,16 +30,9 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
     });
   };
 
-  const onSubmit = (event: BaseEventOrig<FormProps.onSubmitEventDetail>) => {
-    api.task.createTask(formValue).then((res) => {
-      if (res.r0 !== 0) return;
-      console.log('发布成功', res);
-    });
-  };
-
   return (
     <View className="be-form-publish-task">
-      <Form values={formValue} onSubmit={onSubmit}>
+      <Form values={formValue}>
         <Cell.Group inset style={{ marginTop: '16px' }}>
           {/* 定位 */}
           <Location
@@ -89,16 +81,10 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           ></Remark>
         </Cell.Group>
 
-        {/* {!props.readonly && (
-          <View style={{ margin: '16px' }}>
-            <Button shape="round" block color="primary" formType="submit">
-              提交
-            </Button>
-          </View>
-        )} */}
-
         {/* 自定义内容  */}
-        {props.children}
+        <Cell.Group inset style={{ marginTop: '16px' }}>
+          {props.children}
+        </Cell.Group>
       </Form>
     </View>
   );
