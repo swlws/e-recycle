@@ -29,8 +29,7 @@ const DEFAULT_HEADER = {
 };
 
 function request(url: string, data: Record<string, any>, options: RequestOptions) {
-  const uid = CacheMgr.user.value?._id;
-  console.log('uid', uid);
+  const uid = CacheMgr.user.value?._id || '';
 
   const method = options.method || DEFAULT_METHOD;
   const header = { ...DEFAULT_HEADER, ...options.header, 'X-UID': uid };
