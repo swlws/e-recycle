@@ -6,4 +6,5 @@ export interface CacheUserInfo {
   nickName: string;
   avatarUrl: string;
   phoneNumber: string;
+  shareQrCode: string;
 }

@@ -5,17 +5,22 @@ import { Button, Cell, Image, NoticeBar, Space } from '@taroify/core';
 import { View, Block } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { useState } from 'react';
+import CacheMgr from '@/cache';
 
 export default function UserQrCode() {
   const [loading, setLoading] = useState(true);
-  const [qrCode, setQrCode] = useState('');
+  const [qrCode, setQrCode] = useState(() => {
+    const qrCode = CacheMgr.user.value?.shareQrCode || '';
+    if (!qrCode) return '';
+    return 'https://' + qrCode;
+  });
 
   useLoad(() => {
-    console.log('useLoad qrCode');
+    if (qrCode) return;
+
     api.share
       .getUserShareQrCode()
       .then(({ r0, res }) => {
-        console.log('qrCode', res);
         if (r0 !== 0) return;
         setQrCode('https://' + res);
       })
