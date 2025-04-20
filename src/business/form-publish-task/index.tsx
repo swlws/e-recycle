@@ -36,7 +36,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
         <Cell.Group inset style={{ marginTop: '16px' }}>
           {/* 定位 */}
           <Location
-            value={formValue.address}
+            value={formValue.location}
             readonly={props.readonly}
             onChange={handleChange}
           ></Location>
@@ -82,9 +82,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
         </Cell.Group>
 
         {/* 自定义内容  */}
-        <Cell.Group inset style={{ marginTop: '16px' }}>
-          {props.children}
-        </Cell.Group>
+        {props.children}
       </Form>
     </View>
   );

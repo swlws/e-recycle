@@ -5,8 +5,9 @@ import { useLoad, getCurrentInstance } from '@tarojs/taro';
 import { useState } from 'react';
 import { calculateButtonPermission, IButtonPermission } from './helper';
 import { ENUM_PAGE_ALIAS } from '@/constants/route';
-import { Button } from '@taroify/core';
-import { View } from '@tarojs/components';
+import { Button, Flex } from '@taroify/core';
+
+import './index.scss';
 
 export default function TaskDetail() {
   const [loading, setLoading] = useState(true);
@@ -42,30 +43,39 @@ export default function TaskDetail() {
     <ChildPageLayout>
       {!loading && (
         <BeFormPublishTask formValue={taskInfo} readonly={true}>
-          <View style={{ margin: '16px' }}>
-            {buttonPermission.deleteVisible && (
-              <Button variant="outlined" color="danger" block>
-                删除
-              </Button>
-            )}
-
+          <Flex className="task-detail__button-group " gutter={10}>
             {buttonPermission.takeVisible && (
-              <Button variant="outlined" color="primary" block>
-                抢单
-              </Button>
+              <Flex.Item>
+                <Button variant="outlined" color="primary" block>
+                  抢单
+                </Button>
+              </Flex.Item>
             )}
 
             {buttonPermission.unTakeVisible && (
-              <Button variant="outlined" color="default" block>
-                取消
-              </Button>
+              <Flex.Item>
+                <Button variant="outlined" color="default" block>
+                  放弃
+                </Button>
+              </Flex.Item>
             )}
+
+            {buttonPermission.deleteVisible && (
+              <Flex.Item>
+                <Button variant="outlined" color="danger" block>
+                  删除
+                </Button>
+              </Flex.Item>
+            )}
+
             {buttonPermission.finishVisible && (
-              <Button variant="outlined" color="success" block>
-                完成
-              </Button>
+              <Flex.Item>
+                <Button variant="outlined" color="success" block>
+                  完成
+                </Button>
+              </Flex.Item>
             )}
-          </View>
+          </Flex>
         </BeFormPublishTask>
       )}
     </ChildPageLayout>
