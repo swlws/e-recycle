@@ -6,7 +6,7 @@ import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
 import { LoadListFn } from '@/typings';
 import { gotoPage } from '@/bridge/navigator';
-import { ENUM_ROUTE_PATH } from '@/constants/route';
+import { ENUM_PAGE_ALIAS, ENUM_ROUTE_PATH } from '@/constants/route';
 import { ITaskInfo } from '@/typings/task';
 import api from '@/api';
 
@@ -37,7 +37,7 @@ const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
 const itemRender = (item: ITaskInfo, index: number) => {
   /** 打开任务详情页面 */
   const openTaskDetailPage = () => {
-    gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id });
+    gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id, fromPage: ENUM_PAGE_ALIAS.BUY_IN_LIST });
   };
 
   return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;

@@ -15,6 +15,7 @@ interface BeFormPublishTaskProps {
   formValue?: Partial<ITaskInfo>;
   onChange?: (value: Record<string, any>) => void;
   readonly?: boolean;
+  children?: React.ReactNode;
 }
 
 export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
@@ -88,16 +89,17 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           ></Remark>
         </Cell.Group>
 
-        {!props.readonly && (
+        {/* {!props.readonly && (
           <View style={{ margin: '16px' }}>
             <Button shape="round" block color="primary" formType="submit">
               提交
             </Button>
           </View>
-        )}
-      </Form>
+        )} */}
 
-      <View>{JSON.stringify(formValue)}</View>
+        {/* 自定义内容  */}
+        {props.children}
+      </Form>
     </View>
   );
 }

@@ -1,18 +1,34 @@
+import { useState } from 'react';
 import ChildPageLayout from '@/layout/child-page-layout';
 import BeFormPublishTask from '@/business/form-publish-task';
-import CacheMgr from '@/cache';
 import { ITaskInfo } from '@/typings/task';
+import { Button } from '@taroify/core';
+import api from '@/api';
+import CacheMgr from '@/cache';
 
 export default function ChildPage() {
-  const { nickName, phoneNumber } = CacheMgr.user.value;
-  const defaultFormValue: Partial<ITaskInfo> = {
-    person: nickName,
-    phoneNumber,
+  const [formValue, setFormValue] = useState<Partial<ITaskInfo>>(() => {
+    const { nickName, phoneNumber } = CacheMgr.user.value;
+    return {
+      person: nickName,
+      phoneNumber,
+    };
+  });
+
+  const onSubmit = () => {
+    api.task.createTask(formValue).then((res) => {
+      if (res.r0 !== 0) return;
+      console.log('发布成功', res);
+    });
   };
 
   return (
     <ChildPageLayout>
-      <BeFormPublishTask formValue={defaultFormValue} />
+      <BeFormPublishTask formValue={formValue} onChange={setFormValue}>
+        <Button block variant="outlined" color="primary" onClick={onSubmit}>
+          提交
+        </Button>
+      </BeFormPublishTask>
     </ChildPageLayout>
   );
 }

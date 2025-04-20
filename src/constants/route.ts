@@ -25,3 +25,11 @@ export enum ENUM_ROUTE_PATH {
   /** 测试 */
   Test = '/pages/test/index',
 }
+
+/** 页面别名 */
+export enum ENUM_PAGE_ALIAS {
+  TASK_CENTER = 'TASK_CENTER',
+  PUBLISHED_LIST = 'PUBLISHED_LIST',
+  SELL_OUT_LIST = 'SELL_OUT_LIST',
+  BUY_IN_LIST = 'BUY_IN_LIST',
+}

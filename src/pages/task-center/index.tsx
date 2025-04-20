@@ -10,7 +10,7 @@ import CacheMgr from '@/cache/index';
 import { IFuzzyLocation } from '@/typings/bridge';
 import { getFuzzyLocation } from '@/bridge/location';
 import { gotoPage } from '@/bridge/navigator';
-import { ENUM_ROUTE_PATH } from '@/constants/route';
+import { ENUM_PAGE_ALIAS, ENUM_ROUTE_PATH } from '@/constants/route';
 import api from '@/api';
 import ListSkeleton from './list-skeleton';
 
@@ -44,7 +44,7 @@ const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
 const itemRender = (item: ITaskInfo, index: number) => {
   /** 打开任务详情页面 */
   const openTaskDetailPage = () => {
-    gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id });
+    gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id, fromPage: ENUM_PAGE_ALIAS.TASK_CENTER });
   };
 
   return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
