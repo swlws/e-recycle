@@ -1,7 +1,6 @@
 export default defineAppConfig({
   pages: [
     'pages/index/index',
-    'pages/child-page/index',
     'pages/publish-task/index',
     'pages/task-detail/index',
     'pages/test/index',

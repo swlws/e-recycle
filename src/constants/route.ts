@@ -6,8 +6,6 @@ export enum ENUM_ROUTE_PATH {
   Home = '/pages/home/index',
   /** 我的 */
   Mine = '/pages/mine/index',
-  /** 子页面 */
-  ChildPage = '/pages/child-page/index',
   /** 发布单个任务 */
   PUBLISH_TASK = '/pages/publish-task/index',
   /** 任务详情 */
