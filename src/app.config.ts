@@ -8,6 +8,7 @@ export default defineAppConfig({
     'pages/published-task-list/index',
     'pages/sell-out-list/index',
     'pages/buy-in-list/index',
+    'pages/user-qr-code/index',
   ],
   window: {
     backgroundTextStyle: 'light',

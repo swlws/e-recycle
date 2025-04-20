@@ -2,6 +2,7 @@ import apiRequest, { RequestOptions } from './request';
 import ops from './interface/ops';
 import auth from './interface/auth';
 import task from './interface/task';
+import share from './interface/share';
 
 type ApiConfig = {
   [key in keyof typeof apiModule]: {
@@ -22,6 +23,7 @@ const apiModule = {
   ops,
   auth,
   task,
+  share,
 };
 
 export default Object.keys(apiModule).reduce((acc, moduleName) => {

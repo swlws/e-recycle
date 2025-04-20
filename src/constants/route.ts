@@ -20,6 +20,8 @@ export enum ENUM_ROUTE_PATH {
   SELL_OUT_LIST = '/pages/sell-out-list/index',
   /** 买进的 */
   BUY_IN_LIST = '/pages/buy-in-list/index',
+  /** 分享个人二维码 */
+  USER_QR_CODE = '/pages/user-qr-code/index',
   /** 测试 */
   Test = '/pages/test/index',
 }
