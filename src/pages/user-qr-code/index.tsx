@@ -1,6 +1,6 @@
 import api from '@/api';
 import ChildPageLayout from '@/layout/child-page-layout';
-import { Image } from '@taroify/core';
+import { Cell, Image, Space } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { useState } from 'react';
@@ -22,5 +22,14 @@ export default function UserQrCode() {
         setLoading(false);
       });
   });
-  return <ChildPageLayout>{!loading && <Image src={qrCode}>{qrCode}</Image>}</ChildPageLayout>;
+  return (
+    <ChildPageLayout>
+      <Cell isLink>分享给其他人</Cell>
+      <Space size={16} justify="center">
+        <Image mode="widthFix" placeholder="加载中..." src={qrCode} shape="rounded">
+          {qrCode}
+        </Image>
+      </Space>
+    </ChildPageLayout>
+  );
 }
