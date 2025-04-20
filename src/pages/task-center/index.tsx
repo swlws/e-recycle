@@ -21,11 +21,14 @@ const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
   const location = CacheMgr.fuzzyLocation.value;
 
   return new Promise((resolve) => {
+    const { province, city, district } = location;
     api.task
       .queryAllTask({
         page: number,
         size: 10,
-        ...location,
+        province,
+        city,
+        district,
       })
       .then(({ r0, res }) => {
         if (r0 !== 0) {
