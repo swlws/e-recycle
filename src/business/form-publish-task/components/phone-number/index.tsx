@@ -1,6 +1,7 @@
 import { Field, Input } from '@taroify/core';
 import NumberKeyboardWithKeys from './number-keyboard-with-keys';
 import { useRef } from 'react';
+import { phoneNumberFormatter } from '@/utils/tool';
 
 interface PhoneNumberProps {
   value?: string;
@@ -14,7 +15,8 @@ export default function PhoneNumber({ value = '', readonly, onChange }: PhoneNum
   const openNumberKeyboard = () => {
     if (readonly) return;
 
-    numberKeyboardRef.current?.show?.();
+    // 禁止编辑
+    // numberKeyboardRef.current?.show?.();
   };
 
   const handleKeyPress = (key: string) => {
@@ -31,7 +33,12 @@ export default function PhoneNumber({ value = '', readonly, onChange }: PhoneNum
 
   return (
     <Field name="phoneNumber">
-      <Input value={value} placeholder="手机号码" readonly onClick={openNumberKeyboard}></Input>
+      <Input
+        value={readonly && value ? phoneNumberFormatter(value, true) : phoneNumberFormatter(value)}
+        placeholder="手机号码"
+        readonly
+        onClick={openNumberKeyboard}
+      ></Input>
 
       <NumberKeyboardWithKeys
         ref={numberKeyboardRef}

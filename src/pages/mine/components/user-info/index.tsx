@@ -6,6 +6,7 @@ import { CacheUserInfo } from '@/typings/user';
 import CacheMgr from '@/cache';
 import { getWxCode } from '@/bridge/user';
 import api from '@/api';
+import { phoneNumberFormatter } from '@/utils/tool';
 
 /**
  * 用户登录
@@ -71,7 +72,11 @@ export default function UserInfo(props: UserInfoProps) {
           <Flex.Item>{userProfile.phoneNumber && <View>{userProfile.nickName}</View>}</Flex.Item>
 
           <Flex.Item>
-            <View>{userProfile.phoneNumber || '请点击登陆'}</View>
+            <View>
+              {userProfile.phoneNumber
+                ? phoneNumberFormatter(userProfile.phoneNumber, true)
+                : '请点击登陆'}
+            </View>
           </Flex.Item>
         </Flex>
       </Flex>
