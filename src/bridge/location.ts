@@ -77,3 +77,30 @@ export function geocoder(longitude: number, latitude: number) {
       return null;
     });
 }
+
+/**
+ * 打开地图
+ * @param location
+ */
+export function openLocation(location: IChooseLocation) {
+  // 调用打开地图
+  Taro.openLocation({
+    latitude: location.latitude, // 纬度
+    longitude: location.longitude, // 经度
+    name: location.name,
+    address: location.address,
+    scale: 18,
+  });
+}
+
+/**
+ * 打开百度地图
+ * @param location
+ */
+export function openBaiduMap(location: IChooseLocation) {
+  const { latitude, longitude, name, address } = location;
+  const url = `https://api.map.baidu.com/marker?location=${latitude},${longitude}&title=${name}&content=${address}&output=html`;
+  Taro.navigateTo({
+    url: `/pages/webview/index?url=${encodeURIComponent(url)}`,
+  });
+}

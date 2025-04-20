@@ -1,10 +1,12 @@
 import { Cell } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { LocationOutlined } from '@taroify/icons';
-import { chooseLocation } from '@/bridge/location';
-import { useEffect, useState } from 'react';
+import { chooseLocation, openLocation } from '@/bridge/location';
+import { useState } from 'react';
 import { IChooseLocation } from '@/typings/bridge';
 import CacheMgr from '@/cache/index';
+
+import './index.scss';
 
 interface LocationProps {
   value: IChooseLocation;
@@ -27,7 +29,10 @@ export default function Location(props: LocationProps) {
   });
 
   const handleClickEvent = () => {
-    if (props.readonly) return;
+    if (props.readonly) {
+      openMap();
+      return;
+    }
 
     chooseLocation().then((res) => {
       // 组件状态
@@ -39,8 +44,12 @@ export default function Location(props: LocationProps) {
     });
   };
 
+  const openMap = () => {
+    openLocation(locationInfo);
+  };
+
   return (
-    <View className="be-form-publish-task-address">
+    <View className={`be-form-publish-task-address ${props.readonly ? 'readonly' : ''}`}>
       <Cell
         rightIcon={<LocationOutlined size={20} />}
         title={locationInfo.name || '点击选择地址'}
@@ -50,7 +59,7 @@ export default function Location(props: LocationProps) {
       ></Cell>
 
       {locationInfo.address && (
-        <View className="taroify-ellipsis--l2" style={{ padding: '16px' }}>
+        <View className="taroify-ellipsis--l2" style={{ padding: '16px' }} onClick={openMap}>
           {locationInfo.address}
         </View>
       )}

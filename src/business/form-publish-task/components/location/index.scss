@@ -1,0 +1,8 @@
+.be-form-publish-task-address {
+  &.readonly {
+    .taroify-cell__title,
+    .taroify-ellipsis--l2 {
+      color: #009afe;
+    }
+  }
+}
