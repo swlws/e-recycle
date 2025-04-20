@@ -1,15 +1,16 @@
 import { Search } from '@taroify/core';
 import { View } from '@tarojs/components';
 
-import './index.scss';
 import { useState } from 'react';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
 import { LoadListFn } from '@/typings';
-import { ITaskInfo } from '@/typings/task';
 import { gotoPage } from '@/bridge/navigator';
 import { ENUM_PAGE_ALIAS, ENUM_ROUTE_PATH } from '@/constants/route';
+import { ITaskInfo } from '@/typings/task';
 import api from '@/api';
+
+import './index.scss';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
@@ -38,11 +39,11 @@ const itemRender = (item: ITaskInfo, index: number) => {
   const openTaskDetailPage = () => {
     gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, {
       _id: item._id,
-      fromPage: ENUM_PAGE_ALIAS.PUBLISHED_LIST,
+      fromPage: ENUM_PAGE_ALIAS.SELL_OUT_LIST,
     });
   };
 
-  return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
+  return <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}></NCard>;
 };
 
 export default function PublishedTaskList() {

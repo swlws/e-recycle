@@ -1,0 +1,11 @@
+.n-card-container {
+  .taroify-flex-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .taroify-cell__value {
+    min-width: 1px;
+  }
+}

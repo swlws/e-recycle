@@ -40,7 +40,7 @@ const itemRender = (item: ITaskInfo, index: number) => {
     gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id, fromPage: ENUM_PAGE_ALIAS.BUY_IN_LIST });
   };
 
-  return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
+  return <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}></NCard>;
 };
 
 export default function BuyInList() {

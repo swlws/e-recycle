@@ -47,7 +47,7 @@ const itemRender = (item: ITaskInfo, index: number) => {
     gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id, fromPage: ENUM_PAGE_ALIAS.TASK_CENTER });
   };
 
-  return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
+  return <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}></NCard>;
 };
 
 export default function TaskCenter() {

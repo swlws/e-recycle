@@ -30,14 +30,18 @@ export default function PullAndLoadMoreList<T>({
     setLoading(true);
 
     // 根据类型，判定是追加还是清空
-    const newList = refreshingRef.current ? [] : list;
+    // const newList = refreshingRef.current ? [] : list;
 
     loadList({ page: pageRef.current })
       .then((res) => {
-        newList.push(...res.list);
-        setList(newList);
+        setList((oldList) => {
+          const newList = refreshingRef.current ? [] : oldList;
+          newList.push(...res.list);
 
-        setHasMore(newList.length < res.total);
+          setHasMore(newList.length < res.total);
+
+          return newList;
+        });
 
         // 下一次加载的页数
         pageRef.current++;

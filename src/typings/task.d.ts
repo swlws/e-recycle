@@ -6,7 +6,7 @@ export interface ITaskInfo {
   _id?: string;
   person: string;
   phoneNumber: string;
-  address: IChooseLocation;
+  location: IChooseLocation;
   goods: string[];
   remark: string;
   pickupTime: string;

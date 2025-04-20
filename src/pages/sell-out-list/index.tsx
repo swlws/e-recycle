@@ -43,7 +43,7 @@ const itemRender = (item: ITaskInfo, index: number) => {
     });
   };
 
-  return <NCard key={index} index={index} onClick={openTaskDetailPage}></NCard>;
+  return <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}></NCard>;
 };
 
 export default function SellOutList() {
