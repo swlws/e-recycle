@@ -77,3 +77,19 @@ export function compressImage(src: string, quality = 80): Promise<string> {
     });
   });
 }
+
+/**
+ * 保存二维码到相册
+ * @param qrCodeUrl
+ */
+export function saveQrCodeToPhotosAlbum(qrCodeUrl: string) {
+  Taro.downloadFile({
+    url: qrCodeUrl,
+    success: (res) => {
+      Taro.saveImageToPhotosAlbum({
+        filePath: res.tempFilePath,
+        success: () => Taro.showToast({ title: '保存成功' }),
+      });
+    },
+  });
+}
