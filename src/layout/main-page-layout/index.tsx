@@ -1,5 +1,5 @@
 import { View } from '@tarojs/components';
-import { Tabbar } from '@taroify/core';
+import { FixedView, Tabbar } from '@taroify/core';
 import React, { useState } from 'react';
 
 import { IMainPage } from '@/typings';
@@ -34,7 +34,7 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
       </View>
 
       {/* 底部导航栏 */}
-      <View className="main-page-layout__footer">
+      <FixedView position="bottom" className="main-page-layout__footer">
         <Tabbar value={activePageIndex} onChange={handleTabClick}>
           {mainPageList.map((item, index) => (
             <Tabbar.TabItem key={item.name} value={index} onClick={() => handleTabClick(index)}>
@@ -42,7 +42,7 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
             </Tabbar.TabItem>
           ))}
         </Tabbar>
-      </View>
+      </FixedView>
     </View>
   );
 }
