@@ -6,6 +6,7 @@ import { View, Block } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { useState } from 'react';
 import CacheMgr from '@/cache';
+import { InfoOutlined } from '@taroify/icons';
 
 export default function UserQrCode() {
   const [loading, setLoading] = useState(true);
@@ -36,8 +37,11 @@ export default function UserQrCode() {
   return (
     <ChildPageLayout>
       <View style={{ marginBottom: '16px' }}>
-        <NoticeBar style={{ color: '#fff', background: '#4CAF50' }}>
-          技术是开发它的人的共同灵魂。
+        <NoticeBar style={{ color: '#fff', background: '#4CAF50' }} scrollable>
+          <NoticeBar.Icon>
+            <InfoOutlined />
+          </NoticeBar.Icon>
+          让绿色回收成为全民习惯，推动低碳环保，实现资源循环利用，助力可持续发展。
         </NoticeBar>
       </View>
 
