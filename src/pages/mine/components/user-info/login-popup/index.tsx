@@ -1,4 +1,4 @@
-import { getUserProfile } from '@/bridge/user';
+// import { getUserProfile } from '@/bridge/user';
 import { Button, Cell, Popup } from '@taroify/core';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 
@@ -23,15 +23,15 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
     setVisible(false);
   };
 
-  const updateUserProfile = () => {
-    getUserProfile()
-      .then(({ iv, encryptedData }) => {
-        props.onSuccess?.('update', { iv, encryptedData });
-      })
-      .finally(() => {
-        setVisible(false);
-      });
-  };
+  // const updateUserProfile = () => {
+  //   getUserProfile()
+  //     .then(({ iv, encryptedData }) => {
+  //       props.onSuccess?.('update', { iv, encryptedData });
+  //     })
+  //     .finally(() => {
+  //       setVisible(false);
+  //     });
+  // };
 
   useImperativeHandle(ref, () => ({
     show() {
@@ -47,6 +47,8 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
       onClose={() => setVisible(false)}
     >
       <Cell>
+        {/* 这个组件是收费的，免费次数 1000 次 */}
+        {/* https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html */}
         <Button
           style={{ width: '100%' }}
           openType="getPhoneNumber"
@@ -56,11 +58,11 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
         </Button>
       </Cell>
 
-      <Cell>
+      {/* <Cell>
         <Button style={{ width: '100%' }} openType="getUserInfo" onClick={updateUserProfile}>
           更新头像、昵称
         </Button>
-      </Cell>
+      </Cell> */}
     </Popup>
   );
 }

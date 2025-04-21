@@ -37,6 +37,7 @@ export default function UserInfo(props: UserInfoProps) {
   const LoginPopupRef = useRef<any>();
 
   const openLoginPopup = () => {
+    if (userProfile.phoneNumber) return;
     LoginPopupRef.current?.show();
   };
 
