@@ -69,9 +69,15 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           <Goods value={formValue.goods} readonly={props.readonly} onChange={handleChange}></Goods>
         </Cell.Group>
 
-        <Cell.Group inset style={{ marginTop: '16px' }}>
-          <Snapshot readonly={props.readonly}></Snapshot>
-        </Cell.Group>
+        {props.readonly && formValue.snapshot?.length > 0 && (
+          <Cell.Group inset style={{ marginTop: '16px' }}>
+            <Snapshot
+              value={formValue.snapshot}
+              readonly={props.readonly}
+              onChange={handleChange}
+            ></Snapshot>
+          </Cell.Group>
+        )}
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
           <Remark

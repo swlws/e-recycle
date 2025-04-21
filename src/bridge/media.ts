@@ -1,5 +1,7 @@
+import { URL_PREFIX } from '@/api/request';
 import { IChooseImage } from '@/typings/bridge';
 import Taro from '@tarojs/taro';
+import CacheMgr from '@/cache';
 
 interface ChooseImageOption {
   count?: number;
@@ -91,5 +93,65 @@ export function saveQrCodeToPhotosAlbum(qrCodeUrl: string) {
         success: () => Taro.showToast({ title: '保存成功' }),
       });
     },
+  });
+}
+
+type IUploadImage = { url: string };
+
+/**
+ * 上传图片
+ * @param info
+ * @returns
+ */
+export function uploadOneImage(info: IUploadImage): Promise<{
+  r0: number;
+  r1: string;
+  res: any;
+}> {
+  if (!info.url) {
+    return Promise.resolve({ r0: 0, r1: '', res: '' });
+  }
+
+  // cos 桶内的图片不处理
+  if (info.url.startsWith('https://swlws')) {
+    return Promise.resolve({ r0: 0, r1: '', res: info.url });
+  }
+
+  const uid = CacheMgr.user.value?._id || '';
+  return new Promise((resolve, reject) => {
+    Taro.uploadFile({
+      url: URL_PREFIX + '/api/file/upload',
+      filePath: info.url,
+      name: 'file',
+      header: { 'X-UID': uid },
+      success: (res) => {
+        if (res.errMsg === 'uploadFile:ok') {
+          const data = JSON.parse(res.data);
+          if (data.r0 !== 0) {
+            reject(data);
+          } else {
+            resolve(data);
+          }
+        } else {
+          reject(res);
+        }
+      },
+      fail: (err) => {
+        console.error(err);
+        reject(err);
+      },
+    });
+  });
+}
+
+/**
+ * 批量上传图片
+ * @param imageList
+ * @returns
+ */
+export function batchUploadImage(imageList?: IUploadImage[]): Promise<{ url: string }[]> {
+  if (!Array.isArray(imageList) || imageList.length === 0) return Promise.resolve([]);
+  return Promise.all(imageList.map((item) => uploadOneImage(item))).then((list) => {
+    return list.map((item) => ({ url: item.res }));
   });
 }
