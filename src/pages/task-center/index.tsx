@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Cell } from '@taroify/core';
 import { View } from '@tarojs/components';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
@@ -15,6 +15,7 @@ import api from '@/api';
 import ListSkeleton from './list-skeleton';
 
 import './index.scss';
+import { useDidShow } from '@tarojs/taro';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
@@ -57,6 +58,7 @@ export default function TaskCenter() {
   const [locationInfo, setLocationInfo] = useState(() => {
     return CacheMgr.fuzzyLocation.value as IFuzzyLocation;
   });
+  const pullAndLoadMoreListRef = useRef<any>();
 
   const locationStr = useMemo(() => {
     const { province, city, district } = locationInfo;
@@ -71,6 +73,11 @@ export default function TaskCenter() {
       getProvinceCityDistrict();
     }
   }, []);
+
+  useDidShow(() => {
+    console.log('task-center didShow');
+    pullAndLoadMoreListRef.current?.refresh();
+  });
 
   const getProvinceCityDistrict = useCallback(() => {
     getFuzzyLocation().then((res) => {
@@ -95,7 +102,11 @@ export default function TaskCenter() {
       ></Cell>
 
       {locationStr ? (
-        <PullAndLoadMoreList loadList={loadList} itemRender={itemRender} />
+        <PullAndLoadMoreList
+          ref={pullAndLoadMoreListRef}
+          loadList={loadList}
+          itemRender={itemRender}
+        />
       ) : (
         <ListSkeleton />
       )}

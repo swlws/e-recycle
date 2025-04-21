@@ -1,7 +1,7 @@
 import { ListResponse } from '@/typings';
 import { BackTop, List, Loading, PullRefresh } from '@taroify/core';
 import { usePageScroll, pageScrollTo } from '@tarojs/taro';
-import { useRef, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
 interface PullAndLoadMoreListProps<T> {
   loadList: (option: { page: number }) => Promise<ListResponse<T>>;
@@ -9,10 +9,7 @@ interface PullAndLoadMoreListProps<T> {
   itemRender: (row: T, index: number) => React.ReactNode;
 }
 
-export default function PullAndLoadMoreList<T>({
-  loadList,
-  itemRender,
-}: PullAndLoadMoreListProps<T>) {
+function PullAndLoadMoreList<T>({ loadList, itemRender }: PullAndLoadMoreListProps<T>, ref: any) {
   const [list, setList] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -64,6 +61,10 @@ export default function PullAndLoadMoreList<T>({
     onLoad();
   }
 
+  useImperativeHandle(ref, () => ({
+    refresh: onRefresh,
+  }));
+
   return (
     <PullRefresh loading={refreshingRef.current} reachTop={reachTop} onRefresh={onRefresh}>
       <List loading={loading} hasMore={hasMore} onLoad={onLoad}>
@@ -84,3 +85,5 @@ export default function PullAndLoadMoreList<T>({
     </PullRefresh>
   );
 }
+
+export default forwardRef(PullAndLoadMoreList);
