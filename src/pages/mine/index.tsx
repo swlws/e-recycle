@@ -4,6 +4,7 @@ import Trade from './components/trade';
 import { Cell } from '@taroify/core';
 import QrCode from './components/qr-code';
 import { useRef } from 'react';
+import { useDidShow } from '@tarojs/taro';
 
 export default function Mine() {
   const tradeRef = useRef<any>();
@@ -11,6 +12,11 @@ export default function Mine() {
   const handleLoginSuccess = () => {
     tradeRef.current?.forceUpdate();
   };
+
+  useDidShow(() => {
+    tradeRef.current?.forceUpdate();
+  });
+
   return (
     <View className="page-mine">
       <UserInfo onLoginSuccess={handleLoginSuccess}></UserInfo>
