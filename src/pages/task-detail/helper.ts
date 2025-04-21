@@ -2,6 +2,8 @@ import { ENUM_PAGE_ALIAS } from '@/constants/route';
 import { ITaskInfo } from '@/typings/task';
 import CacheMgr from '@/cache';
 import { ENUM_TASK_STATE } from '@/constants/public';
+import api from '@/api';
+import Taro from '@tarojs/taro';
 
 export interface IButtonPermission {
   deleteVisible?: boolean;
@@ -86,6 +88,79 @@ export function calculateButtonPermission(
     }
     default: {
       return {};
+    }
+  }
+}
+
+function doTakeTask(taskInfo: ITaskInfo) {
+  const data = { _id: taskInfo._id };
+  api.task.taskTask(data).then(({ r0 }) => {
+    if (r0 !== 0) {
+      Taro.showToast({ title: '来晚了，已被人抢走' });
+    } else {
+      Taro.showToast({ title: '抢单成功' });
+    }
+
+    setTimeout(() => {
+      Taro.navigateBack();
+    }, 500);
+  });
+}
+
+function doUnTakeTask(taskInfo: ITaskInfo) {
+  const data = { _id: taskInfo._id };
+  api.task.unTaskTask(data).then(() => {
+    Taro.showToast({ title: '已取消任务' });
+    setTimeout(() => {
+      Taro.navigateBack();
+    }, 500);
+  });
+}
+
+function doFinishTask(taskInfo: ITaskInfo) {
+  const data = { _id: taskInfo._id };
+  api.task.finishTask(data).then(() => {
+    Taro.showToast({ title: '已完成任务' });
+    setTimeout(() => {
+      Taro.navigateBack();
+    }, 500);
+  });
+}
+
+function doRemoveTask(taskInfo: ITaskInfo) {
+  const data = { _id: taskInfo._id };
+  api.task.removeTask(data).then(() => {
+    Taro.showToast({ title: '已删除任务' });
+    setTimeout(() => {
+      Taro.navigateBack();
+    }, 500);
+  });
+}
+
+export type IBusinessEvent = 'take' | 'unTake' | 'finish' | 'delete';
+
+/**
+ * 处理业务事件
+ * @param type
+ * @param taskInfo
+ */
+export function patchBusinessEvent(type: IBusinessEvent, taskInfo: ITaskInfo) {
+  switch (type) {
+    case 'take': {
+      doTakeTask(taskInfo);
+      break;
+    }
+    case 'unTake': {
+      doUnTakeTask(taskInfo);
+      break;
+    }
+    case 'finish': {
+      doFinishTask(taskInfo);
+      break;
+    }
+    case 'delete': {
+      doRemoveTask(taskInfo);
+      break;
     }
   }
 }

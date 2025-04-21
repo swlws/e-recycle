@@ -55,10 +55,17 @@ export default {
     method: 'POST',
     header: {},
   },
-  /** 任务任务 */
+  /** 抢任务 */
   // 参数。_id 任务ID
   taskTask: {
-    url: '/api/task/finish',
+    url: '/api/task/take',
+    method: 'POST',
+    header: {},
+  },
+  /** 取消任务 */
+  // 参数。_id 任务ID
+  unTaskTask: {
+    url: '/api/task/untake',
     method: 'POST',
     header: {},
   },

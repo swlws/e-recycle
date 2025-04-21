@@ -3,15 +3,16 @@ import BeFormPublishTask from '@/business/form-publish-task';
 import ChildPageLayout from '@/layout/child-page-layout';
 import { useLoad, getCurrentInstance } from '@tarojs/taro';
 import { useState } from 'react';
-import { calculateButtonPermission, IButtonPermission } from './helper';
+import { calculateButtonPermission, IButtonPermission, patchBusinessEvent } from './helper';
 import { ENUM_PAGE_ALIAS } from '@/constants/route';
 import { Button, Flex } from '@taroify/core';
 
 import './index.scss';
+import { ITaskInfo } from '@/typings/task';
 
 export default function TaskDetail() {
   const [loading, setLoading] = useState(true);
-  const [taskInfo, setTskInfo] = useState({});
+  const [taskInfo, setTskInfo] = useState<ITaskInfo>({} as ITaskInfo);
   const [buttonPermission, setButtonPermission] = useState<IButtonPermission>({});
 
   useLoad(() => {
@@ -46,7 +47,12 @@ export default function TaskDetail() {
           <Flex className="task-detail__button-group " gutter={10}>
             {buttonPermission.takeVisible && (
               <Flex.Item>
-                <Button variant="outlined" color="primary" block>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  block
+                  onClick={() => patchBusinessEvent('take', taskInfo)}
+                >
                   抢单
                 </Button>
               </Flex.Item>
@@ -54,7 +60,12 @@ export default function TaskDetail() {
 
             {buttonPermission.unTakeVisible && (
               <Flex.Item>
-                <Button variant="outlined" color="default" block>
+                <Button
+                  variant="outlined"
+                  color="default"
+                  block
+                  onClick={() => patchBusinessEvent('unTake', taskInfo)}
+                >
                   放弃
                 </Button>
               </Flex.Item>
@@ -62,7 +73,12 @@ export default function TaskDetail() {
 
             {buttonPermission.deleteVisible && (
               <Flex.Item>
-                <Button variant="outlined" color="danger" block>
+                <Button
+                  variant="outlined"
+                  color="danger"
+                  block
+                  onClick={() => patchBusinessEvent('delete', taskInfo)}
+                >
                   删除
                 </Button>
               </Flex.Item>
@@ -70,8 +86,13 @@ export default function TaskDetail() {
 
             {buttonPermission.finishVisible && (
               <Flex.Item>
-                <Button variant="outlined" color="success" block>
-                  完成
+                <Button
+                  variant="outlined"
+                  color="success"
+                  block
+                  onClick={() => patchBusinessEvent('finish', taskInfo)}
+                >
+                  确认完成
                 </Button>
               </Flex.Item>
             )}
