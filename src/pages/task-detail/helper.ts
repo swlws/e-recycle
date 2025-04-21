@@ -92,6 +92,12 @@ export function calculateButtonPermission(
   }
 }
 
+function callNavigateBack() {
+  setTimeout(() => {
+    Taro.navigateBack();
+  }, 500);
+}
+
 function doTakeTask(taskInfo: ITaskInfo) {
   const data = { _id: taskInfo._id };
   api.task.taskTask(data).then(({ r0 }) => {
@@ -101,9 +107,7 @@ function doTakeTask(taskInfo: ITaskInfo) {
       Taro.showToast({ title: '抢单成功' });
     }
 
-    setTimeout(() => {
-      Taro.navigateBack();
-    }, 500);
+    callNavigateBack();
   });
 }
 
@@ -111,9 +115,7 @@ function doUnTakeTask(taskInfo: ITaskInfo) {
   const data = { _id: taskInfo._id };
   api.task.unTaskTask(data).then(() => {
     Taro.showToast({ title: '已取消任务' });
-    setTimeout(() => {
-      Taro.navigateBack();
-    }, 500);
+    callNavigateBack();
   });
 }
 
@@ -121,9 +123,7 @@ function doFinishTask(taskInfo: ITaskInfo) {
   const data = { _id: taskInfo._id };
   api.task.finishTask(data).then(() => {
     Taro.showToast({ title: '已完成任务' });
-    setTimeout(() => {
-      Taro.navigateBack();
-    }, 500);
+    callNavigateBack();
   });
 }
 
@@ -131,9 +131,7 @@ function doRemoveTask(taskInfo: ITaskInfo) {
   const data = { _id: taskInfo._id };
   api.task.removeTask(data).then(() => {
     Taro.showToast({ title: '已删除任务' });
-    setTimeout(() => {
-      Taro.navigateBack();
-    }, 500);
+    callNavigateBack();
   });
 }
 
