@@ -3,8 +3,10 @@ import fuzzyLocation from './fuzzy-location';
 import Token from './token';
 import User from './user';
 import Session from './session';
+import env from './env';
 
 class CacheMgr {
+  env: env;
   /** token */
   token: Token;
   /** 用户信息 */
@@ -16,6 +18,7 @@ class CacheMgr {
   fuzzyLocation: fuzzyLocation;
 
   constructor() {
+    this.env = new env();
     this.token = new Token();
     this.session = new Session();
     this.user = new User();
