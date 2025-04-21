@@ -1,7 +1,7 @@
 import { Search } from '@taroify/core';
 import { View } from '@tarojs/components';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
 import { LoadListFn } from '@/typings';
@@ -11,6 +11,7 @@ import { ITaskInfo } from '@/typings/task';
 import api from '@/api';
 
 import './index.scss';
+import { useDidShow } from '@tarojs/taro';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
@@ -48,8 +49,13 @@ const itemRender = (item: ITaskInfo, index: number) => {
 
 export default function PublishedTaskList() {
   const [searchValue, setSearchValue] = useState('');
+  const pullAndLoadMoreListRef = useRef<any>();
 
   function onSearch(value: string) {}
+
+  useDidShow(() => {
+    pullAndLoadMoreListRef.current?.refresh();
+  });
 
   return (
     <View className="published-task-list">
@@ -59,7 +65,11 @@ export default function PublishedTaskList() {
         onChange={(e) => onSearch(e.detail.value)}
       />
 
-      <PullAndLoadMoreList loadList={loadList} itemRender={itemRender} />
+      <PullAndLoadMoreList
+        ref={pullAndLoadMoreListRef}
+        loadList={loadList}
+        itemRender={itemRender}
+      />
     </View>
   );
 }
