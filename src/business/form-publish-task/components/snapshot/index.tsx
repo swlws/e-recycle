@@ -36,7 +36,6 @@ export default function Snapshot(props: SnapshotProps) {
     nImagePreviewRef.current?.open(files);
   };
 
-  if (props.readonly && files.length === 0) return null;
   return (
     <>
       <Uploader
