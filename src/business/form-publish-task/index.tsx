@@ -43,7 +43,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
-          {props.readonly && <Cell title="卖方"></Cell>}
+          {props.readonly && <Cell title="卖方信息"></Cell>}
 
           {/* 名称 */}
           <Person
@@ -58,6 +58,30 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
             readonly={props.readonly}
             onChange={handleChange}
           ></PhoneNumber>
+        </Cell.Group>
+
+        {props.readonly && formValue.dealWithUid && (
+          <Cell.Group inset style={{ marginTop: '16px' }}>
+            {props.readonly && <Cell title="买方信息"></Cell>}
+
+            {/* 名称 */}
+            <Person
+              value={formValue.dealwithPerson}
+              readonly={props.readonly}
+              onChange={handleChange}
+            ></Person>
+
+            {/* 手机号 */}
+            <PhoneNumber
+              value={formValue.dealWithPhoneNumber}
+              readonly={props.readonly}
+              onChange={handleChange}
+            ></PhoneNumber>
+          </Cell.Group>
+        )}
+
+        <Cell.Group inset style={{ marginTop: '16px' }}>
+          <Cell title="物品"></Cell>
 
           {/* 时间 */}
           <PickupTime
@@ -65,9 +89,8 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
             readonly={props.readonly}
             onChange={handleChange}
           ></PickupTime>
-        </Cell.Group>
 
-        <Cell.Group inset style={{ marginTop: '16px' }}>
+          {/* 物品 */}
           <Goods value={formValue.goods} readonly={props.readonly} onChange={handleChange}></Goods>
         </Cell.Group>
 

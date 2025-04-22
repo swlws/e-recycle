@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { Uploader } from '@taroify/core';
+import { useCallback, useRef, useState } from 'react';
+import { Flex, Uploader } from '@taroify/core';
 import { chooseImages } from '@/bridge/media';
 import { IChooseImage } from '@/typings/bridge';
 import NImagePreview from '@/components/n-image-preview';
@@ -13,13 +13,14 @@ interface SnapshotProps {
 }
 
 export default function Snapshot(props: SnapshotProps) {
-  console.log(props);
+  console.log('Snapshot Component');
   const [files, setFiles] = useState<IChooseImage[]>(props.value || []);
   const nImagePreviewRef = useRef<any>(null);
   const maxFiles = 3;
 
-  function onUpload() {
+  const onUpload = useCallback(() => {
     if (props.readonly) return;
+    console.log('Snapshot Component onUpload');
 
     chooseImages({
       count: maxFiles - files.length,
@@ -30,7 +31,7 @@ export default function Snapshot(props: SnapshotProps) {
       setFiles(newImages);
       props.onChange?.('snapshot', newImages);
     });
-  }
+  }, []);
 
   const onImageClick = () => {
     nImagePreviewRef.current?.open(files);
@@ -46,17 +47,7 @@ export default function Snapshot(props: SnapshotProps) {
         maxFiles={maxFiles}
         onUpload={onUpload}
         onChange={setFiles}
-      >
-        {files.map((image) => (
-          <Uploader.Image
-            key={image.url}
-            url={image.url}
-            onRemove={() => setFiles(files.filter((item) => item !== image))}
-          ></Uploader.Image>
-        ))}
-
-        {!props.readonly && <Uploader.Upload />}
-      </Uploader>
+      ></Uploader>
 
       {/* <NImagePreview ref={nImagePreviewRef} /> */}
     </>

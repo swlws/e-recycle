@@ -37,9 +37,7 @@ export default function Goods(props: GoodsProps) {
 
   return (
     <View className="form-publish-task__goods">
-      <Cell title="分类"></Cell>
-
-      <View style={{ padding: '16px' }}>
+      <View style={{ padding: '0 16px' }}>
         <Checkbox.Group value={list} direction="horizontal" onChange={handleChange}>
           <Flex wrap="wrap">
             {GOODS_LIST.map((item, index) => {

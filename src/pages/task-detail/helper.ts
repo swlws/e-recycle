@@ -19,12 +19,17 @@ export interface IButtonPermission {
  */
 export function buttonPermissionForTaskCenterPage(taskInfo: ITaskInfo): IButtonPermission {
   const currUid = CacheMgr.user.value?._id;
-  const { uid, state, pickupTime } = taskInfo;
+  const { uid, state, pickupTime, dealWithUid } = taskInfo;
 
   const deleteVisible = currUid === uid;
   const finishVisible =
     new Date(pickupTime).getTime() < Date.now() && state !== ENUM_TASK_STATE.RESOLVE;
+
+  const takeVisible = currUid !== dealWithUid;
+  const unTakeVisible = currUid === dealWithUid;
   return {
+    takeVisible,
+    unTakeVisible,
     deleteVisible,
     finishVisible,
   };

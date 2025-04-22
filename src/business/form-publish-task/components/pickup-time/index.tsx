@@ -3,6 +3,8 @@ import { View } from '@tarojs/components';
 import { useState } from 'react';
 import { getDefaultPickTime, getPickerOption } from './helper';
 
+import './index.scss';
+
 interface PickupTimeProps {
   value?: string;
   onChange?: (name: string, value: string) => void;
@@ -31,8 +33,13 @@ export default function PickupTime(props: PickupTimeProps) {
   };
 
   return (
-    <View>
-      <Cell title={pickupTime || '时间'} isLink clickable onClick={openModel}></Cell>
+    <View className="pickup-time">
+      <Cell
+        title={'取货时间：' + pickupTime || '时间'}
+        isLink={!props.readonly}
+        clickable={!props.readonly}
+        onClick={openModel}
+      ></Cell>
 
       <Popup
         open={visible}
