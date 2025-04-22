@@ -43,6 +43,8 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
         </Cell.Group>
 
         <Cell.Group inset style={{ marginTop: '16px' }}>
+          {props.readonly && <Cell title="卖方"></Cell>}
+
           {/* 名称 */}
           <Person
             value={formValue.person}
@@ -69,7 +71,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           <Goods value={formValue.goods} readonly={props.readonly} onChange={handleChange}></Goods>
         </Cell.Group>
 
-        {!(props.readonly && formValue.snapshot?.length === 0) && (
+        {!(props.readonly && !formValue.snapshot?.length) && (
           <Cell.Group inset style={{ marginTop: '16px' }}>
             <Snapshot
               value={formValue.snapshot}
@@ -79,13 +81,15 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
           </Cell.Group>
         )}
 
-        <Cell.Group inset style={{ marginTop: '16px' }}>
-          <Remark
-            value={formValue.remark}
-            readonly={props.readonly}
-            onChange={handleChange}
-          ></Remark>
-        </Cell.Group>
+        {!(props.readonly && !formValue.remark?.length) && (
+          <Cell.Group inset style={{ marginTop: '16px' }}>
+            <Remark
+              value={formValue.remark}
+              readonly={props.readonly}
+              onChange={handleChange}
+            ></Remark>
+          </Cell.Group>
+        )}
 
         {/* 自定义内容  */}
         {props.children}

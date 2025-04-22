@@ -1,11 +1,10 @@
 import { useRef, useState } from 'react';
 import { Uploader } from '@taroify/core';
 import { chooseImages } from '@/bridge/media';
-
-import './index.scss';
 import { IChooseImage } from '@/typings/bridge';
 import NImagePreview from '@/components/n-image-preview';
-import { View } from '@tarojs/components';
+
+import './index.scss';
 
 interface SnapshotProps {
   value?: IChooseImage[];
@@ -14,6 +13,7 @@ interface SnapshotProps {
 }
 
 export default function Snapshot(props: SnapshotProps) {
+  console.log(props);
   const [files, setFiles] = useState<IChooseImage[]>(props.value || []);
   const nImagePreviewRef = useRef<any>(null);
   const maxFiles = 3;
@@ -43,12 +43,22 @@ export default function Snapshot(props: SnapshotProps) {
         value={files}
         removable={!props.readonly}
         multiple
-        maxFiles={props.readonly ? files.length : maxFiles}
+        maxFiles={maxFiles}
         onUpload={onUpload}
         onChange={setFiles}
-      />
+      >
+        {files.map((image) => (
+          <Uploader.Image
+            key={image.url}
+            url={image.url}
+            onRemove={() => setFiles(files.filter((item) => item !== image))}
+          ></Uploader.Image>
+        ))}
 
-      <NImagePreview ref={nImagePreviewRef} />
+        {!props.readonly && <Uploader.Upload />}
+      </Uploader>
+
+      {/* <NImagePreview ref={nImagePreviewRef} /> */}
     </>
   );
 }
