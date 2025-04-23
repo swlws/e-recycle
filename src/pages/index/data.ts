@@ -12,7 +12,7 @@ export const MainPageList: IMainPage[] = [
   },
   {
     name: 'list',
-    nameZh: '列表',
+    nameZh: '大厅',
     component: TaskCenter,
   },
   {
