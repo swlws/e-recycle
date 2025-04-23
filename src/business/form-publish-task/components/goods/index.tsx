@@ -36,22 +36,20 @@ export default function Goods(props: GoodsProps) {
   };
 
   return (
-    <View className="form-publish-task__goods">
-      <View style={{ padding: '0 16px' }}>
-        <Checkbox.Group value={list} direction="horizontal" onChange={handleChange}>
-          <Flex wrap="wrap">
-            {GOODS_LIST.map((item, index) => {
-              return (
-                <Flex.Item span={8} style={{ marginBottom: '8px' }}>
-                  <Checkbox key={index} name={item} disabled={props.readonly}>
-                    {item}
-                  </Checkbox>
-                </Flex.Item>
-              );
-            })}
-          </Flex>
-        </Checkbox.Group>
-      </View>
+    <View className="form-publish-task__goods" style={{ padding: '16px 16px 0 16px' }}>
+      <Checkbox.Group value={list} direction="horizontal" onChange={handleChange}>
+        <Flex wrap="wrap">
+          {GOODS_LIST.map((item, index) => {
+            return (
+              <Flex.Item span={8} style={{ marginBottom: '8px' }}>
+                <Checkbox key={index} name={item} disabled={props.readonly}>
+                  {item}
+                </Checkbox>
+              </Flex.Item>
+            );
+          })}
+        </Flex>
+      </Checkbox.Group>
     </View>
   );
 }

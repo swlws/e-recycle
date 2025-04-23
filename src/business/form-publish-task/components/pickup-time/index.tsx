@@ -33,8 +33,9 @@ export default function PickupTime(props: PickupTimeProps) {
   };
 
   return (
-    <View className="pickup-time">
+    <>
       <Cell
+        className="pickup-time"
         title={'取货时间：' + pickupTime || '时间'}
         isLink={!props.readonly}
         clickable={!props.readonly}
@@ -55,6 +56,6 @@ export default function PickupTime(props: PickupTimeProps) {
           onCancel={() => setVisible(false)}
         ></Picker>
       </Popup>
-    </View>
+    </>
   );
 }

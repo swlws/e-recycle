@@ -23,7 +23,7 @@ export default function Remark(props: RemarkProps) {
       <Textarea
         style={{ height: '48px' }}
         limit={50}
-        placeholder="请输入备注"
+        placeholder="请输入留言"
         value={props.value}
         readonly={props.readonly}
         onChange={handleChange}
