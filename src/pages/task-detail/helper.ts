@@ -109,7 +109,7 @@ function doTakeTask(taskInfo: ITaskInfo) {
     if (r0 !== 0) {
       Taro.showToast({ title: '来晚了，已被人抢走' });
     } else {
-      Taro.showToast({ title: '抢单成功' });
+      Taro.showToast({ title: '接单成功' });
     }
 
     callNavigateBack();

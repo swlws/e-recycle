@@ -53,7 +53,7 @@ export default function TaskDetail() {
                   block
                   onClick={() => patchBusinessEvent('take', taskInfo)}
                 >
-                  抢单
+                  接单
                 </Button>
               </Flex.Item>
             )}

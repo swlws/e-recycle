@@ -155,3 +155,11 @@ export function batchUploadImage(imageList?: IUploadImage[]): Promise<{ url: str
     return list.map((item) => ({ url: item.res }));
   });
 }
+
+/**
+ * 调用电话
+ * @param phone
+ */
+export function callPhone(phone: string) {
+  Taro.makePhoneCall({ phoneNumber: phone });
+}
