@@ -49,6 +49,19 @@ export function buttonPermissionForPublishedTaskPage(taskInfo: ITaskInfo): IButt
 }
 
 /**
+ * 交易中的任务页面按钮权限
+ * @param taskInfo
+ * @returns
+ */
+export function buttonPermissionForInTradingTaskPage(taskInfo: ITaskInfo): IButtonPermission {
+  const currUid = CacheMgr.user.value?._id;
+  const { uid } = taskInfo;
+
+  const deleteVisible = currUid === uid;
+  return { deleteVisible };
+}
+
+/**
  * 卖出的任务页面按钮权限
  */
 export function buttonPermissionForSellOutListPage(taskInfo: ITaskInfo): IButtonPermission {
@@ -84,6 +97,9 @@ export function calculateButtonPermission(
     }
     case ENUM_PAGE_ALIAS.PUBLISHED_LIST: {
       return buttonPermissionForPublishedTaskPage(taskInfo);
+    }
+    case ENUM_PAGE_ALIAS.IN_TRADING_LIST: {
+      return buttonPermissionForInTradingTaskPage(taskInfo);
     }
     case ENUM_PAGE_ALIAS.SELL_OUT_LIST: {
       return buttonPermissionForSellOutListPage(taskInfo);

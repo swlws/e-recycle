@@ -8,7 +8,7 @@ import { View } from '@tarojs/components';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
 function Trade(props: any, ref: any) {
-  const [countInfo, setCountInfo] = useState({ published: 0, sellout: 0, buyin: 0 });
+  const [countInfo, setCountInfo] = useState({ published: 0, inTrading: 0, sellout: 0, buyin: 0 });
 
   useEffect(() => {
     loadCountInfo();
@@ -39,12 +39,19 @@ function Trade(props: any, ref: any) {
     <View className="page-trade">
       {/* <Cell title="交易"></Cell> */}
 
-      <Grid columns={3}>
+      <Grid columns={4}>
         <Grid.Item
           icon={<PhotoOutlined />}
           badge={countInfo.published && <Badge content={countInfo.published} max={99} />}
           text="我发布的"
           onClick={() => handleClick(ENUM_ROUTE_PATH.PUBLISHED_LIST)}
+        />
+
+        <Grid.Item
+          icon={<PhotoOutlined />}
+          badge={countInfo.sellout && <Badge content={countInfo.inTrading} max={99} />}
+          text="交易中的"
+          onClick={() => handleClick(ENUM_ROUTE_PATH.IN_TRADING_LIST)}
         />
 
         <Grid.Item
