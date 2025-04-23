@@ -1,6 +1,7 @@
 import { Cell, Form } from '@taroify/core';
 import { View } from '@tarojs/components';
 import { useState } from 'react';
+import CacheMgr from '@/cache';
 import { ITaskInfo } from '@/typings/task';
 import Person from './components/person/index';
 import Location from './components/location/index';
@@ -21,6 +22,9 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
   const [formValue, setFormValue] = useState<ITaskInfo>(() => {
     return (props.formValue || {}) as ITaskInfo;
   });
+
+  // 当前用户 ID
+  const uid = CacheMgr.user.value?._id;
 
   const handleChange = (key: string, value: any) => {
     setFormValue((oldValue) => {
@@ -57,6 +61,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
             value={formValue.phoneNumber}
             readonly={props.readonly}
             onChange={handleChange}
+            showCallButton={uid === formValue.dealWithUid}
           ></PhoneNumber>
         </Cell.Group>
 
@@ -76,6 +81,7 @@ export default function BeFormPublishTask(props: BeFormPublishTaskProps) {
               value={formValue.dealWithPhoneNumber}
               readonly={props.readonly}
               onChange={handleChange}
+              showCallButton={uid === formValue.uid}
             ></PhoneNumber>
           </Cell.Group>
         )}
