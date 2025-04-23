@@ -23,6 +23,12 @@ export default {
     method: 'POST',
     header: {},
   },
+  /** 查询用户处于交易中的任务 */
+  queryUserInTradingTask: {
+    url: '/api/task/user/in_trading',
+    method: 'POST',
+    header: {},
+  },
   /** 查询自己卖出的任务 */
   queryUserSelloutTask: {
     url: '/api/task/user/sellout',
