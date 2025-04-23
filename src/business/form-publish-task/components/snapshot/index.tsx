@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { Avatar, Cell, Flex, Image, Uploader } from '@taroify/core';
+import { Cell, Flex, Image, Uploader } from '@taroify/core';
 import { chooseImages } from '@/bridge/media';
 import { IChooseImage } from '@/typings/bridge';
 import NImagePreview from '@/components/n-image-preview';
@@ -35,8 +35,9 @@ export default function Snapshot(props: SnapshotProps) {
     nImagePreviewRef.current?.open(files.map((item) => item.url));
   };
 
-  return (
-    <>
+  // 编辑模式
+  if (!props.readonly) {
+    return (
       <Uploader
         style={{ padding: '8px 0 0 8px' }}
         value={files}
@@ -46,13 +47,28 @@ export default function Snapshot(props: SnapshotProps) {
         onUpload={onUpload}
         onChange={setFiles}
       ></Uploader>
+    );
+  }
 
+  // 只读模式
+  return (
+    <>
       <Cell className="snapshot--readonly">
         {files.length > 0 && (
-          <Flex className="be-form-publish-task__snapshot" onClick={onImageClick}>
+          <Flex onClick={onImageClick}>
             {files.map((item, index) => (
               <Flex.Item key={index}>
-                <Avatar src={item.url} alt="" size="large" />
+                <Image
+                  src={item.url}
+                  alt=""
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    objectFit: 'cover',
+                    borderRadius: '4px',
+                    padding: "'0 16px'",
+                  }}
+                />
               </Flex.Item>
             ))}
           </Flex>
