@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { IMainPage } from '@/typings';
 import './index.scss';
+import Taro from '@tarojs/taro';
 
 interface MainPageLayoutProps {
   mainPageList: IMainPage[];
@@ -21,6 +22,9 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
   const handleTabClick = (index: number) => {
     if (index !== activePageIndex) {
       setActivePageIndex(index);
+      Taro.setNavigationBarTitle({
+        title: mainPageList[index].nameZh,
+      });
     }
   };
 
