@@ -43,7 +43,7 @@ function LoginPopup(props: LoginPopupProps, ref: any) {
     <Popup
       open={visible}
       placement="bottom"
-      style={{ height: '30%' }}
+      style={{ height: '80px' }}
       onClose={() => setVisible(false)}
     >
       <Cell>
