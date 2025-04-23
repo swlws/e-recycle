@@ -14,7 +14,7 @@ export default function Mine() {
   return (
     <Space direction="vertical" fill style={{ padding: '16px' }}>
       <Button color="primary" block onClick={() => handleClick(ENUM_ROUTE_PATH.PUBLISH_TASK)}>
-        表单
+        发布任务
       </Button>
     </Space>
   );
