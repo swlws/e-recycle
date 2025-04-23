@@ -42,7 +42,7 @@ export default function ChildPage() {
         <Flex className="publish-task__button-group " gutter={10}>
           <Flex.Item>
             <Button block variant="outlined" color="primary" onClick={onSubmit}>
-              提交
+              发布任务
             </Button>
           </Flex.Item>
         </Flex>
