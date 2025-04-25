@@ -4,6 +4,7 @@ import CacheMgr from '@/cache';
 import { ENUM_TASK_STATE } from '@/constants/public';
 import api from '@/api';
 import Taro from '@tarojs/taro';
+import { requestSubscribeMessageWhenUserTakeTask } from '@/bridge/notify';
 
 export interface IButtonPermission {
   deleteVisible?: boolean;
@@ -119,7 +120,10 @@ function callNavigateBack() {
   }, 500);
 }
 
-function doTakeTask(taskInfo: ITaskInfo) {
+async function doTakeTask(taskInfo: ITaskInfo) {
+  // 订阅消息
+  await requestSubscribeMessageWhenUserTakeTask();
+
   const data = { _id: taskInfo._id };
   api.task.taskTask(data).then(({ r0 }) => {
     if (r0 !== 0) {

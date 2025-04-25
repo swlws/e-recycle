@@ -1,10 +1,12 @@
 import Taro from '@tarojs/taro';
 
 export enum ENUM_TEMPLATE_ID {
-  /** 收到师傅接单通知 */
-  USER_TAKE_TASK = 'zx06aI1Gj2s4UESFqwMgcU_LnPB4s9pRYKdqfJQCIU8',
-  /** 订单取消通知 */
-  USER_UNTAKE_TASK = 'TV8NHyuOumNGad-rX-LqzuxWIBWXJCL8Y35l97Nzbwo',
+  /** 当师傅接单 */
+  WHEN_USER_TAKE_TASK = 'zx06aI1Gj2s4UESFqwMgcXUK7Ck5wPN_OyDE8xokM0s',
+  /** 当师傅取消订单 */
+  WHEN_USER_UNTAKE_TASK = 'RgYL3cHvNJXFjDCWR_joPDx-7k7QnYuejQ7HR2khHNc',
+  /** 当发布者删除任务 */
+  when_delete_task = 'TV8NHyuOumNGad-rX-LqzvvUfzsr491aXKKjgvUlrww',
 }
 
 /**
@@ -30,12 +32,20 @@ export function requestSubscribeMessage(tmplIds: ENUM_TEMPLATE_ID[]): Promise<bo
 }
 
 /**
- * 发布任务时，需要订阅的消息
+ * 当用户发布任务时，需要订阅的消息
  * @returns
  */
-export function requestSubscribeMessageWhenPublishTask() {
+export function requestSubscribeMessageWhenUserPublishTask() {
   return requestSubscribeMessage([
-    ENUM_TEMPLATE_ID.USER_TAKE_TASK,
-    ENUM_TEMPLATE_ID.USER_UNTAKE_TASK,
+    ENUM_TEMPLATE_ID.WHEN_USER_TAKE_TASK,
+    ENUM_TEMPLATE_ID.WHEN_USER_UNTAKE_TASK,
   ]);
+}
+
+/**
+ * 当师傅接单时，需要订阅的消息
+ * @returns
+ */
+export function requestSubscribeMessageWhenUserTakeTask() {
+  return requestSubscribeMessage([ENUM_TEMPLATE_ID.when_delete_task]);
 }

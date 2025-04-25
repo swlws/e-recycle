@@ -6,10 +6,11 @@ import { Button, Flex } from '@taroify/core';
 import api from '@/api';
 import CacheMgr from '@/cache';
 
-import './index.scss';
 import Taro from '@tarojs/taro';
 import { batchUploadImage } from '@/bridge/media';
-import { requestSubscribeMessageWhenPublishTask } from '@/bridge/notify';
+import { requestSubscribeMessageWhenUserPublishTask } from '@/bridge/notify';
+
+import './index.scss';
 
 export default function ChildPage() {
   const [formValue, setFormValue] = useState<Partial<ITaskInfo>>(() => {
@@ -21,7 +22,7 @@ export default function ChildPage() {
   });
 
   const onSubmit = async () => {
-    await requestSubscribeMessageWhenPublishTask();
+    await requestSubscribeMessageWhenUserPublishTask();
 
     // 上传图片
     const snapshot = await batchUploadImage(formValue.snapshot);
