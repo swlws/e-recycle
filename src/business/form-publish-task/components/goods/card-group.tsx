@@ -29,7 +29,9 @@ export default function CardGroup({ value, cards, onChange }: CardGroupProps) {
       {cards.map((card, index) => (
         <View
           key={index}
-          className={`card-group__item ${card.selected ? 'card-group__item--selected' : ''}`}
+          className={`card-group__item ${
+            value.includes(card.text) ? 'card-group__item--selected' : ''
+          }`}
           onClick={() => handleChange(card.text)}
         >
           <View className="card-group__item-image">
