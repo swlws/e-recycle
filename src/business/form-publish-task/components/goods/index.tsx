@@ -4,6 +4,12 @@ import { View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useState } from 'react';
 
+import ChaiQian from '@/asset/images/chaiqian.png';
+import JinShu from '@/asset/images/jinshu.png';
+import TuShu from '@/asset/images/tushu.png';
+import YiWu from '@/asset/images/yiwu.png';
+import CardGroup from './card-group';
+
 interface GoodsProps {
   value: any[];
   onChange?: (key: string, value: any[]) => void;
@@ -50,6 +56,8 @@ export default function Goods(props: GoodsProps) {
           })}
         </Flex>
       </Checkbox.Group>
+
+      {/* <CardGroup cards={CardList} /> */}
     </View>
   );
 }

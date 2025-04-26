@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '表单页面',
+  navigationBarTitleText: '发布任务',
 });

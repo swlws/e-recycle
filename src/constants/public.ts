@@ -1,3 +1,16 @@
+import ChaiQian from '@/asset/images/chaiqian.png';
+import JinShu from '@/asset/images/jinshu.png';
+import TuShu from '@/asset/images/tushu.png';
+import YiWu from '@/asset/images/yiwu.png';
+
+/** 商品枚举 */
+export const ENUM_GOODS_LIST = [
+  { image: ChaiQian, text: '柴钱' },
+  { image: JinShu, text: '金书' },
+  { image: TuShu, text: '图书' },
+  { image: YiWu, text: '其他' },
+];
+
 /**
  * 商品分类
  */
