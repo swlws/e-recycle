@@ -1,0 +1,13 @@
+.page-home {
+  padding: 16px 32px;
+
+  &__header {
+    color: #333;
+    font-size: 60px;
+  }
+
+  &__publish-button {
+    border-color: $theme-color;
+    background-color: $theme-color;
+  }
+}
