@@ -1,13 +1,7 @@
-import { GOODS_LIST } from '@/constants/public';
-import { Cell, Checkbox, Flex } from '@taroify/core';
+import { ENUM_GOODS_LIST } from '@/constants/public';
 import { View } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useState } from 'react';
-
-import ChaiQian from '@/asset/images/chaiqian.png';
-import JinShu from '@/asset/images/jinshu.png';
-import TuShu from '@/asset/images/tushu.png';
-import YiWu from '@/asset/images/yiwu.png';
 import CardGroup from './card-group';
 
 interface GoodsProps {
@@ -20,7 +14,8 @@ export default function Goods(props: GoodsProps) {
   const [list, setList] = useState(() => {
     let list = props.value || [];
     if (list.length === 0) {
-      list = [GOODS_LIST[0]];
+      const len = ENUM_GOODS_LIST.length;
+      list = [ENUM_GOODS_LIST[len - 1].text];
     }
 
     props.onChange?.('goods', list);
@@ -29,6 +24,8 @@ export default function Goods(props: GoodsProps) {
   });
 
   const handleChange = (list: any[]) => {
+    if (props.readonly) return;
+
     if (list.length === 0) {
       Taro.showToast({
         title: '请至少选择一个分类',
@@ -42,22 +39,8 @@ export default function Goods(props: GoodsProps) {
   };
 
   return (
-    <View className="form-publish-task__goods" style={{ padding: '16px 16px 0 16px' }}>
-      <Checkbox.Group value={list} direction="horizontal" onChange={handleChange}>
-        <Flex wrap="wrap">
-          {GOODS_LIST.map((item, index) => {
-            return (
-              <Flex.Item span={8} style={{ marginBottom: '8px' }}>
-                <Checkbox key={index} name={item} disabled={props.readonly}>
-                  {item}
-                </Checkbox>
-              </Flex.Item>
-            );
-          })}
-        </Flex>
-      </Checkbox.Group>
-
-      {/* <CardGroup cards={CardList} /> */}
+    <View className="form-publish-task__goods">
+      <CardGroup value={list} cards={ENUM_GOODS_LIST} onChange={handleChange} />
     </View>
   );
 }

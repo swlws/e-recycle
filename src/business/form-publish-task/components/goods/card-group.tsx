@@ -9,22 +9,32 @@ interface CardProps {
 }
 
 interface CardGroupProps {
+  value: string[];
   cards: CardProps[];
-  onChange?: (index: number) => void;
+  onChange?: (name: string[]) => void;
 }
 
-export default function CardGroup({ cards, onChange }: CardGroupProps) {
+export default function CardGroup({ value, cards, onChange }: CardGroupProps) {
+  const handleChange = (name: string) => {
+    if (value.includes(name)) {
+      const list = value.filter((item) => item !== name);
+      onChange?.(list);
+    } else {
+      const list = [...value, name];
+      onChange?.(list);
+    }
+  };
   return (
     <View className="card-group">
       {cards.map((card, index) => (
         <View
           key={index}
           className={`card-group__item ${card.selected ? 'card-group__item--selected' : ''}`}
-          onClick={() => onChange?.(index)}
+          onClick={() => handleChange(card.text)}
         >
           <View className="card-group__item-image">
             <Image src={card.image} mode="aspectFill" />
-            {card.selected && (
+            {value.includes(card.text) && (
               <View className="card-group__item-check">
                 <Checked color="#07c160" size="20" />
               </View>

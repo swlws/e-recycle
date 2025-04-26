@@ -2,13 +2,17 @@ import ChaiQian from '@/asset/images/chaiqian.png';
 import JinShu from '@/asset/images/jinshu.png';
 import TuShu from '@/asset/images/tushu.png';
 import YiWu from '@/asset/images/yiwu.png';
+import JiaDian from '@/asset/images/jiadian.png';
+import ZaWu from '@/asset/images/zawu.png';
 
 /** 商品枚举 */
 export const ENUM_GOODS_LIST = [
-  { image: ChaiQian, text: '柴钱' },
-  { image: JinShu, text: '金书' },
-  { image: TuShu, text: '图书' },
-  { image: YiWu, text: '其他' },
+  { image: ChaiQian, text: '建筑拆迁' },
+  { image: JinShu, text: '废旧金属' },
+  { image: TuShu, text: '纸质物品' },
+  { image: JiaDian, text: '日用家电' },
+  { image: YiWu, text: '闲置衣物' },
+  { image: ZaWu, text: '其它杂物' },
 ];
 
 /**
