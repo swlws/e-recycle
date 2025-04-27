@@ -2,28 +2,20 @@
  * 路由路径
  */
 export enum ENUM_ROUTE_PATH {
-  /** 主页 */
-  Home = '/pages/home/index',
-  /** 我的 */
-  Mine = '/pages/mine/index',
   /** 发布单个任务 */
-  PUBLISH_TASK = '/pages/publish-task/index',
+  PUBLISH_TASK = '/packageA/pages/publish-task/index',
   /** 任务详情 */
-  TASK_DETAIL = '/pages/task-detail/index',
-  /** 任务中心 */
-  TASK_CENTER = '/pages/task-center/index',
+  TASK_DETAIL = '/packageA/pages/task-detail/index',
   /** 发布的 */
-  PUBLISHED_LIST = '/pages/published-task-list/index',
+  PUBLISHED_LIST = '/packageB/pages/published-task-list/index',
   /** 交易中的 */
-  IN_TRADING_LIST = '/pages/in-trading-list/index',
+  IN_TRADING_LIST = '/packageB/pages/in-trading-list/index',
   /** 卖出的 */
-  SELL_OUT_LIST = '/pages/sell-out-list/index',
+  SELL_OUT_LIST = '/packageB/pages/sell-out-list/index',
   /** 买进的 */
-  BUY_IN_LIST = '/pages/buy-in-list/index',
+  BUY_IN_LIST = '/packageB/pages/buy-in-list/index',
   /** 分享个人二维码 */
-  USER_QR_CODE = '/pages/user-qr-code/index',
-  /** 测试 */
-  Test = '/pages/test/index',
+  USER_QR_CODE = '/packageC/pages/user-qr-code/index',
 }
 
 /** 页面别名 */

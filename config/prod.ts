@@ -1,13 +1,46 @@
-import type { UserConfigExport } from "@tarojs/cli"
+import type { UserConfigExport } from '@tarojs/cli';
 
 export default {
-  mini: {},
+  mini: {
+    webpackChain(chain) {
+      // 开启代码压缩
+      chain.optimization.minimize(true);
+
+      // 开启代码分离
+      chain.optimization.splitChunks({
+        chunks: 'all',
+        minSize: 30000,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            name: 'vendors',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+          },
+          commons: {
+            name: 'commons',
+            chunks: 'all',
+            minChunks: 2,
+            priority: -20,
+          },
+        },
+      });
+    },
+  },
   h5: {
     compile: {
       include: [
         // 确保产物为 es5
-        filename => /node_modules\/(?!(@babel|core-js|style-loader|css-loader|react|react-dom))/.test(filename)
-      ]
+        (filename) =>
+          /node_modules\/(?!(@babel|core-js|style-loader|css-loader|react|react-dom))/.test(
+            filename
+          ),
+      ],
     },
     /**
      * WebpackChain 插件配置
@@ -35,5 +68,5 @@ export default {
     //       postProcess: (context) => ({ ...context, outputPath: path.join(staticDir, 'index.html') })
     //     }))
     // }
-  }
-} satisfies UserConfigExport<'webpack5'>
+  },
+} satisfies UserConfigExport<'webpack5'>;
