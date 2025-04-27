@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>地支时钟</title>
+    <title>一个有点意思的时钟</title>
+    <link rel="icon" href="https://www.github.com/swlws.png" />
     <style>
       html {
         width: 100%;
@@ -206,6 +207,7 @@
       <div class="hand second"></div>
     </div>
     <div class="digital-time">00:00:00</div>
+    <div class="yangsheng-info"></div>
 
     <script>
       const clock = document.querySelector('.clock');
@@ -258,6 +260,22 @@
         clock.appendChild(element);
       });
 
+      // 养生信息数组
+      const yangshengInfo = [
+        '子时：肾经当令，宜安睡养神',
+        '丑时：胆经当令，宜静养气血',
+        '寅时：肝经当令，宜舒展筋骨',
+        '卯时：肺经当令，宜吐纳呼吸',
+        '辰时：大肠经当令，宜理肠胃',
+        '巳时：胃经当令，宜进早餐',
+        '午时：心经当令，宜小憩养心',
+        '未时：小肠经当令，宜消化吸收',
+        '申时：膀胱经当令，宜补充水分',
+        '酉时：脾经当令，宜调理脾胃',
+        '戌时：三焦经当令，宜温养三焦',
+        '亥时：心包经当令，宜收心安神',
+      ];
+
       function updateClock() {
         const now = new Date();
         const hours = now.getHours();
@@ -271,6 +289,12 @@
           2,
           '0'
         )}:${String(seconds).padStart(2, '0')}`;
+
+        // 更新养生信息
+        const yangshengElement = document.querySelector('.yangsheng-info');
+        // 计算当前时辰索引（每个时辰2小时）
+        const shiChenIndex = Math.floor(hours / 2) % 12;
+        yangshengElement.textContent = yangshengInfo[shiChenIndex];
 
         // 计算指针角度（使用12小时制）
         const hourDeg = (hours % 12) * 30 + minutes * 0.5 + seconds * 0.0083;
@@ -291,3 +315,23 @@
     </script>
   </body>
 </html>
+<style>
+  .yangsheng-info {
+    margin: 20px 0 0 0;
+    color: #66ff99;
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: clamp(16px, 4vmin, 24px);
+    background: rgba(0, 0, 0, 0.5);
+    padding: clamp(5px, 2vmin, 10px) clamp(10px, 4vmin, 20px);
+    border-radius: 10px;
+    text-shadow: 0 0 2px #000;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .yangsheng-info {
+      font-size: clamp(14px, 3.5vmin, 20px);
+      padding: 8px 15px;
+    }
+  }
+</style>
