@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>地支时钟</title>
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+
+        background: #1c1c1c;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'STKaiti', 'KaiTi', serif;
+      }
+
+      .clock {
+        position: relative;
+        width: min(60vmin, 500px);
+        height: min(60vmin, 500px);
+        border: 6px solid #ccc;
+        border-radius: 50%;
+        background: radial-gradient(circle, #444 40%, #222);
+        box-shadow: 0 0 30px #000 inset, 0 0 15px #99ddff;
+      }
+
+      .clock::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, transparent 50%, #99ddff20 100%);
+        z-index: -1;
+      }
+
+      .number {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transform-origin: center;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .number span {
+        position: absolute;
+        left: 50%;
+        top: 2%;
+        transform: translateX(-50%);
+        color: #99ddff;
+        font-size: clamp(14px, 3vmin, 20px);
+        text-shadow: 0 0 2px #000;
+      }
+
+      .tiangan {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transform-origin: center;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .tiangan span {
+        position: absolute;
+        left: 50%;
+        top: 15%;
+        transform: translateX(-50%);
+        color: #ff9966;
+        font-size: clamp(12px, 2.5vmin, 16px);
+        text-shadow: 0 0 2px #000;
+      }
+
+      .hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom;
+        border-radius: 4px;
+      }
+
+      .hour {
+        width: 6px;
+        height: 30%;
+        background: #f00;
+        z-index: 2;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+      }
+
+      .minute {
+        width: 4px;
+        height: 38%;
+        background: #0f0;
+        z-index: 3;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+      }
+
+      .second {
+        width: 2px;
+        height: 46%;
+        background: #0ff;
+        z-index: 1;
+        border-top-left-radius: 1px;
+        border-top-right-radius: 1px;
+      }
+
+      .center-dot {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+      }
+
+      .direction {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transform-origin: center;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .direction span {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translateX(-50%);
+        color: #ffcc00;
+        font-size: clamp(10px, 2vmin, 14px);
+        text-shadow: 0 0 2px #000;
+      }
+
+      .digital-time {
+        /* position: absolute;
+            bottom: 5vmin;
+            left: 50%;
+            transform: translateX(-50%); */
+        margin: 50px 0 0 0;
+        color: #fff;
+        font-family: monospace;
+        font-size: clamp(24px, 8vmin, 50px);
+        background: rgba(0, 0, 0, 0.5);
+        padding: clamp(5px, 2vmin, 10px) clamp(10px, 4vmin, 20px);
+        bottom: clamp(10px, 3vmin, 20px);
+      }
+
+      @media (max-width: 480px) {
+        .clock {
+          width: 90vmin;
+          height: 90vmin;
+        }
+
+        .hand {
+          transform-origin: bottom center;
+        }
+
+        .hour {
+          width: 4px;
+          height: 25%;
+        }
+
+        .minute {
+          width: 3px;
+          height: 32%;
+        }
+
+        .second {
+          width: 1px;
+          height: 40%;
+        }
+
+        .center-dot {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="center-dot"></div>
+      <div class="hand hour"></div>
+      <div class="hand minute"></div>
+      <div class="hand second"></div>
+    </div>
+    <div class="digital-time">00:00:00</div>
+
+    <script>
+      const clock = document.querySelector('.clock');
+      const hourHand = document.querySelector('.hour');
+      const minuteHand = document.querySelector('.minute');
+      const secondHand = document.querySelector('.second');
+
+      // 创建地支刻度
+      const dizhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+      dizhi.forEach((char, index) => {
+        const number = document.createElement('div');
+        number.className = 'number';
+        number.style.transform = `rotate(${index * 30}deg)`;
+
+        const span = document.createElement('span');
+        span.style.transform = `translateX(-50%) rotate(-${index * 30}deg)`;
+        span.textContent = char;
+
+        number.appendChild(span);
+        clock.appendChild(number);
+      });
+
+      // 创建天干刻度
+      const tiangan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+      tiangan.forEach((char, index) => {
+        const element = document.createElement('div');
+        element.className = 'tiangan';
+        element.style.transform = `rotate(${index * 36}deg)`;
+
+        const span = document.createElement('span');
+        span.style.transform = `translateX(-50%)  rotate(-${index * 36}deg)`;
+        span.textContent = char;
+
+        element.appendChild(span);
+        clock.appendChild(element);
+      });
+
+      // 创建八个方位
+      const directions = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
+      directions.forEach((dir, index) => {
+        const element = document.createElement('div');
+        element.className = 'direction';
+        element.style.transform = `rotate(${index * 45}deg)`;
+
+        const span = document.createElement('span');
+        span.style.transform = `translateX(-50%)  rotate(-${index * 45}deg)`;
+        span.textContent = dir;
+
+        element.appendChild(span);
+        clock.appendChild(element);
+      });
+
+      function updateClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const milliseconds = now.getMilliseconds();
+
+        // 更新数字时间显示
+        const digitalTime = document.querySelector('.digital-time');
+        digitalTime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(
+          2,
+          '0'
+        )}:${String(seconds).padStart(2, '0')}`;
+
+        // 计算指针角度（使用12小时制）
+        const hourDeg = (hours % 12) * 30 + minutes * 0.5 + seconds * 0.0083;
+        const minuteDeg = minutes * 6 + seconds * 0.1;
+        const secondDeg = seconds * 6 + milliseconds * 0.006;
+
+        // 更新指针位置
+        hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+        minuteHand.style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+        secondHand.style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+
+        // 请求下一帧动画
+        requestAnimationFrame(updateClock);
+      }
+
+      // 初始更新
+      requestAnimationFrame(updateClock);
+    </script>
+  </body>
+</html>
