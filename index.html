@@ -32,6 +32,19 @@
         border-radius: 50%;
         background: radial-gradient(circle, #444 40%, #222);
         box-shadow: 0 0 30px #000 inset, 0 0 15px #99ddff;
+        animation: breatheEffect 3s infinite ease-in-out;
+      }
+
+      @keyframes breatheEffect {
+        0% {
+          box-shadow: 0 0 30px #000 inset, 0 0 15px rgba(153, 221, 255, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 30px #000 inset, 0 0 25px rgba(153, 221, 255, 0.8);
+        }
+        100% {
+          box-shadow: 0 0 30px #000 inset, 0 0 15px rgba(153, 221, 255, 0.4);
+        }
       }
 
       .clock::before {
