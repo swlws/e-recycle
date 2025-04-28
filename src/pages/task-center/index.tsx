@@ -101,15 +101,17 @@ export default function TaskCenter() {
         onClick={getProvinceCityDistrict}
       ></Cell>
 
-      {locationStr ? (
-        <PullAndLoadMoreList
-          ref={pullAndLoadMoreListRef}
-          loadList={loadList}
-          itemRender={itemRender}
-        />
-      ) : (
-        <ListSkeleton />
-      )}
+      <View className="task-center__main">
+        {locationStr ? (
+          <PullAndLoadMoreList
+            ref={pullAndLoadMoreListRef}
+            loadList={loadList}
+            itemRender={itemRender}
+          />
+        ) : (
+          <ListSkeleton />
+        )}
+      </View>
     </View>
   );
 }

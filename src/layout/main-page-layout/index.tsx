@@ -38,7 +38,7 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
       </View>
 
       {/* 底部导航栏 */}
-      <FixedView position="bottom" className="main-page-layout__footer">
+      <View className="main-page-layout__footer">
         <Tabbar value={activePageIndex} onChange={handleTabClick}>
           {mainPageList.map((item, index) => (
             <Tabbar.TabItem key={item.name} value={index} onClick={() => handleTabClick(index)}>
@@ -46,7 +46,7 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
             </Tabbar.TabItem>
           ))}
         </Tabbar>
-      </FixedView>
+      </View>
     </View>
   );
 }

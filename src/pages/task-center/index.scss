@@ -1,14 +1,26 @@
 .task-center {
+  height: 100%;
+  min-height: 1px;
+
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    min-height: 1px;
+    flex: 1;
+    overflow: auto;
+  }
+
   .location-cell {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // z-index: 100;
     background: #fff;
   }
 
   .taroify-pull-refresh {
-    padding-top: 84px;
+    // padding-top: 84px;
   }
 }

@@ -66,7 +66,12 @@ function PullAndLoadMoreList<T>({ loadList, itemRender }: PullAndLoadMoreListPro
   }));
 
   return (
-    <PullRefresh loading={refreshingRef.current} reachTop={reachTop} onRefresh={onRefresh}>
+    <PullRefresh
+      className="pull-refresh-list"
+      loading={refreshingRef.current}
+      reachTop={reachTop}
+      onRefresh={onRefresh}
+    >
       <List loading={loading} hasMore={hasMore} onLoad={onLoad}>
         {/* 内容渲染 */}
         {list.map((item, index) => itemRender(item, index))}
