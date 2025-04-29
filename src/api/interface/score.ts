@@ -7,6 +7,6 @@ export default {
   // 积分列表
   queryUserScoreList: {
     url: '/api/user/score_list',
-    method: 'GET',
+    method: 'POST',
   },
 };
