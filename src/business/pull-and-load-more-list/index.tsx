@@ -3,6 +3,8 @@ import { BackTop, List, Loading, PullRefresh } from '@taroify/core';
 import { usePageScroll, pageScrollTo } from '@tarojs/taro';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
+import './index.scss';
+
 interface PullAndLoadMoreListProps<T> {
   loadList: (option: { page: number }) => Promise<ListResponse<T>>;
   // 列表项渲染
@@ -67,12 +69,12 @@ function PullAndLoadMoreList<T>({ loadList, itemRender }: PullAndLoadMoreListPro
 
   return (
     <PullRefresh
-      className="pull-refresh-list"
+      className="n-pull-refresh"
       loading={refreshingRef.current}
       reachTop={reachTop}
       onRefresh={onRefresh}
     >
-      <List loading={loading} hasMore={hasMore} onLoad={onLoad}>
+      <List className="n-list" fixedHeight loading={loading} hasMore={hasMore} onLoad={onLoad}>
         {/* 内容渲染 */}
         {list.map((item, index) => itemRender(item, index))}
 
