@@ -9,9 +9,10 @@ import { gotoPage } from '@/bridge/navigator';
 import { ENUM_PAGE_ALIAS, ENUM_ROUTE_PATH } from '@/constants/route';
 import { ITaskInfo } from '@/typings/task';
 import api from '@/api';
+import { useDidShow } from '@tarojs/taro';
 
 import './index.scss';
-import { useDidShow } from '@tarojs/taro';
+import ChildPageLayout from '@/layout/child-page-layout';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
@@ -58,18 +59,22 @@ export default function PublishedTaskList() {
   });
 
   return (
-    <View className="published-task-list">
-      <Search
-        value={searchValue}
-        placeholder="请输入搜索关键词"
-        onChange={(e) => onSearch(e.detail.value)}
-      />
+    <ChildPageLayout>
+      <View className="published-task-list">
+        <Search
+          value={searchValue}
+          placeholder="请输入搜索关键词"
+          onChange={(e) => onSearch(e.detail.value)}
+        />
 
-      <PullAndLoadMoreList
-        ref={pullAndLoadMoreListRef}
-        loadList={loadList}
-        itemRender={itemRender}
-      />
-    </View>
+        <View className="published-task-list__main">
+          <PullAndLoadMoreList
+            ref={pullAndLoadMoreListRef}
+            loadList={loadList}
+            itemRender={itemRender}
+          />
+        </View>
+      </View>
+    </ChildPageLayout>
   );
 }

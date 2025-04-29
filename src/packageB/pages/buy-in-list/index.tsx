@@ -12,6 +12,7 @@ import api from '@/api';
 
 import './index.scss';
 import { useDidShow } from '@tarojs/taro';
+import ChildPageLayout from '@/layout/child-page-layout';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
@@ -55,18 +56,20 @@ export default function BuyInList() {
   });
 
   return (
-    <View className="buy-in-list">
-      <Search
-        value={searchValue}
-        placeholder="请输入搜索关键词"
-        onChange={(e) => onSearch(e.detail.value)}
-      />
+    <ChildPageLayout>
+      <View className="buy-in-list">
+        <Search
+          value={searchValue}
+          placeholder="请输入搜索关键词"
+          onChange={(e) => onSearch(e.detail.value)}
+        />
 
-      <PullAndLoadMoreList
-        ref={pullAndLoadMoreListRef}
-        loadList={loadList}
-        itemRender={itemRender}
-      />
-    </View>
+        <PullAndLoadMoreList
+          ref={pullAndLoadMoreListRef}
+          loadList={loadList}
+          itemRender={itemRender}
+        />
+      </View>
+    </ChildPageLayout>
   );
 }
