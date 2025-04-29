@@ -5,6 +5,7 @@ import { Cell } from '@taroify/core';
 import QrCode from './components/qr-code';
 import { useRef } from 'react';
 import { useDidShow } from '@tarojs/taro';
+import UserScore from './components/score';
 
 export default function Mine() {
   const tradeRef = useRef<any>();
@@ -27,6 +28,8 @@ export default function Mine() {
 
       <Cell.Group inset style={{ marginTop: '16px' }}>
         <QrCode></QrCode>
+
+        <UserScore></UserScore>
       </Cell.Group>
     </View>
   );

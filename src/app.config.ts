@@ -21,7 +21,7 @@ export default defineAppConfig({
     // 用户中心
     {
       root: 'packageC',
-      pages: ['pages/user-qr-code/index'],
+      pages: ['pages/user-qr-code/index', 'pages/user-score/index'],
     },
   ],
   window: {

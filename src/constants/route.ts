@@ -16,6 +16,8 @@ export enum ENUM_ROUTE_PATH {
   BUY_IN_LIST = '/packageB/pages/buy-in-list/index',
   /** 分享个人二维码 */
   USER_QR_CODE = '/packageC/pages/user-qr-code/index',
+  /** 用户积分 */
+  USER_SCORE = '/packageC/pages/user-score/index',
 }
 
 /** 页面别名 */
