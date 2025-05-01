@@ -67,11 +67,13 @@ export default function SellOutList() {
           onChange={(e) => onSearch(e.detail.value)}
         />
 
-        <PullAndLoadMoreList
-          ref={pullAndLoadMoreListRef}
-          loadList={loadList}
-          itemRender={itemRender}
-        />
+        <View className="sell-out-list__main">
+          <PullAndLoadMoreList
+            ref={pullAndLoadMoreListRef}
+            loadList={loadList}
+            itemRender={itemRender}
+          />
+        </View>
       </View>
     </ChildPageLayout>
   );

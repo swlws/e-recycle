@@ -71,11 +71,13 @@ export default function InTradingLit() {
           onChange={(e) => onSearch(e.detail.value)}
         />
 
-        <PullAndLoadMoreList
-          ref={pullAndLoadMoreListRef}
-          loadList={loadList}
-          itemRender={itemRender}
-        />
+        <View className="in-trading-list__mian">
+          <PullAndLoadMoreList
+            ref={pullAndLoadMoreListRef}
+            loadList={loadList}
+            itemRender={itemRender}
+          />
+        </View>
       </View>
     </ChildPageLayout>
   );

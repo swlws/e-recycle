@@ -72,11 +72,13 @@ export default function ScoreList() {
       <View className="user-score-list">
         <ScoreCard score={score}></ScoreCard>
 
-        <PullAndLoadMoreList
-          ref={pullAndLoadMoreListRef}
-          loadList={loadList}
-          itemRender={itemRender}
-        />
+        <View className="user-score-list__main">
+          <PullAndLoadMoreList
+            ref={pullAndLoadMoreListRef}
+            loadList={loadList}
+            itemRender={itemRender}
+          />
+        </View>
       </View>
     </ChildPageLayout>
   );

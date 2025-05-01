@@ -64,11 +64,13 @@ export default function BuyInList() {
           onChange={(e) => onSearch(e.detail.value)}
         />
 
-        <PullAndLoadMoreList
-          ref={pullAndLoadMoreListRef}
-          loadList={loadList}
-          itemRender={itemRender}
-        />
+        <View className="buy-in-list__mian">
+          <PullAndLoadMoreList
+            ref={pullAndLoadMoreListRef}
+            loadList={loadList}
+            itemRender={itemRender}
+          />
+        </View>
       </View>
     </ChildPageLayout>
   );
