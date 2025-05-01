@@ -23,7 +23,7 @@ function publishTask(good?: string) {
 export default function Mine() {
   return (
     <View className="page-home">
-      <View className="page-home__header">有废旧物，就来 E 速收</View>
+      {/* <View className="page-home__header">有废旧物，就来 E 速收</View> */}
 
       <WhiteSpace size="large" />
 
