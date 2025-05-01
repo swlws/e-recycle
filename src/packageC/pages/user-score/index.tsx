@@ -9,6 +9,8 @@ import { IScoreItem } from '@/typings/user';
 import ScoreStatistics from './components/score-statistics';
 
 import './index.scss';
+import ScoreItem from './components/score-item';
+import { Cell } from '@taroify/core';
 
 /**
  * 加载用户总积分
@@ -48,10 +50,9 @@ const loadList: LoadListFn<Partial<IScoreItem>> = ({ page: number }) => {
 /** 渲染卡片 */
 const itemRender = (item: IScoreItem, index: number) => {
   return (
-    <View className="score-item" key={index}>
-      <View className="score-item__title">{item.type}</View>
-      <View className="score-item__score">{item.score}</View>
-    </View>
+    <Cell key={index}>
+      <ScoreItem info={item}></ScoreItem>;
+    </Cell>
   );
 };
 

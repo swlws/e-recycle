@@ -28,3 +28,14 @@ export enum ENUM_TASK_STATE {
   WILL_RESOLVE = 'WILL_RESOLVE', // 即将执行
   RESOLVE = 'RESOLVE',
 }
+
+/** 积分来源类型 */
+export enum ENUM_SCORE_SOURCE_TYPE {
+  /** 邀请 */
+  INVITE = 'invite',
+}
+
+/** 积分来源中文名映射 */
+export const SCORE_SOURCE_CHINESE_NAME_MAP = {
+  [ENUM_SCORE_SOURCE_TYPE.INVITE]: '邀请',
+};

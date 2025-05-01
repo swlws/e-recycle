@@ -1,0 +1,46 @@
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 16px;
+
+  .score-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .score-type {
+      font-size: 28px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .score-time {
+      font-size: 24px;
+      color: #999;
+    }
+
+    .score-description {
+      font-size: 26px;
+      color: #666;
+    }
+  }
+
+  .score-value {
+    margin-left: 16px;
+    font-size: 32px;
+    font-weight: 500;
+
+    .positive {
+      color: #ff6b00;
+    }
+
+    .negative {
+      color: #999;
+    }
+  }
+}
