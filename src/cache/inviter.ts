@@ -3,11 +3,11 @@ import { STORAGE_KEY } from '@/constants/storage';
 
 export default class {
   get value(): string {
-    return getItem(STORAGE_KEY.TOKEN) || '';
+    return getItem(STORAGE_KEY.INVITER) || '';
   }
 
   setValue(value: string) {
-    setItem(STORAGE_KEY.TOKEN, value);
+    setItem(STORAGE_KEY.INVITER, value);
   }
 
   clear() {
