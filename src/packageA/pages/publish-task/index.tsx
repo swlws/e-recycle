@@ -13,6 +13,20 @@ import { getCurrentInstance } from '@tarojs/runtime';
 
 import './index.scss';
 
+/**
+ * 校验任务信息
+ * @param taskInfo
+ * @returns
+ */
+function validateTaskInfo(taskInfo: Partial<ITaskInfo>) {
+  if (!taskInfo?.location?.longitude) {
+    Taro.showToast({ title: '选择收件地址' });
+    return false;
+  }
+
+  return true;
+}
+
 export default function ChildPage() {
   const [loading, setLoading] = useState(true);
   const [formValue, setFormValue] = useState<Partial<ITaskInfo>>(() => {
@@ -41,6 +55,8 @@ export default function ChildPage() {
   };
 
   const onSubmit = async () => {
+    if (!validateTaskInfo(formValue)) return;
+
     await requestSubscribeMessageWhenUserPublishTask();
 
     // 上传图片
