@@ -15,7 +15,8 @@ import { phoneNumberFormatter } from '@/utils/tool';
  */
 async function userLogin(iv: string, encryptedData: string) {
   const code = await getWxCode();
-  return api.auth.login({ code, iv, encryptedData });
+  const inviter = CacheMgr.inviter.value;
+  return api.auth.login({ code, iv, encryptedData, inviter });
 }
 
 /**
