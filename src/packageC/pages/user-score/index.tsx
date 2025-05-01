@@ -6,7 +6,7 @@ import api from '@/api';
 import { useDidShow } from '@tarojs/taro';
 import ChildPageLayout from '@/layout/child-page-layout';
 import { IScoreItem } from '@/typings/user';
-import ScoreCard from './components/scroe-card';
+import ScoreStatistics from './components/score-statistics';
 
 import './index.scss';
 
@@ -70,7 +70,7 @@ export default function ScoreList() {
   return (
     <ChildPageLayout>
       <View className="user-score-list">
-        <ScoreCard score={score}></ScoreCard>
+        <ScoreStatistics score={score}></ScoreStatistics>
 
         <View className="user-score-list__main">
           <PullAndLoadMoreList
