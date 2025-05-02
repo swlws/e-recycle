@@ -1,5 +1,5 @@
 import { ListResponse } from '@/typings';
-import { BackTop, List, Loading, PullRefresh } from '@taroify/core';
+import { BackTop, Empty, List, Loading, PullRefresh } from '@taroify/core';
 import { usePageScroll, pageScrollTo } from '@tarojs/taro';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
@@ -82,7 +82,15 @@ function PullAndLoadMoreList<T>({ loadList, itemRender }: PullAndLoadMoreListPro
         {!refreshingRef.current && (
           <List.Placeholder>
             {loading && <Loading>加载中...</Loading>}
-            {!hasMore && '没有更多了'}
+            {list.length && !hasMore ? '没有更多了' : ''}
+            {!list.length && !loading ? (
+              <Empty>
+                {' '}
+                <Empty.Image />{' '}
+              </Empty>
+            ) : (
+              ''
+            )}
           </List.Placeholder>
         )}
       </List>
