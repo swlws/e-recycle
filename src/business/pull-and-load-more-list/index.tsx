@@ -85,8 +85,7 @@ function PullAndLoadMoreList<T>({ loadList, itemRender }: PullAndLoadMoreListPro
             {list.length && !hasMore ? '没有更多了' : ''}
             {!list.length && !loading ? (
               <Empty>
-                {' '}
-                <Empty.Image />{' '}
+                <Empty.Image />
               </Empty>
             ) : (
               ''
