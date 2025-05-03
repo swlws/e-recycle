@@ -14,7 +14,7 @@ interface ScoreItemProps {
  * @returns
  */
 const ScoreItem: React.FC<ScoreItemProps> = ({ info }) => {
-  const { type, createTime, score } = info;
+  const { type, createTime, score = 0 } = info;
   const typeStr = SCORE_SOURCE_CHINESE_NAME_MAP[type] || '未知';
   let description = '';
   if (type === ENUM_SCORE_SOURCE_TYPE.INVITE) {
@@ -32,7 +32,7 @@ const ScoreItem: React.FC<ScoreItemProps> = ({ info }) => {
       <View className="score-value">
         <Text className={score >= 0 ? 'positive' : 'negative'}>
           {score >= 0 ? '+' : ''}
-          {score}
+          {score + '分'}
         </Text>
       </View>
     </View>

@@ -10,7 +10,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ score }) => {
   return (
     <View className="score-card">
       <Text className="label">积分</Text>
-      <Text className="value">{score}</Text>
+      <Text className="value">{score}分</Text>
     </View>
   );
 };

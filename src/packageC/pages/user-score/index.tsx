@@ -51,7 +51,7 @@ const loadList: LoadListFn<Partial<IScoreItem>> = ({ page: number }) => {
 const itemRender = (item: IScoreItem, index: number) => {
   return (
     <Cell key={index}>
-      <ScoreItem info={item}></ScoreItem>;
+      <ScoreItem info={item}></ScoreItem>
     </Cell>
   );
 };
