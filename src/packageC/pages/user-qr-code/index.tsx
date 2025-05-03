@@ -1,20 +1,15 @@
 import api from '@/api';
 import { saveQrCodeToPhotosAlbum } from '@/bridge/media';
 import ChildPageLayout from '@/layout/child-page-layout';
-import { Button, Cell, Image, NoticeBar, Space } from '@taroify/core';
-import { View, Block } from '@tarojs/components';
+import { Button, Flex, Image, NoticeBar, Space } from '@taroify/core';
+import { View } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { useState } from 'react';
-import CacheMgr from '@/cache';
 import { InfoOutlined } from '@taroify/icons';
 
 export default function UserQrCode() {
   const [loading, setLoading] = useState(true);
-  const [qrCode, setQrCode] = useState(() => {
-    const qrCode = CacheMgr.user.value?.shareQrCode || '';
-    if (!qrCode) return '';
-    return 'https://' + qrCode;
-  });
+  const [qrCode, setQrCode] = useState('');
 
   useLoad(() => {
     if (qrCode) return;
@@ -45,13 +40,17 @@ export default function UserQrCode() {
         </NoticeBar>
       </View>
 
-      <Space justify="center" style={{ margin: '32px 0 16px' }}>
-        <Image mode="widthFix" placeholder="加载中..." src={qrCode} shape="rounded">
-          {qrCode}
-        </Image>
-      </Space>
+      <Flex justify="center" align="center">
+        <Image
+          mode="widthFix"
+          placeholder="加载中..."
+          src={qrCode}
+          shape="rounded"
+          style={{ width: '326px', height: '326px' }}
+        ></Image>
+      </Flex>
 
-      <Space justify="center">
+      <Space justify="center" style={{ marginTop: '16px' }}>
         <Button color="primary" block onClick={saveQrCode}>
           保存到相册
         </Button>

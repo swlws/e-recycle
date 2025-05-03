@@ -4,6 +4,7 @@ import auth from './interface/auth';
 import task from './interface/task';
 import share from './interface/share';
 import score from './interface/score';
+import log from './interface/log';
 
 type ApiConfig = {
   [key in keyof typeof apiModule]: {
@@ -26,6 +27,7 @@ const apiModule = {
   task,
   share,
   score,
+  log,
 };
 
 export default Object.keys(apiModule).reduce((acc, moduleName) => {
