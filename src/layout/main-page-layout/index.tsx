@@ -1,6 +1,7 @@
-import { View } from '@tarojs/components';
+import { Text, View } from '@tarojs/components';
 import { FixedView, Tabbar } from '@taroify/core';
 import React, { useState } from 'react';
+import { getSystemInfoSync } from '@tarojs/taro';
 
 import { IMainPage } from '@/typings';
 import './index.scss';
@@ -10,11 +11,9 @@ interface MainPageLayoutProps {
   mainPageList: IMainPage[];
 }
 
-/**
- * 一级页面的布局
- */
 export default function MainPageLayout(props: MainPageLayoutProps) {
   const { mainPageList } = props;
+  const { statusBarHeight } = getSystemInfoSync();
 
   const [activePageIndex, setActivePageIndex] = useState(0);
 
@@ -28,11 +27,23 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
     }
   };
 
+  const getBaner = () => {
+    return (
+      <View className="e-banner" style={{ paddingTop: `${statusBarHeight}px` }}>
+        <View className="e-banner-content">
+          <Text className="e-main-title">E速收</Text>
+          <Text className="e-sub-title">让回收变得更快更高效</Text>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View className="main-page-layout">
+      {getBaner()}
+      
       {/* 主内容区域 */}
       <View className="main-page-layout__main">
-        {/* 动态渲染当前选中的组件 */}
         {mainPageList[activePageIndex] &&
           React.createElement(mainPageList[activePageIndex].component, {}, null)}
       </View>
