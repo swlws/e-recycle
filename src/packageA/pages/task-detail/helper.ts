@@ -24,9 +24,9 @@ export function buttonPermissionForTaskCenterPage(taskInfo: ITaskInfo): IButtonP
 
   const deleteVisible = currUid === uid;
   const finishVisible =
-    new Date(pickupTime).getTime() < Date.now() && state !== ENUM_TASK_STATE.RESOLVE;
+    new Date(pickupTime).getTime() < Date.now() && state === ENUM_TASK_STATE.WILL_RESOLVE;
 
-  const takeVisible = currUid !== dealWithUid;
+  const takeVisible = currUid !== dealWithUid && state !== ENUM_TASK_STATE.INVALID;
   const unTakeVisible = currUid === dealWithUid;
   return {
     takeVisible,

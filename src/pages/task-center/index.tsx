@@ -58,11 +58,11 @@ const itemRender = (item: ITaskInfo, index: number) => {
   return (
     <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}>
       {showButton && (
-        <Space direction="vertical" fill style={{ marginTop: '8px' }}>
+        <View style={{ marginTop: '8px' }}>
           <Button color="success" block hairline size="small">
             接单
           </Button>
-        </Space>
+        </View>
       )}
     </NCard>
   );
