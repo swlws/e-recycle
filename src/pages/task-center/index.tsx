@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Cell } from '@taroify/core';
+import { Cell, Space } from '@taroify/core';
 import { View } from '@tarojs/components';
 import PullAndLoadMoreList from '@/business/pull-and-load-more-list';
 import NCard from '@/components/n-card';
@@ -16,6 +16,8 @@ import ListSkeleton from './list-skeleton';
 
 import './index.scss';
 import { useDidShow } from '@tarojs/taro';
+import Button from '@taroify/core/button/button';
+import { ENUM_TASK_STATE } from '@/constants/public';
 
 /** 加载列表数据 */
 const loadList: LoadListFn<Partial<ITaskInfo>> = ({ page: number }) => {
@@ -51,7 +53,19 @@ const itemRender = (item: ITaskInfo, index: number) => {
     gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, { _id: item._id, fromPage: ENUM_PAGE_ALIAS.TASK_CENTER });
   };
 
-  return <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}></NCard>;
+  const showButton = item.state === ENUM_TASK_STATE.PENDDING;
+
+  return (
+    <NCard key={index} index={index} info={item} onClick={openTaskDetailPage}>
+      {showButton && (
+        <Space direction="vertical" fill style={{ marginTop: '8px' }}>
+          <Button color="success" block hairline size="small">
+            接单
+          </Button>
+        </Space>
+      )}
+    </NCard>
+  );
 };
 
 export default function TaskCenter() {
@@ -75,7 +89,6 @@ export default function TaskCenter() {
   }, []);
 
   useDidShow(() => {
-    console.log('task-center didShow');
     pullAndLoadMoreListRef.current?.refresh();
   });
 

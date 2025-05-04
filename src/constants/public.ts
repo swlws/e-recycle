@@ -27,6 +27,8 @@ export enum ENUM_TASK_STATE {
   PENDDING = 'PENDDING',
   WILL_RESOLVE = 'WILL_RESOLVE', // 即将执行
   RESOLVE = 'RESOLVE',
+  // 过期
+  INVALID = 'INVALID',
 }
 
 /** 积分来源类型 */

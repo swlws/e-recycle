@@ -1,5 +1,5 @@
 import { ITaskInfo } from '@/typings/task';
-import { Avatar, Cell, Flex } from '@taroify/core';
+import { Avatar, Cell, Flex, Space } from '@taroify/core';
 import { ClockOutlined, Location, ShoppingCart } from '@taroify/icons';
 
 import './index.scss';
@@ -8,6 +8,7 @@ interface NCardProps {
   index?: number;
   info?: ITaskInfo;
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 export default function NCard(props: NCardProps) {
@@ -40,6 +41,8 @@ export default function NCard(props: NCardProps) {
           </Flex>
         </Flex.Item>
       </Flex>
+
+      {props.children}
     </Cell>
   );
 }
