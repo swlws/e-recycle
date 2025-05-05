@@ -1,10 +1,10 @@
-import { Button, Flex, WhiteSpace } from '@taroify/core';
+import { Button, Flex, Image, WhiteSpace } from '@taroify/core';
 import { ENUM_ROUTE_PATH } from '@/constants/route';
 import { gotoPage } from '@/bridge/navigator';
 import { View } from '@tarojs/components';
 import { ENUM_GOODS_LIST } from '@/constants/public';
-
 import CardButton from './card-button';
+import JiuWuHuiShou from '@/asset/images/jiuwuhuishou.png';
 
 import './index.scss';
 
@@ -23,11 +23,11 @@ function publishTask(good?: string) {
 export default function Mine() {
   return (
     <View className="page-home">
-      {/* <View className="page-home__header">有废旧物，就来 E 速收</View> */}
+      <View className="page-home__image-wrapper">
+        <Image src={JiuWuHuiShou} className="page-home__banner-image"></Image>
+      </View>
 
-      <WhiteSpace size="large" />
-
-      <Flex gutter={16} wrap="wrap">
+      <Flex gutter={26} wrap="wrap">
         {ENUM_GOODS_LIST.slice(0, 4).map((item) => {
           return (
             <Flex.Item span={12} key={item.text}>

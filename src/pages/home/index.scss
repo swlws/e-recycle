@@ -1,11 +1,11 @@
 .page-home {
-  padding: 16px;
+  padding: 16px 32px;
 
   &__header {
     font-size: 36px;
     font-weight: 500;
     text-align: left;
-    padding: 32px 16px;
+    padding: 32px 32px;
     position: relative;
     color: #fff;
     background: linear-gradient(45deg, #07c160, #42d885);
@@ -17,5 +17,15 @@
   &__publish-button {
     border-color: $theme-color;
     background-color: $theme-color;
+  }
+
+  &__image-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 0 10%;
+  }
+
+  &__banner-image {
+    width: 100%;
   }
 }
