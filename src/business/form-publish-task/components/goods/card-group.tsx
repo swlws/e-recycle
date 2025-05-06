@@ -36,13 +36,14 @@ export default function CardGroup({ value, cards, onChange }: CardGroupProps) {
         >
           <View className="card-group__item-image">
             <Image src={card.image} mode="aspectFill" />
-            {value.includes(card.text) && (
-              <View className="card-group__item-check">
-                <Checked color="#07c160" size="20" />
-              </View>
-            )}
           </View>
           <View className="card-group__item-text">{card.text}</View>
+
+          {value.includes(card.text) && (
+            <View className="card-group__item-check">
+              <Checked color="#07c160" size="20" />
+            </View>
+          )}
         </View>
       ))}
     </View>
