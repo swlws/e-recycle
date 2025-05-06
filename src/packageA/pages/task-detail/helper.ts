@@ -43,10 +43,11 @@ export function buttonPermissionForTaskCenterPage(taskInfo: ITaskInfo): IButtonP
  */
 export function buttonPermissionForPublishedTaskPage(taskInfo: ITaskInfo): IButtonPermission {
   const currUid = CacheMgr.user.value?._id;
-  const { uid } = taskInfo;
+  const { uid, dealWithUid } = taskInfo;
+  const unTakeVisible = currUid === dealWithUid;
 
   const deleteVisible = currUid === uid;
-  return { deleteVisible };
+  return { deleteVisible, unTakeVisible };
 }
 
 /**
@@ -56,10 +57,11 @@ export function buttonPermissionForPublishedTaskPage(taskInfo: ITaskInfo): IButt
  */
 export function buttonPermissionForInTradingTaskPage(taskInfo: ITaskInfo): IButtonPermission {
   const currUid = CacheMgr.user.value?._id;
-  const { uid } = taskInfo;
+  const { uid, dealWithUid } = taskInfo;
+  const unTakeVisible = currUid === dealWithUid;
 
   const deleteVisible = currUid === uid;
-  return { deleteVisible };
+  return { deleteVisible, unTakeVisible };
 }
 
 /**
@@ -125,14 +127,13 @@ async function doTakeTask(taskInfo: ITaskInfo) {
   await requestSubscribeMessageWhenUserTakeTask();
 
   const data = { _id: taskInfo._id };
-  api.task.taskTask(data).then(({ r0 }) => {
-    if (r0 !== 0) {
-      Taro.showToast({ title: '来晚了，已被人抢走' });
-    } else {
+  api.task.taskTask(data).then(({ r0, r1 }) => {
+    if (r0 === 0) {
       Taro.showToast({ title: '接单成功' });
+      callNavigateBack();
     }
 
-    callNavigateBack();
+    return Taro.showToast({ title: r1, icon: 'none' });
   });
 }
 
