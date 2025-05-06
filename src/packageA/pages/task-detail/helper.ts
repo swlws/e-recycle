@@ -121,7 +121,7 @@ function callNavigateBack() {
     Taro.navigateBack();
   }, 500);
 }
-
+``;
 async function doTakeTask(taskInfo: ITaskInfo) {
   // 订阅消息
   await requestSubscribeMessageWhenUserTakeTask();
