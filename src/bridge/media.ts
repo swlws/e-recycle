@@ -2,6 +2,7 @@ import { URL_PREFIX } from '@/api/request';
 import { IChooseImage } from '@/typings/bridge';
 import Taro from '@tarojs/taro';
 import CacheMgr from '@/cache';
+import { addRecond, ENUM_LOG_TYPE } from '@/monitor';
 
 interface ChooseImageOption {
   count?: number;
@@ -91,7 +92,13 @@ export function saveQrCodeToPhotosAlbum(qrCodeUrl: string) {
       Taro.saveImageToPhotosAlbum({
         filePath: res.tempFilePath,
         success: () => Taro.showToast({ title: '保存成功' }),
+        fail: () => Taro.showToast({ title: '保存失败' }),
       });
+    },
+    fail: (err) => {
+      Taro.showToast({ title: '下载失败' });
+      addRecond({ type: ENUM_LOG_TYPE.CUSTOM, msg: 'downloadFile fail', data: err, qrCodeUrl });
+      console.error(err);
     },
   });
 }
