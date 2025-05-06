@@ -12,7 +12,6 @@ interface GoodsProps {
 
 export default function Goods(props: GoodsProps) {
   const [list, setList] = useState(() => {
-    console.log('Goods', props.value);
     let list = props.value || [];
     if (list.length === 0) {
       const len = ENUM_GOODS_LIST.length;
