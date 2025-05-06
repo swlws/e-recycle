@@ -3,6 +3,7 @@ import { Avatar, Cell, Flex, Space } from '@taroify/core';
 import { ClockOutlined, Location, ShoppingCart } from '@taroify/icons';
 
 import './index.scss';
+import { formatRelativeDate } from '@/utils/date';
 
 interface NCardProps {
   index?: number;
@@ -28,7 +29,7 @@ export default function NCard(props: NCardProps) {
           <Flex direction="column" justify="center" style={{ height: '100%', minWidth: '1px' }}>
             <Flex.Item style={{ fontWeight: 'bolder' }}>
               <ClockOutlined size={16} />
-              {props.info?.pickupTime}
+              {formatRelativeDate(props.info?.pickupTime || '')}
             </Flex.Item>
             <Flex.Item style={{ color: '#009afe' }}>
               <Location size={16} />
