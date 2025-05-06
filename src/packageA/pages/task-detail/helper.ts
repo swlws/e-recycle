@@ -27,7 +27,7 @@ export function buttonPermissionForTaskCenterPage(taskInfo: ITaskInfo): IButtonP
     new Date(pickupTime).getTime() < Date.now() && state === ENUM_TASK_STATE.WILL_RESOLVE;
 
   const takeVisible = currUid !== dealWithUid && state !== ENUM_TASK_STATE.INVALID;
-  const unTakeVisible = currUid === dealWithUid;
+  const unTakeVisible = currUid === dealWithUid && new Date(pickupTime).getTime() > Date.now();
   return {
     takeVisible,
     unTakeVisible,
@@ -43,10 +43,11 @@ export function buttonPermissionForTaskCenterPage(taskInfo: ITaskInfo): IButtonP
  */
 export function buttonPermissionForPublishedTaskPage(taskInfo: ITaskInfo): IButtonPermission {
   const currUid = CacheMgr.user.value?._id;
-  const { uid, dealWithUid } = taskInfo;
-  const unTakeVisible = currUid === dealWithUid;
+  const { uid, dealWithUid, pickupTime } = taskInfo;
 
+  const unTakeVisible = currUid === dealWithUid && new Date(pickupTime).getTime() > Date.now();
   const deleteVisible = currUid === uid;
+
   return { deleteVisible, unTakeVisible };
 }
 
@@ -57,8 +58,8 @@ export function buttonPermissionForPublishedTaskPage(taskInfo: ITaskInfo): IButt
  */
 export function buttonPermissionForInTradingTaskPage(taskInfo: ITaskInfo): IButtonPermission {
   const currUid = CacheMgr.user.value?._id;
-  const { uid, dealWithUid } = taskInfo;
-  const unTakeVisible = currUid === dealWithUid;
+  const { uid, dealWithUid, pickupTime } = taskInfo;
+  const unTakeVisible = currUid === dealWithUid && new Date(pickupTime).getTime() > Date.now();
 
   const deleteVisible = currUid === uid;
   return { deleteVisible, unTakeVisible };

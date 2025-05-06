@@ -41,7 +41,7 @@ const itemRender = (item: ITaskInfo, index: number) => {
   const openTaskDetailPage = () => {
     gotoPage(ENUM_ROUTE_PATH.TASK_DETAIL, {
       _id: item._id,
-      fromPage: ENUM_PAGE_ALIAS.SELL_OUT_LIST,
+      fromPage: ENUM_PAGE_ALIAS.PUBLISHED_LIST,
     });
   };
 

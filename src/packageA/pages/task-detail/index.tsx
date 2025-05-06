@@ -33,6 +33,7 @@ export default function TaskDetail() {
         setTskInfo(res);
 
         const fromPage = getCurrentInstance().router?.params?.fromPage as ENUM_PAGE_ALIAS;
+        console.log('fromPage', fromPage);
         setButtonPermission(calculateButtonPermission(fromPage, res));
       })
       .finally(() => {
@@ -66,7 +67,7 @@ export default function TaskDetail() {
                   block
                   onClick={() => patchBusinessEvent('unTake', taskInfo)}
                 >
-                  放弃
+                  取消接单
                 </Button>
               </Flex.Item>
             )}
