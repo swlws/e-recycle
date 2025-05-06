@@ -7,17 +7,17 @@ import { IMainPage } from '@/typings';
 export const MainPageList: IMainPage[] = [
   {
     name: 'home',
-    nameZh: '首页',
+    nameZh: '发布',
     component: HomePage,
   },
   {
     name: 'list',
-    nameZh: '大厅',
+    nameZh: '接单',
     component: TaskCenter,
   },
   {
     name: 'mine',
-    nameZh: '我的',
+    nameZh: '我',
     component: MinePage,
   },
 ];
