@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { getDefaultPickTime, getPickerOption } from './helper';
 
 import './index.scss';
+import { formatRelativeDate } from '@/utils/date';
 
 interface PickupTimeProps {
   value?: string;
@@ -36,7 +37,7 @@ export default function PickupTime(props: PickupTimeProps) {
     <>
       <Cell
         className="pickup-time"
-        title={'取货时间：' + pickupTime || '时间'}
+        title={'取货时间：' + formatRelativeDate(pickupTime) || '时间'}
         isLink={!props.readonly}
         clickable={!props.readonly}
         onClick={openModel}
