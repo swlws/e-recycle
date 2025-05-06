@@ -35,8 +35,8 @@ export enum ENUM_TASK_STATE {
  * 任务状态中文映射
  */
 export const TASK_STATE_MAP_ZH_CN = {
-  [ENUM_TASK_STATE.PENDDING]: '可接单',
-  [ENUM_TASK_STATE.WILL_RESOLVE]: '代执行',
+  [ENUM_TASK_STATE.PENDDING]: '待接单',
+  [ENUM_TASK_STATE.WILL_RESOLVE]: '交易中',
   [ENUM_TASK_STATE.RESOLVE]: '已完成',
   [ENUM_TASK_STATE.INVALID]: '已过期',
 };

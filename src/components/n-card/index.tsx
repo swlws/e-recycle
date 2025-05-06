@@ -48,7 +48,7 @@ export default function NCard(props: NCardProps) {
         </Flex.Item>
 
         <Flex.Item>
-          <View className="n-card-state">{stateZh}</View>
+          <View className={`n-card-state ${state}`}>{stateZh}</View>
         </Flex.Item>
       </Flex>
 
