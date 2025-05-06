@@ -1,11 +1,62 @@
 .n-card-container {
-  .taroify-flex-item {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  &:active {
+    background: #f5f5f5;
   }
 
-  .taroify-cell__value {
-    min-width: 1px;
+  .n-card {
+    .taroify-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+    }
+
+    .taroify-flex-item {
+      .taroify-flex {
+        gap: 12px;
+
+        &-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 26px;
+          line-height: 1.5;
+
+          .taroify-icon {
+            flex-shrink: 0;
+          }
+
+          // 时间样式
+          &:first-child {
+            color: #333;
+            font-weight: 500;
+          }
+
+          // 地址样式
+          &:nth-child(2) {
+            color: #4caf50;
+          }
+
+          // 商品样式
+          &:last-child {
+            color: #ff9800;
+          }
+        }
+      }
+    }
   }
+}
+
+.taroify-flex-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taroify-cell__value {
+  min-width: 1px;
 }
