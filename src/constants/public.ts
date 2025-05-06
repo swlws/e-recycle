@@ -31,6 +31,16 @@ export enum ENUM_TASK_STATE {
   INVALID = 'INVALID',
 }
 
+/**
+ * 任务状态中文映射
+ */
+export const TASK_STATE_MAP_ZH_CN = {
+  [ENUM_TASK_STATE.PENDDING]: '可接单',
+  [ENUM_TASK_STATE.WILL_RESOLVE]: '代执行',
+  [ENUM_TASK_STATE.RESOLVE]: '已完成',
+  [ENUM_TASK_STATE.INVALID]: '已过期',
+};
+
 /** 积分来源类型 */
 export enum ENUM_SCORE_SOURCE_TYPE {
   /** 邀请 */

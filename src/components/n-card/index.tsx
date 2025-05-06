@@ -4,6 +4,8 @@ import { ClockOutlined, Location, ShoppingCart } from '@taroify/icons';
 
 import './index.scss';
 import { formatRelativeDate } from '@/utils/date';
+import { View } from '@tarojs/components';
+import { TASK_STATE_MAP_ZH_CN } from '@/constants/public';
 
 interface NCardProps {
   index?: number;
@@ -17,6 +19,9 @@ export default function NCard(props: NCardProps) {
   if (!snapshotUrl) {
     snapshotUrl = 'https://robohash.org/e-';
   }
+
+  const state = props.info?.state || '';
+  const stateZh = state ? TASK_STATE_MAP_ZH_CN[state] : '';
 
   return (
     <Cell className="n-card-container" onClick={props.onClick}>
@@ -40,6 +45,10 @@ export default function NCard(props: NCardProps) {
               {props.info?.goods?.join('、')}
             </Flex.Item>
           </Flex>
+        </Flex.Item>
+
+        <Flex.Item>
+          <View className="n-card-state">{stateZh}</View>
         </Flex.Item>
       </Flex>
 
