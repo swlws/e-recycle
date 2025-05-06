@@ -1,22 +1,68 @@
-.uid-container {
-  margin-top: 16px;
-  padding: 12px 24px;
-  background: #e8f5e9;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.qr-code-page {
+  padding: 24px 16px;
+  min-height: 100vh;
+  background: #f8f8f8;
 
-  .uid-label {
-    font-size: 30px;
-    color: #666;
+  .notice-section {
+    margin-bottom: 32px;
   }
 
-  .uid-value {
-    font-size: 30px;
-    color: #333;
-    font-weight: 500;
-    padding: 4px 12px;
-    border-radius: 4px;
+  .qr-code-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+    .qr-code-image {
+      width: 326px;
+      height: 326px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .uid-container {
+    margin-top: 16px;
+    padding: 12px 24px;
+    background: #e8f5e9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+
+    .uid-label {
+      font-size: 24px;
+      color: #666;
+    }
+
+    .uid-value {
+      font-size: 28px;
+      color: #2e7d32;
+      font-weight: 500;
+      background: #fff;
+      padding: 4px 12px;
+      border-radius: 4px;
+      min-width: 120px;
+      text-align: center;
+    }
+  }
+
+  .action-section {
+    margin-top: 32px;
+    padding: 0 16px;
+
+    :global(.taroify-button) {
+      height: 88px;
+      font-size: 32px;
+      border-radius: 44px;
+      background: #4caf50;
+
+      &:active {
+        background: #388e3c;
+      }
+    }
   }
 }

@@ -35,35 +35,39 @@ export default function UserQrCode() {
 
   return (
     <ChildPageLayout>
-      <View className="user-qr-code" style={{ marginBottom: '16px' }}>
-        <NoticeBar style={{ color: '#fff', background: '#4CAF50' }} scrollable>
-          <NoticeBar.Icon>
-            <InfoOutlined />
-          </NoticeBar.Icon>
-          让绿色回收成为全民习惯，推动低碳环保，实现资源循环利用，助力可持续发展。
-        </NoticeBar>
-      </View>
-
-      <Flex justify="center" align="center" direction="column">
-        <Image
-          mode="widthFix"
-          placeholder="加载中..."
-          src={qrCode}
-          shape="rounded"
-          style={{ width: '326px', height: '326px' }}
-        ></Image>
-
-        <View className="uid-container">
-          <Text className="uid-label">UID:</Text>
-          <Text className="uid-value">{uid}</Text>
+      <View className="qr-code-page">
+        <View className="notice-section">
+          <NoticeBar style={{ color: '#fff', background: '#4CAF50' }} scrollable>
+            <NoticeBar.Icon>
+              <InfoOutlined />
+            </NoticeBar.Icon>
+            让绿色回收成为全民习惯，推动低碳环保，实现资源循环利用，助力可持续发展。
+          </NoticeBar>
         </View>
-      </Flex>
 
-      <Space justify="center" style={{ marginTop: '16px' }}>
-        <Button color="primary" block onClick={saveQrCode}>
-          保存到相册，分享给好友
-        </Button>
-      </Space>
+        <View className="qr-code-section">
+          <View className="qr-code-image-wrapper">
+            <Image
+              mode="widthFix"
+              placeholder="加载中..."
+              src={qrCode}
+              shape="rounded"
+              className="qr-code-image"
+            ></Image>
+          </View>
+
+          <View className="uid-container">
+            <Text className="uid-label">UID:</Text>
+            <Text className="uid-value">{uid}</Text>
+          </View>
+        </View>
+
+        <View className="action-section">
+          <Button color="primary" block onClick={saveQrCode}>
+            保存到相册，分享给好友
+          </Button>
+        </View>
+      </View>
     </ChildPageLayout>
   );
 }
