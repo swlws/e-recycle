@@ -2,13 +2,15 @@ import api from '@/api';
 import BeFormPublishTask from '@/business/form-publish-task';
 import ChildPageLayout from '@/layout/child-page-layout';
 import { useLoad, getCurrentInstance } from '@tarojs/taro';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { calculateButtonPermission, IButtonPermission, patchBusinessEvent } from './helper';
 import { ENUM_PAGE_ALIAS } from '@/constants/route';
 import { Button, Flex } from '@taroify/core';
 
 import './index.scss';
 import { ITaskInfo } from '@/typings/task';
+import { View } from '@tarojs/components';
+import { TASK_STATE_MAP_ZH_CN } from '@/constants/public';
 
 export default function TaskDetail() {
   const [loading, setLoading] = useState(true);
@@ -40,6 +42,11 @@ export default function TaskDetail() {
         setLoading(false);
       });
   };
+
+  const stateZh = useMemo(() => {
+    const state = taskInfo.state || '';
+    return state ? TASK_STATE_MAP_ZH_CN[state] : '';
+  }, [taskInfo]);
 
   return (
     <ChildPageLayout>
@@ -98,6 +105,8 @@ export default function TaskDetail() {
               </Flex.Item>
             )}
           </Flex>
+
+          <View className={`task-state ${taskInfo.state}`}>{stateZh}</View>
         </BeFormPublishTask>
       )}
     </ChildPageLayout>
