@@ -27,7 +27,7 @@ export default function Mine() {
         <Image src={JiuWuHuiShou} className="page-home__banner-image"></Image>
       </View>
 
-      <Flex gutter={26} wrap="wrap">
+      <Flex wrap="wrap">
         {ENUM_GOODS_LIST.slice(0, 4).map((item) => {
           return (
             <Flex.Item span={12} key={item.text}>
