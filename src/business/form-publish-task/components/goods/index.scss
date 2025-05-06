@@ -1,0 +1,11 @@
+.form-publish-task__goods {
+  padding: 16px;
+
+  // 只读状态
+  &.readonly {
+    .card-group__item {
+      opacity: 0.8;
+      pointer-events: none;
+    }
+  }
+}
