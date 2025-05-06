@@ -1,0 +1,24 @@
+.page-mine {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 24px 16px;
+
+  :global(.taroify-cell-group) {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+    .taroify-cell {
+      padding: 24px 16px;
+      
+      &::after {
+        left: 16px;
+        right: 16px;
+      }
+
+      &:active {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
