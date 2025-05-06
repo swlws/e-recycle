@@ -21,8 +21,14 @@ type ApiMethod = (
   res: any;
 }>;
 
-// export const URL_PREFIX = 'https://swlws.site';
-export const URL_PREFIX = 'http://localhost:8808';
+function getUrlPrefix() {
+  if (CacheMgr.env.value === 'develop') {
+    return 'http://localhost:8808';
+  }
+  return 'https://swlws.site';
+}
+
+export const URL_PREFIX = getUrlPrefix();
 const DEFAULT_METHOD = 'GET';
 const DEFAULT_HEADER = {
   'Content-Type': 'application/json',
