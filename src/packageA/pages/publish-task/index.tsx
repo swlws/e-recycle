@@ -20,7 +20,7 @@ import './index.scss';
  */
 function validateTaskInfo(taskInfo: Partial<ITaskInfo>) {
   if (!taskInfo?.location?.longitude) {
-    Taro.showToast({ title: '选择收件地址' });
+    Taro.showToast({ title: '选择收件地址', icon: 'error' });
     return false;
   }
 

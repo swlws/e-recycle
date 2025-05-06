@@ -1,5 +1,5 @@
 import { Text, View } from '@tarojs/components';
-import { FixedView, Image, Tabbar } from '@taroify/core';
+import { Tabbar } from '@taroify/core';
 import React, { useState } from 'react';
 import { getSystemInfoSync } from '@tarojs/taro';
 
