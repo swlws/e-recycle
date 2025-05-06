@@ -4,6 +4,7 @@
 export interface IMainPage {
   name: string;
   nameZh: string;
+  icon?: any;
   // component: React.FC | React.ComponentType<any>;
   component: () => React.ReactNode;
 }

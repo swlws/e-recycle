@@ -1,5 +1,5 @@
 import { Text, View } from '@tarojs/components';
-import { FixedView, Tabbar } from '@taroify/core';
+import { FixedView, Image, Tabbar } from '@taroify/core';
 import React, { useState } from 'react';
 import { getSystemInfoSync } from '@tarojs/taro';
 
@@ -41,7 +41,7 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
   return (
     <View className="main-page-layout">
       {getBaner()}
-      
+
       {/* 主内容区域 */}
       <View className="main-page-layout__main">
         {mainPageList[activePageIndex] &&
@@ -52,7 +52,12 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
       <View className="main-page-layout__footer">
         <Tabbar value={activePageIndex} onChange={handleTabClick}>
           {mainPageList.map((item, index) => (
-            <Tabbar.TabItem key={item.name} value={index} onClick={() => handleTabClick(index)}>
+            <Tabbar.TabItem
+              key={item.name}
+              value={index}
+              icon={<Image src={item.icon} width={40} height={40}></Image>}
+              onClick={() => handleTabClick(index)}
+            >
               {item.nameZh}
             </Tabbar.TabItem>
           ))}
