@@ -1,0 +1,22 @@
+.uid-container {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #e8f5e9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .uid-label {
+    font-size: 30px;
+    color: #666;
+  }
+
+  .uid-value {
+    font-size: 30px;
+    color: #333;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+}
