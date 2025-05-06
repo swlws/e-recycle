@@ -28,4 +28,16 @@
   &__banner-image {
     width: 100%;
   }
+
+  &__publish-button {
+    // margin-top: 32px;
+    height: 88px;
+    font-size: 32px;
+    border-radius: 44px;
+    background: #4caf50;
+
+    &:active {
+      background: #388e3c;
+    }
+  }
 }
