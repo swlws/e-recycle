@@ -52,12 +52,7 @@ export default function MainPageLayout(props: MainPageLayoutProps) {
       <View className="main-page-layout__footer">
         <Tabbar value={activePageIndex} onChange={handleTabClick}>
           {mainPageList.map((item, index) => (
-            <Tabbar.TabItem
-              key={item.name}
-              value={index}
-              icon={<Image src={item.icon} width={40} height={40}></Image>}
-              onClick={() => handleTabClick(index)}
-            >
+            <Tabbar.TabItem key={item.name} value={index} onClick={() => handleTabClick(index)}>
               {item.nameZh}
             </Tabbar.TabItem>
           ))}
