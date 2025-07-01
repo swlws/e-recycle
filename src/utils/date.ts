@@ -48,8 +48,12 @@ export function formatRelativeDate(dateStr: string): string {
     case 2:
       relativeDayText = '后天';
       break;
-    default:
+    default: {
+      if (diffDays < 0) {
+        return `${datePart} ${timePart}`;
+      }
       return `${datePart}(${diffDays}天后) ${timePart}`; // 如果超过后天，返回原始日期字符串
+    }
   }
 
   return `${datePart}(${relativeDayText}) ${timePart}`;

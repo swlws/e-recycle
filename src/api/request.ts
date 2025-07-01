@@ -21,8 +21,9 @@ type ApiMethod = (
   res: any;
 }>;
 
-export const URL_PREFIX = 'http://localhost:8808';
+// export const URL_PREFIX = 'http://localhost:8808';
 // export const URL_PREFIX = 'https://dev.swlws.site';
+export const URL_PREFIX = 'https://swlws.site';
 const DEFAULT_METHOD = 'GET';
 const DEFAULT_HEADER = {
   'Content-Type': 'application/json',
