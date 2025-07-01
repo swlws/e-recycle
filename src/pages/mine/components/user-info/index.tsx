@@ -7,6 +7,7 @@ import CacheMgr from '@/cache';
 import { getWxCode } from '@/bridge/user';
 import api from '@/api';
 import { phoneNumberFormatter } from '@/utils/tool';
+import { updateUserToken } from '@/utils/user';
 
 /**
  * 用户登录
@@ -50,8 +51,12 @@ export default function UserInfo(props: UserInfoProps) {
       userLogin(info.iv, info.encryptedData).then((res) => {
         if (res.r0 !== 0) return;
 
+        // 更新用户信息
         CacheMgr.user.setValue(res.res);
         setUserProfile(res.res);
+
+        // 更新用户token
+        updateUserToken();
 
         props.onLoginSuccess?.();
       });

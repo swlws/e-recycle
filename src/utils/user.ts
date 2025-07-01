@@ -1,3 +1,4 @@
+import api from '@/api';
 import CacheMgr from '@/cache';
 import Taro from '@tarojs/taro';
 
@@ -16,4 +17,18 @@ export function checkLoginState(showTip = true) {
   }
 
   return true;
+}
+
+/**
+ * 更新 token
+ */
+export function updateUserToken() {
+  const uid = CacheMgr.user.value?._id;
+  if (!uid) {
+    return;
+  }
+
+  api.auth.token().then((res) => {
+    CacheMgr.token.setValue(res.res);
+  });
 }

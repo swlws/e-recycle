@@ -21,14 +21,8 @@ type ApiMethod = (
   res: any;
 }>;
 
-function getUrlPrefix() {
-  if (CacheMgr.env.value === 'develop') {
-    return 'http://localhost:8808';
-  }
-  return 'https://swlws.site';
-}
-
-export const URL_PREFIX = getUrlPrefix();
+export const URL_PREFIX = 'http://localhost:8808';
+// export const URL_PREFIX = 'https://dev.swlws.site';
 const DEFAULT_METHOD = 'GET';
 const DEFAULT_HEADER = {
   'Content-Type': 'application/json',
@@ -37,9 +31,16 @@ const DEFAULT_HEADER = {
 function request(url: string, data: Record<string, any>, options: RequestOptions) {
   const uid = CacheMgr.user.value?._id || '';
   const env = CacheMgr.env.value || '';
+  const token = CacheMgr.token.value || '';
 
   const method = options.method || DEFAULT_METHOD;
-  const header = { ...DEFAULT_HEADER, ...options.header, 'X-UID': uid, 'X-ENV': env };
+  const header = {
+    ...DEFAULT_HEADER,
+    ...options.header,
+    'X-UID': uid,
+    'X-ENV': env,
+    'X-TOKEN': token,
+  };
   return Taro.request({
     url: `${URL_PREFIX}${url}`,
     data,
@@ -61,6 +62,12 @@ function request(url: string, data: Record<string, any>, options: RequestOptions
 }
 
 function reposeInterceptor(response: Taro.request.SuccessCallbackResult, options: RequestOptions) {
+  // headers X-NEXT-TOKEN
+  const nextToken = response.header['X-NEXT-TOKEN'];
+  if (nextToken) {
+    CacheMgr.token.setValue(nextToken);
+  }
+
   if (response.statusCode === 200) {
     const { r0, r1, res } = response.data;
 

@@ -6,6 +6,8 @@ export enum STORAGE_KEY {
   FUZZY_LOCATION = 'FUZZY_LOCATION',
   /** 用户信息 */
   USER = 'USER',
+  /** Token */
+  TOKEN = 'TOKEN',
   /** 邀请人 */
   INVITER = 'INVITER',
 }
